@@ -7,11 +7,74 @@
 public class GravBody implements Body{
 
     // TODO: Add appropriate instance variables
-
+    private int bodies;
+    private double xCoordinate;
+    private double yCoordinate;
+    private double xVelocity;
+    private double yVelocity;
+    private double radius;
+    private int[] rgb;
+    private double mass;
     // TODO: Add a constructor to initialize instance variables
-
+    public GravBody(){
+	bodies++;
+	xCoordinate = 0;
+	yCoordinate = 0;
+	xVelocity = 0;
+	yVelocity = 0; 
+	radius = 0;
+	rgb = new int[]{0, 0, 0};
+	mass = 0;
+    }
+    public GravBody(int bod, double rad, double xCoord, double yCoord, double xVel, double yVel, double m, int red, int green, int blue){
+	bodies = bod;
+	xCoordinate = xCoord;
+	yCoordinate = yCoord;
+	xVelocity = xVel;
+	yVelocity = yVel;
+	mass = m;
+	radius = rad;
+	rgb = new int[]{red, green, blue};
+	
+	//NEED TO IMPLEMENT THESE INTO INSTANCE VARIABLES POSSIBLY
+    }
     // TODO: Implement all methods to satisfy interface
+    public double getXCoord()
+    {
+	return xCoordinate;
+    }
+    public double getYCoord()
+    {
+	return yCoordinate;
+    }
+    public double getXVel()
+    {
+	return xVelocity;
+    }
+    public double getYVel()
+    {
+	return yVelocity;
+    }
+    public double getRadius()
+    {
+	return radius;
+    }
+    public int[] getRGB()
+    {
+	return rgb;
+    }
+    public double getMass()
+    {
+	return mass; 
+    }
+    public void addForceFrom(Body otherBody)
+    {
 
+    }
+    public void move(double timeDelta)
+    {
+
+    }
     // TODO: Implment any additional methods for testing (i.e. methods
     // not listed on the Body interface). Look at TestGravBody for ideas
     // of helper methods you might need.

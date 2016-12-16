@@ -5,7 +5,7 @@ public class TestGravBody {
     
     @Test
     public void testGetXCoord() {
-	GrabBody gb = null; // TODO: Replace null w/ call to GravBody cons
+	GravBody gb = new GravBody(); // TODO: Replace null w/ call to GravBody cons
 
 	// It is NEVER a good idea to check if floating point numbers are
         // ==. To represent floating point numbers using binary, the
@@ -24,17 +24,24 @@ public class TestGravBody {
 
     @Test
     public void testGetYCoord() {
-	GravBody gb = null; // TODO: Replace null with call to GravBody
+	GravBody gb = new GravBody(); // TODO: Replace null with call to GravBody
 	                    // constructor that sets the y-value to you like
 
 	double delta = 0.00001;
 
 	// TODO: assert that gb.getYCoord() returns the y-value you picked in
 	// the constructor. This is exactly like testGetXCoord() above.
+	assertEquals(1986.1203, gb.getYCoord(),delta);
     }
 
     // TODO: Add a test for getXVel
-
+    @Test
+    public void testGetXVel() {
+	//Basic Implementation that I added - BUBU
+	GravBody gb = new GravBody();
+	double delta = 0.00001;
+	assertEquals(1986.1203, gb.getXVel(), delta);
+    }
     // TODO: Add a test for getYVel
 
     // TODO: Add a test for getRadius
@@ -47,9 +54,9 @@ public class TestGravBody {
     public void testAddForceFrom(){
 	// HINT: The physics coursework/homework you did is helpful here
 
-	GravBody gbA = null; // TODO: Replace null w/ call to GravBody cons
-	GravBody gbB = null; // TODO: Replace null w/ a call to GravBody cons
-	GravBody gbC = null; // TODO: Replace null w/ a call to GravBody cons
+	GravBody gbA = new GravBody(); // TODO: Replace null w/ call to GravBody cons
+	GravBody gbB = new GravBody(); // TODO: Replace null w/ a call to GravBody cons
+	GravBody gbC = new GravBody(); // TODO: Replace null w/ a call to GravBody cons
 	              
 
 	// TODO: Assert that the x and y component of force on gbA are 0
