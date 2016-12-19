@@ -42,14 +42,48 @@ public class TestGravBody {
 	double delta = 0.00001;
 	assertEquals(1986.1203, gb.getXVel(), delta);
     }
+
     // TODO: Add a test for getYVel
+    @Test
+    public void testGetYVel() {
+        //Basic Implementation that I added - BUBU                              
+        GravBody gb = new GravBody();
+        double delta = 0.00001;
+        assertEquals(1986.1203, gb.getYVel(), delta);
+    }
 
     // TODO: Add a test for getRadius
+    @Test
+    public void testGetRadius() {
+        //Basic Implementation that I added - BUBU                              
+        GravBody gb = new GravBody();
+        double delta = 0.00001;
+        assertEquals(1986.1203, gb.getRadius(), delta);
+    }
 
     // TODO: Add a test for getRGB
-
+    @Test
+    public void testGetRGB() {
+        //Basic Implementation that I added - BUBU                              
+        GravBody gb = new GravBody();
+        //double delta = 0.00001;
+        int r = 1;
+	int g = 2;
+	int b = 3;
+	int[] ex = new int[3];
+	int[] what = {1,2,3};
+	assertEquals("What do I write here", what, gb.getRGB());
+    }
+    
     // TODO: Add a test for getMass
-
+    @Test
+    public void testGetMass() {
+	    //Basic Implementation that I added - BUBU                              
+	    GravBody gb = new GravBody();
+	    double delta = 0.00001;
+	    assertEquals(1986.1203, gb.getMass(), delta);
+	}
+   
     @Test
     public void testAddForceFrom(){
 	// HINT: The physics coursework/homework you did is helpful here
