@@ -72,7 +72,7 @@ public class TestGravBody {
 	int b = 3;
 	int[] ex = new int[3];
 	int[] what = {1,2,3};
-	assertEquals("What do I write here", what, gb.getRGB());
+	assertEquals(what, gb.getRGB());
     }
     
     // TODO: Add a test for getMass
