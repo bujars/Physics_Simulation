@@ -7,37 +7,34 @@
 public class GravBody implements Body{
 
     // TODO: Add appropriate instance variables
-    private int bodies;
     private double xCoordinate;
     private double yCoordinate;
     private double xVelocity;
     private double yVelocity;
-    private double radius;
     private int[] rgb;
     private double mass;
+    
     // TODO: Add a constructor to initialize instance variables
     public GravBody(){
-	bodies++;
 	xCoordinate = 0;
 	yCoordinate = 0;
 	xVelocity = 0;
 	yVelocity = 0; 
-	radius = 0;
 	rgb = new int[]{0, 0, 0};
 	mass = 0;
     }
-    public GravBody(int bod, double rad, double xCoord, double yCoord, double xVel, double yVel, double m, int red, int green, int blue){
-	bodies = bod;
+    public GravBody(double xCoord, double yCoord, double xVel, double yVel, double m, int red, int green, int blue){
 	xCoordinate = xCoord;
 	yCoordinate = yCoord;
 	xVelocity = xVel;
 	yVelocity = yVel;
 	mass = m;
-	radius = rad;
 	rgb = new int[]{red, green, blue};
 	
 	//NEED TO IMPLEMENT THESE INTO INSTANCE VARIABLES POSSIBLY
     }
+    
+
     // TODO: Implement all methods to satisfy interface
     public double getXCoord()
     {
@@ -57,11 +54,12 @@ public class GravBody implements Body{
     }
     public double getRadius()
     {
-	return radius;
+	return 0;
     }
     public int[] getRGB()
     {
-	return rgb;
+	return new int[]{0,0,0};
+	//return rgb;
     }
     public double getMass()
     {

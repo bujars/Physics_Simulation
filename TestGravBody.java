@@ -5,7 +5,7 @@ public class TestGravBody {
     
     @Test
     public void testGetXCoord() {
-	GravBody gb = new GravBody(); // TODO: Replace null w/ call to GravBody cons
+	GravBody gb = new GravBody(1, 0, 0, 0, 0,0,0,0); // TODO: Replace null w/ call to GravBody cons
 
 	// It is NEVER a good idea to check if floating point numbers are
         // ==. To represent floating point numbers using binary, the
@@ -52,6 +52,7 @@ public class TestGravBody {
         assertEquals(1986.1203, gb.getYVel(), delta);
     }
 
+    /*
     // TODO: Add a test for getRadius
     @Test
     public void testGetRadius() {
@@ -60,20 +61,19 @@ public class TestGravBody {
         double delta = 0.00001;
         assertEquals(1986.1203, gb.getRadius(), delta);
     }
-
+    
+    
     // TODO: Add a test for getRGB
     @Test
-    public void testGetRGB() {
-        //Basic Implementation that I added - BUBU                              
-        GravBody gb = new GravBody();
+    public void testGetRGB() {                              
+        //**Pull out each value, and then check if those values are equal//
+	GravBody gb = new GravBody();
         //double delta = 0.00001;
-        int r = 1;
-	int g = 2;
-	int b = 3;
-	int[] ex = new int[3];
-	int[] what = {1,2,3};
-	assertEquals(what, gb.getRGB());
-    }
+	
+	
+	
+	
+    }*/
     
     // TODO: Add a test for getMass
     @Test
