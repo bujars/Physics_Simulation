@@ -1,5 +1,6 @@
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 public class TestGravBody {
     
@@ -26,7 +27,7 @@ public class TestGravBody {
 	assertEquals(1, gb.getXCoord(), delta);
 	assertEquals(0, gc.getXCoord(), delta);
 	assertEquals(2.95365, gd.getXCoord(), delta);
-	assertEquals(1.0, ge.getXCoord(), delta);
+	assertEquals(-1.0, ge.getXCoord(), delta);
 	assertEquals(100, gf.getXCoord(), delta);
     }
 
@@ -47,7 +48,7 @@ public class TestGravBody {
 	assertEquals(1, gb.getYCoord(), delta);
         assertEquals(0, gc.getYCoord(), delta);
         assertEquals(1.52308, gd.getYCoord(), delta);
-        assertEquals(–1, ge.getYCoord(), delta);
+        assertEquals(-1, ge.getYCoord(), delta);
         assertEquals(100, gf.getYCoord(), delta);
     }
 
@@ -66,7 +67,7 @@ public class TestGravBody {
 	assertEquals(1, gb.getXVel(), delta);
 	assertEquals(0, gc.getXVel(), delta);
 	assertEquals(-3.24931, gd.getXVel(), delta);
-        assertEquals(–1, ge.getXVel(), delta);
+        assertEquals(-1, ge.getXVel(), delta);
 	assertEquals(100, gf.getXVel(), delta);
     }
 
@@ -85,27 +86,23 @@ public class TestGravBody {
 	assertEquals(1, gb.getYVel(), delta);
         assertEquals(0, gc.getYVel(), delta);
         assertEquals(6.34897, gd.getYVel(), delta);
-        assertEquals(–1, ge.getYVel(), delta);
+        assertEquals(-1, ge.getYVel(), delta);
         assertEquals(100, gf.getYVel(), delta);
 
 
     }
 
-    /*
+    
     // TODO: Add a test for getRadius
     @Test
     public void testGetRadius() {
         //Basic Implementation that I added - BUBU
-        GravBody gb = new GravBody(1, 1, 1, 1, 1, 1, 1, 1);
-        GravBody gc = new GravBody(0, 0, 0, 0, 0, 0, 0, 0);
-        GravBody gd = new GravBody(2.95365, 1.52308, -3.24931, 6.34897, 5.96676, 255, 255, 0);
-        GravBody ge = new GravBody(-1, -1, -1, -1, -1, -1, -1, -1);
-        GravBody gf = new GravBody(100, 100, 100, 100, 100, 100, 100, 100);
+        GravBody gb = new GravBody(0, 0, 0, 0, 0, 0, 0, 0);
         double delta = 0.00001;
-       
+        assertEquals(0, gb.getRadius(), delta);
 
     }
-        
+    /*    
     // TODO: Add a test for getRGB
     @Test
     public void testGetRGB() {                              
@@ -135,7 +132,7 @@ public class TestGravBody {
 	assertEquals(1, gb.getMass(), delta);
 	assertEquals(0, gc.getMass(), delta);
 	assertEquals(5.96676, gd.getMass(), delta);
-        assertEquals(–1, ge.getMass(), delta);
+        assertEquals(-1, ge.getMass(), delta);
 	assertEquals(100, gf.getMass(), delta);
 
 	}
