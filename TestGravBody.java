@@ -141,21 +141,22 @@ public class TestGravBody {
     public void testAddForceFrom(){
 	// HINT: The physics coursework/homework you did is helpful here
 
-        GravBody gbA = new GravBody(1, 1, 1, 1, 1, 1, 1, 1);
-        GravBody gbB = new GravBody(0, 0, 0, 0, 0, 0, 0, 0);
-        GravBody gbC = new GravBody(2.95365, 1.52308, -3.24931, 6.34897, 5.96676, 255, 255, 0);      
-
+        GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
+        GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
+        GravBody gbC = new GravBody(5, 1, 0, 0, 75, 0, 0, 0);      
+	double delta = 0.00001;
 	// TODO: Assert that the x and y component of force on gbA are 0
 	// HINT: There's no method on the Body to get the forces--but gbA is
 	// a GravBody. So you can add methods to gravBody that isnt' on the
 	// interface to get the forces you need solely for testing purposes.
 
 	gbA.addForceFrom(gbB);
+	assertEquals()
 	gbA.addForceFrom(gbC);
-
+   
 	// TODO: Assert that the x and y components of force on gbA are correct
 
-
+	assertEquals(0 ,gbA.getXVel(), delta)
 	// TODO: Assert that the x and y components of force on gbB are 0
 
 	gbB.addForceFrom(gbA);
@@ -189,6 +190,11 @@ public class TestGravBody {
 	// TODO: Repeat the above process on the same 3 GravBody objects once
 	// more.
     }
-
-    
+    /*
+    @Test
+    public void testDistance(){
+	GravBody gbA = new GravBody(1, 1, 1, 1, 1, 1, 1, 1);
+        GravBody gbB = new GravBody(0, 0, 0, 0, 0, 0, 0, 0);
+	
+    }*/
 }

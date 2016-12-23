@@ -35,7 +35,6 @@ public class GravBody implements Body{
 	//NEED TO IMPLEMENT THESE INTO INSTANCE VARIABLES POSSIBLY
     }
     
-
     // TODO: Implement all methods to satisfy interface
     public double getXCoord()
     {
@@ -74,12 +73,16 @@ public class GravBody implements Body{
     {
 
     }
-    public double getForce()
+    /*public double getForce()
     {
 	force = 0;
 	return 0; 
+    }*/
+    public double getDistance(GravBody b)
+    {
+	int distance = Math.sqrt((b.getYCoord() - this. getYCoord())+(b.getXCoord() - this.getXCoord()));
+	return distance; 
     }
-    
     // TODO: Implment any additional methods for testing (i.e. methods
     // not listed on the Body interface). Look at TestGravBody for ideas
     // of helper methods you might need.
