@@ -13,7 +13,8 @@ public class GravBody implements Body{
     private double yVelocity;
     private int[] rgb;
     private double mass;
-    
+    private double force; 
+
     // TODO: Add a constructor to initialize instance variables
     public GravBody(){
 	xCoordinate = 0;
@@ -58,8 +59,8 @@ public class GravBody implements Body{
     }
     public int[] getRGB()
     {
-	return new int[]{0,0,0};
-	//return rgb;
+	//return new int[]{0,0,0};
+	return rgb;
     }
     public double getMass()
     {
@@ -73,6 +74,12 @@ public class GravBody implements Body{
     {
 
     }
+    public double getForce()
+    {
+	force = 0;
+	return 0; 
+    }
+    
     // TODO: Implment any additional methods for testing (i.e. methods
     // not listed on the Body interface). Look at TestGravBody for ideas
     // of helper methods you might need.

@@ -80,9 +80,7 @@ public class TestGravBody {
         GravBody gd = new GravBody(2.95365, 1.52308, -3.24931, 6.34897, 5.96676, 255, 255, 0);
         GravBody ge = new GravBody(-1, -1, -1, -1, -1, -1, -1, -1);
         GravBody gf = new GravBody(100, 100, 100, 100, 100, 100, 100, 100);
-        
-	double delta = 0.00001;
-	
+	double delta = 0.00001;	
 	assertEquals(1, gb.getYVel(), delta);
         assertEquals(0, gc.getYVel(), delta);
         assertEquals(6.34897, gd.getYVel(), delta);
@@ -102,7 +100,7 @@ public class TestGravBody {
         assertEquals(0, gb.getRadius(), delta);
 
     }
-    /*    
+
     // TODO: Add a test for getRGB
     @Test
     public void testGetRGB() {                              
@@ -112,10 +110,12 @@ public class TestGravBody {
         GravBody gd = new GravBody(2.95365, 1.52308, -3.24931, 6.34897, 5.96676, 255, 255, 0);
         GravBody ge = new GravBody(-1, -1, -1, -1, -1, -1, -1, -1);
         GravBody gf = new GravBody(100, 100, 100, 100, 100, 100, 100, 100);
-        //double delta = 0.00001;
-
-
-    }*/
+	int gbr = 0;
+	int gbg = 0;
+	int gbb = 0;
+	int[] what = {gbr,gbg,gbb};
+	assertArrayEquals(what, gc.getRGB());        
+    }
     
     // TODO: Add a test for getMass
     @Test
@@ -141,10 +141,9 @@ public class TestGravBody {
     public void testAddForceFrom(){
 	// HINT: The physics coursework/homework you did is helpful here
 
-	GravBody gbA = new GravBody(); // TODO: Replace null w/ call to GravBody cons
-	GravBody gbB = new GravBody(); // TODO: Replace null w/ a call to GravBody cons
-	GravBody gbC = new GravBody(); // TODO: Replace null w/ a call to GravBody cons
-	              
+        GravBody gbA = new GravBody(1, 1, 1, 1, 1, 1, 1, 1);
+        GravBody gbB = new GravBody(0, 0, 0, 0, 0, 0, 0, 0);
+        GravBody gbC = new GravBody(2.95365, 1.52308, -3.24931, 6.34897, 5.96676, 255, 255, 0);      
 
 	// TODO: Assert that the x and y component of force on gbA are 0
 	// HINT: There's no method on the Body to get the forces--but gbA is
