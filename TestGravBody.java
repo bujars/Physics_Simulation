@@ -38,9 +38,7 @@ public class TestGravBody {
         GravBody gc = new GravBody(0, 0, 0, 0, 0, 0, 0, 0);
         GravBody gd = new GravBody(2.95365, 1.52308, -3.24931, 6.34897, 5.96676, 255, 255, 0);
         GravBody ge = new GravBody(-1.0, -1.0, -1.0, -1.0, -1.0, -1, -1, -1);
-        GravBody gf = new GravBody(100.0, 100.0, 100.0, 100.0, 100.0, 100, 100, 100);
-        // constructor that sets the y-value to you like
-	
+        GravBody gf = new GravBody(100.0, 100.0, 100.0, 100.0, 100.0, 100, 100, 100);	
 	double delta = 0.00001;
 	// TODO: assert that gb.getYCoord() returns the y-value you picked in
 	// the constructor. This is exactly like testGetXCoord() above.
@@ -61,7 +59,6 @@ public class TestGravBody {
         GravBody gd = new GravBody(2.95365, 1.52308, -3.24931, 6.34897, 5.96676, 255, 255, 0);
         GravBody ge = new GravBody(-1, -1, -1, -1, -1, -1, -1, -1);
         GravBody gf = new GravBody(100, 100, 100, 100, 100, 100, 100, 100);
-	
 	double delta = 0.00001;
 	
 	assertEquals(1, gb.getXVel(), delta);
@@ -108,13 +105,34 @@ public class TestGravBody {
 	GravBody gb = new GravBody(1, 1, 1, 1, 1, 1, 1, 1);
         GravBody gc = new GravBody(0, 0, 0, 0, 0, 0, 0, 0);
         GravBody gd = new GravBody(2.95365, 1.52308, -3.24931, 6.34897, 5.96676, 255, 255, 0);
-        GravBody ge = new GravBody(-1, -1, -1, -1, -1, -1, -1, -1);
+        GravBody ge = new GravBody(-1, -1, -1, -1, -1, 255, 255, 255);
         GravBody gf = new GravBody(100, 100, 100, 100, 100, 100, 100, 100);
-	int gbr = 0;
-	int gbg = 0;
-	int gbb = 0;
-	int[] what = {gbr,gbg,gbb};
-	assertArrayEquals(what, gc.getRGB());        
+	int gbr = 1;
+	int gbg = 1;
+	int gbb = 1;
+	int[] whatb = {gbr,gbg,gbb};
+	assertArrayEquals(whatb, gb.getRGB());        
+	int gcr = 0;
+        int gcg = 0;
+        int gcb = 0;
+        int[] whatc = {gcr,gcg,gcb};
+        assertArrayEquals(whatc, gc.getRGB());
+	int gdr = 255;
+        int gdg = 255;
+        int gdb = 0;
+        int[] whatd = {gdr,gdg,gdb};
+        assertArrayEquals(whatd, gd.getRGB());
+	int ger = 255;
+        int geg = 255;
+        int geb = 255;
+        int[] whate = {ger,geg,geb};
+        assertArrayEquals(whate, ge.getRGB());
+	int gfr = 100;
+        int gfg = 100;
+        int gfb = 100;
+        int[] whatf = {gfr,gfg,gfb};
+        assertArrayEquals(whatf, gf.getRGB());
+	
     }
     
     // TODO: Add a test for getMass
@@ -151,12 +169,12 @@ public class TestGravBody {
 	// interface to get the forces you need solely for testing purposes.
 
 	gbA.addForceFrom(gbB);
-	assertEquals()
+	//	assertEquals()
 	gbA.addForceFrom(gbC);
    
 	// TODO: Assert that the x and y components of force on gbA are correct
 
-	assertEquals(0 ,gbA.getXVel(), delta)
+	//	assertEquals(0 ,gbA.getXVel(), delta);
 	// TODO: Assert that the x and y components of force on gbB are 0
 
 	gbB.addForceFrom(gbA);
