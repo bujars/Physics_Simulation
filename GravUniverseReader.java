@@ -5,7 +5,10 @@
  * @version 1.0
  */
 public class GravUniverseReader extends UniverseReader{
-
+    
+    private int numberOfGravBodies;
+    private double universeRadius;
+    private Body[] bodies;
     /**
      * Reads a gravitational simulation universe from a file.
      *
@@ -25,6 +28,14 @@ public class GravUniverseReader extends UniverseReader{
      */ 
     public GravUniverseReader(String fileName){
 	In input = new In(fileName);
+	numberOfGravBodies = input.readInt(); 
+	universeRadius = input.readDouble();
+	bodies = new Body[numberOfGravBodies];
+	for(int i = 0; i < numberOfGravBodies; i++)
+	{
+	    bodies[i] = new GravBody(input.readDouble(), input.readDouble(), input.readDouble(), input.readDouble(),input.readDouble(), input.readInt(), input.readInt(), input.readInt());
+	}
+	
 
 	// TODO: Read in data from file according to format
 	
@@ -39,5 +50,14 @@ public class GravUniverseReader extends UniverseReader{
 	// the two inherited methods on the GravUniverseReader object.
         // Then print out the information returned from these methods
 	// to verify that they worked correctly.
+	GravUniverseReader test1 = new GravUniverseReader("test1.txt");
+	Body[] test1Bodies = test1.getBodies();
+	System.out.println(test1Bodies[0]);
+	double test1Radius = test1.getUniverseRadius();
+
+
+
+	//GravUniverseReader test2 = new GravUniverseReader("test2.txt");
+
     }
 }
