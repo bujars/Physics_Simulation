@@ -30,8 +30,7 @@ public class GravBody implements Body{
 	xVelocity = xVel;
 	yVelocity = yVel;
 	mass = m;
-	rgb = new int[]{red, green, blue};
-	
+	rgb = new int[]{red, green, blue};	
 	//NEED TO IMPLEMENT THESE INTO INSTANCE VARIABLES POSSIBLY
     }
     
@@ -58,7 +57,6 @@ public class GravBody implements Body{
     }
     public int[] getRGB()
     {
-	//return new int[]{0,0,0};
 	return rgb;
     }
     public double getMass()
@@ -67,22 +65,67 @@ public class GravBody implements Body{
     }
     public void addForceFrom(Body otherBody)
     {
-
+	xVelocity = xVelocity + getXAccel(otherBody);
+	yVelocity = yVelocity + getYAccel(otherBody);
     }
     public void move(double timeDelta)
     {
-
+	xCoordinate = xCoordinate + (timeDelta * xVelocity);
+	yCoordinate = yCoordinate + (timeDelta * yVelocity);
     }
-    /*public double getForce()
+    public double getForce(Body b)
     {
-	force = 0;
-	return 0; 
+	if(getDistance(b) == 0)
+	    {
+		return 0; 
+	    }
+	double g = 6.67E-11;
+	double fg = ((g)*(b.getMass())*(this.getMass()))/((getDistance(b))*(getDistance(b)));
+	return fg; 
     }
-    public double getDistance(GravBody b)
+    public double getDistance(Body b)
     {
-	int distance = Math.sqrt((b.getYCoord() - this. getYCoord())+(b.getXCoord() - this.getXCoord()));
+	double distance = Math.hypot(b.getXCoord() - this.getXCoord(), b.getYCoord() - this.getYCoord());
 	return distance; 
-	}*/
+    }
+    public double getAngle(Body b)
+    {
+	if((b.getYCoord() == this.getYCoord()) && this.getYCoord() >= 0)
+	    {
+		return 0;
+	    }
+	double angle = Math.atan((b.getXCoord() - this.getXCoord())/ (b.getYCoord() - this.getYCoord()));
+	return angle; 
+    }
+    public double getXForce(Body b)
+    {
+	double xf = getForce(b) * Math.cos(getAngle(b));
+	return xf;
+    }
+    public double getYForce(Body b)
+    {
+	double yf = getForce(b) * Math.sin(getAngle(b));
+	return yf;
+    }
+    public double getXAccel(Body b)
+    {
+	if(getMass() == 0){
+	    return 0;
+	}
+	return (getXForce(b)/getMass());
+    }
+    public double getYAccel(Body b)
+    {
+	if(getMass() == 0){
+            return 0;
+	}
+	return (getYForce(b)/getMass());
+    }
+
+    public String toString()
+    {
+	return "XCoord: " + xCoordinate +" YCoord: " + yCoordinate + " XVeloc: " + xVelocity + " YVeloc: " + yVelocity + " RGB: " + rgb[0] + " " + rgb[1] + " " + rgb[2];
+    }
     // TODO: Implment any additional methods for testing (i.e. methods
     // not listed on the Body interface). Look at TestGravBody for ideas
     // of helper methods you might need.

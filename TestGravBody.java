@@ -158,7 +158,6 @@ public class TestGravBody {
     @Test
     public void testAddForceFrom(){
 	// HINT: The physics coursework/homework you did is helpful here
-
         GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
         GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
         GravBody gbC = new GravBody(5, 1, 0, 0, 75, 0, 0, 0);      
@@ -167,22 +166,15 @@ public class TestGravBody {
 	// HINT: There's no method on the Body to get the forces--but gbA is
 	// a GravBody. So you can add methods to gravBody that isnt' on the
 	// interface to get the forces you need solely for testing purposes.
-
 	gbA.addForceFrom(gbB);
-	//	assertEquals()
+	//  assertEquals()
 	gbA.addForceFrom(gbC);
-   
 	// TODO: Assert that the x and y components of force on gbA are correct
-
-	//	assertEquals(0 ,gbA.getXVel(), delta);
+	assertEquals(0 ,gbA.getXVel(), delta);
 	// TODO: Assert that the x and y components of force on gbB are 0
-
 	gbB.addForceFrom(gbA);
 	gbB.addForceFrom(gbC);
-
 	// TODO: Assert that x and y components of force on gbB are correct
-
-	
 	// TODO: Write test ensuring that forces can be calculated correctly
 	// for gbC
 	// HINT: It's the same as the last two test cases you wrote.
@@ -193,6 +185,9 @@ public class TestGravBody {
 	// HINT: The physics coursework/homework you did her is helpful.
 
 	// TODO: Create 3 GravBody objects
+        GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
+        GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
+        GravBody gbC = new GravBody(5, 1, 0, 0, 75, 0, 0, 0);
 
 	// TODO: For each GravBody object, add force from other two
 	
@@ -208,11 +203,52 @@ public class TestGravBody {
 	// TODO: Repeat the above process on the same 3 GravBody objects once
 	// more.
     }
-    /*
+    
     @Test
+	public void testForce(){
+        GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
+        GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
+        double delta = 0.00001;
+        assertEquals(5.13E-8, gbA.getForce(gbB), delta);
+    }
     public void testDistance(){
-	GravBody gbA = new GravBody(1, 1, 1, 1, 1, 1, 1, 1);
-        GravBody gbB = new GravBody(0, 0, 0, 0, 0, 0, 0, 0);
-	
-    }*/
+	GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
+        GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
+	double delta = 0.00001; 
+	double distance = Math.hypot(0 - (-6), 0 - (4));
+	System.out.println(distance);
+	assertEquals(distance, gbA.getDistance(gbB), delta);
+    }
+    public void testAngle(){
+	GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
+        GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
+        double delta = 0.00001;
+	assertEquals(33.7, gbA.getAngle(gbB), delta);
+    }
+    public void testXForce(){
+	GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
+        GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
+	double delta = 0.00001;
+        assertEquals(1.9E-7, gbA.getXForce(gbB), delta);
+    }
+    public void testYForce(){
+        GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
+        GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
+        double delta = 0.00001;
+        assertEquals(3.7E-8, gbA.getYForce(gbB), delta);
+    }
+    public void testXAccel(){
+        GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
+        GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
+        double delta = 0.00001;
+	double xa = 1.9E-7/40;
+        assertEquals(xa, gbA.getXAccel(gbB), delta);
+    }
+    public void testYAccel(){
+        GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
+        GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
+        double delta = 0.00001;
+        double ya = 3.7E-8/1000;
+        assertEquals(ya, gbA.getYAccel(gbB), delta);
+    }
 }

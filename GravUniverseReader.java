@@ -7,8 +7,6 @@
 public class GravUniverseReader extends UniverseReader{
     
     private int numberOfGravBodies;
-    private double universeRadius;
-    private Body[] bodies;
     /**
      * Reads a gravitational simulation universe from a file.
      *
@@ -28,21 +26,19 @@ public class GravUniverseReader extends UniverseReader{
      */ 
     public GravUniverseReader(String fileName){
 	In input = new In(fileName);
-	numberOfGravBodies = input.readInt(); 
-	universeRadius = input.readDouble();
-	bodies = new Body[numberOfGravBodies];
+	int numberGravBodies = input.readInt(); 
+	numberOfGravBodies = numberGravBodies;
+	double uniRadius = input.readDouble();
+	universeRadius = uniRadius;
+	bodies = new Body[numberGravBodies];
 	for(int i = 0; i < numberOfGravBodies; i++)
 	{
 	    bodies[i] = new GravBody(input.readDouble(), input.readDouble(), input.readDouble(), input.readDouble(),input.readDouble(), input.readInt(), input.readInt(), input.readInt());
 	}
-	
-
 	// TODO: Read in data from file according to format
-	
 	// TODO: Initialize parent class's protected instance variables
 	// with data read from file
     }
-
 
     public static void main(String[] args){
 	// TODO: Write simple test of GravUniverseReader here by
@@ -54,10 +50,6 @@ public class GravUniverseReader extends UniverseReader{
 	Body[] test1Bodies = test1.getBodies();
 	System.out.println(test1Bodies[0]);
 	double test1Radius = test1.getUniverseRadius();
-
-
-
-	//GravUniverseReader test2 = new GravUniverseReader("test2.txt");
-
+	System.out.println(test1Radius);
     }
 }
