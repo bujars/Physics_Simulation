@@ -57,9 +57,10 @@ public abstract class PhysicsEngine{
      */
     private void setUpDrawingCanvas(){
         // TODO: Scale the drawing window so that x and y axes between 
-        // −radius and +radius
-	
+	StdDraw.setScale(-uniRad, uniRad);	
 	// TODO: Enable double buffering for efficient animation
+	StdDraw.enableDoubleBuffering(); 
+	
     }
 
     /**
@@ -67,12 +68,18 @@ public abstract class PhysicsEngine{
      */
     private void drawData(){
 	// TODO: Clear the canvas
-
+	StdDraw.clear(bgColor);
 	// TODO: Draw each body on the offscreen canvas
-
+	int[] rGB;
+	for(int i = 0; i < bodies.length; i++){
+	    rGB = bodies[i].getRGB();
+	    StdDraw.setPenColor(rGB[0], rGB[1], rGB[2]);
+	    StdDraw.circle(bodies[i].getXCoord(), bodies[i].getYCoord(), bodies[i].getRadius());
+	}
 	// TODO: Copy the offscreen canvs to the onscreen canvas
-
+	StdDraw.show();
 	// TODO: Wait for a short amount of time
+	StdDraw.pause(1); //might have to cast dt, ask stern
     }
     
     /**
@@ -81,6 +88,9 @@ public abstract class PhysicsEngine{
      */
     private void computePositions(){
 	// TODO: Move each body
+	for(int i = 0; i < bodies.length; i++){
+	    bodies[i].move(dt);
+	}
     }
 
 

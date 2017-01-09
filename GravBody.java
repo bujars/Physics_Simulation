@@ -13,7 +13,12 @@ public class GravBody implements Body{
     private double yVelocity;
     private int[] rgb;
     private double mass;
-    private double force; 
+    private double totalforce; 
+    private double yForce;
+    private double xForce;
+    private int redC;
+    private int blueC;
+    private int greenC;
 
     // TODO: Add a constructor to initialize instance variables
     public GravBody(){
@@ -31,99 +36,125 @@ public class GravBody implements Body{
 	yVelocity = yVel;
 	mass = m;
 	rgb = new int[]{red, green, blue};	
-	//NEED TO IMPLEMENT THESE INTO INSTANCE VARIABLES POSSIBLY
+	redC = red;
+	blueC = blue;
+	greenC = green;
     }
     
     // TODO: Implement all methods to satisfy interface
-    public double getXCoord()
-    {
+    public double getXCoord() {
 	return xCoordinate;
     }
-    public double getYCoord()
-    {
+
+    public double getYCoord(){
 	return yCoordinate;
     }
-    public double getXVel()
-    {
+
+    public double getXVel(){
 	return xVelocity;
     }
-    public double getYVel()
-    {
+
+    public double getYVel(){
 	return yVelocity;
     }
-    public double getRadius()
-    {
-	return 0;
+
+    public double getRadius(){
+	return 100;
     }
-    public int[] getRGB()
-    {
+
+    public int[] getRGB(){
 	return rgb;
     }
-    public double getMass()
-    {
+    
+    public int getRed(){
+	return redC;
+    }
+    
+    public int getBlue(){
+	return blueC;
+    }
+
+    public int getGreen(){
+	return greenC; 
+    }
+
+    public double getMass(){
 	return mass; 
     }
-    public void addForceFrom(Body otherBody)
-    {
-	xVelocity = xVelocity + getXAccel(otherBody);
-	yVelocity = yVelocity + getYAccel(otherBody);
+
+    public void addForceFrom(Body otherBody){
+	xForce = xForce + this.calculateXForce(otherBody);
+	yForce = yForce + this.calculateYForce(otherBody);
     }
-    public void move(double timeDelta)
-    {
+    
+    public double getXForce(){
+	return xForce; 
+    }
+    
+    public double getYForce(){
+	return yForce;
+    }
+
+    public void move(double timeDelta){
+	xVelocity = xVelocity + (timeDelta * calculateXAccel()); //this calculates the new velocity not coordinate but calculate that here since we have time. Then use that and take time and multiple and store in xCoord
+	//Use force and get Velocity to move the cordinate.
+	yVelocity = yVelocity + (timeDelta * calculateYAccel());
 	xCoordinate = xCoordinate + (timeDelta * xVelocity);
 	yCoordinate = yCoordinate + (timeDelta * yVelocity);
+	xForce = 0;                                                                                                                       
+        yForce = 0;
     }
-    public double getForce(Body b)
-    {
-	if(getDistance(b) == 0)
-	    {
+
+    public double calculateTotalForce(Body b){
+	if(getDistance(b) == 0){
 		return 0; 
 	    }
 	double g = 6.67E-11;
 	double fg = ((g)*(b.getMass())*(this.getMass()))/((getDistance(b))*(getDistance(b)));
 	return fg; 
     }
-    public double getDistance(Body b)
-    {
-	double distance = Math.hypot(b.getXCoord() - this.getXCoord(), b.getYCoord() - this.getYCoord());
-	return distance; 
+
+    public double getDistance(Body b){
+	return Math.hypot(b.getXCoord() - this.xCoordinate, b.getYCoord() - this.yCoordinate);
     }
-    public double getAngle(Body b)
-    {
-	if((b.getYCoord() == this.getYCoord()) && this.getYCoord() >= 0)
-	    {
+
+    public double getAngle(Body b){
+	if((b.getXCoord() == this.xCoordinate) && this.xCoordinate >= 0){
 		return 0;
-	    }
-	double angle = Math.atan((b.getXCoord() - this.getXCoord())/ (b.getYCoord() - this.getYCoord()));
-	return angle; 
-    }
-    public double getXForce(Body b)
-    {
-	double xf = getForce(b) * Math.cos(getAngle(b));
-	return xf;
-    }
-    public double getYForce(Body b)
-    {
-	double yf = getForce(b) * Math.sin(getAngle(b));
-	return yf;
-    }
-    public double getXAccel(Body b)
-    {
-	if(getMass() == 0){
-	    return 0;
 	}
-	return (getXForce(b)/getMass());
+	return Math.atan(Math.abs(b.getYCoord() - this.yCoordinate)/ Math.abs(b.getXCoord() - this.xCoordinate));
     }
-    public double getYAccel(Body b)
-    {
+
+    public double calculateXForce(Body b){
+	xForce = calculateTotalForce(b) * Math.cos(getAngle(b)); //Change Name
+	return xForce; 
+    }//Use instance variable of xForce same for y, that way you call it for acceleration
+ 
+   public double calculateYForce(Body b){
+       yForce = calculateTotalForce(b) * Math.sin(getAngle(b)); //Change
+       return yForce; 
+   }
+
+    public double calculateXAccel(){
+	if(getMass() == 0){
+	    return 0;//check getXForce!!!
+	}
+	return (xForce/getMass());
+    }
+
+    public double calculateYAccel(){
 	if(getMass() == 0){
             return 0;
 	}
-	return (getYForce(b)/getMass());
+	return (yForce/getMass());
     }
 
-    public String toString()
-    {
+    /*  public double changeVelocity(Body b){
+	xVelocity = getVelocity()+ ///this is what you were trying to do above. You do not need it ! remove it! 
+    }*/
+
+
+    public String toString(){
 	return "XCoord: " + xCoordinate +" YCoord: " + yCoordinate + " XVeloc: " + xVelocity + " YVeloc: " + yVelocity + " RGB: " + rgb[0] + " " + rgb[1] + " " + rgb[2];
     }
     // TODO: Implment any additional methods for testing (i.e. methods
