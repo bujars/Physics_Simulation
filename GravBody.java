@@ -126,7 +126,11 @@ public class GravBody implements Body{
     }
 
     public double calculateXForce(Body b){
-	xForce = calculateTotalForce(b) * Math.cos(getAngle(b)); //Change Name
+	int direction = 1;
+	if(b.getXCoord() < this.getXCoord()){
+	    direction = -1;
+	}
+	xForce = direction * (calculateTotalForce(b) * Math.cos(getAngle(b))); //Change Name
 	return xForce; 
     }//Use instance variable of xForce same for y, that way you call it for acceleration
  

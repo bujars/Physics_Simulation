@@ -88,7 +88,7 @@ public class TestGravBody {
     public void testGetRadius() {
         GravBody gb = new GravBody(0, 0, 0, 0, 0, 0, 0, 0);
         double delta = 0.00001;
-        assertEquals(0, gb.getRadius(), delta);
+        assertEquals(100, gb.getRadius(), delta);
     }
     
     @Test
@@ -153,7 +153,6 @@ public class TestGravBody {
     // TODO: Add a test for getMass
     @Test
 	public void testGetMass() {
-	//Basic Implementation that I added - BUBU                              
 	GravBody gb = new GravBody(1, 1, 1, 1, 1, 1, 1, 1);
         GravBody gc = new GravBody(0, 0, 0, 0, 0, 0, 0, 0);
         GravBody gd = new GravBody(2.95365, 1.52308, -3.24931, 6.34897, 5.96676, 255, 255, 0);
@@ -176,19 +175,24 @@ public class TestGravBody {
 	GravBody gbEarth = new GravBody(1.5, 0, 0, 3.0E4, 5.972E24, 0, 0, 0);
 	GravBody gbSun = new GravBody(0, 0, 0, 0, 1.99E30, 0, 0, 0);
 	GravBody gbVenus = new GravBody(1, 0, 0, 3.5E4, 4.87E24, 0, 0, 0);
+	GravBody gbM1 = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
+        GravBody gbM = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
+        GravBody gbM2 = new GravBody(5, 1, 0, 0, 75, 0, 0, 0);
+
 	double delta = 0.00001;
 
 	//TODO: Assert that the x and y component of force on gbA are 0
-        assertEquals(0, gbEarth.calculateXForce(gbSun), delta);
-	assertEquals(0, gbEarth.calculateYForce(gbSun), delta);
+        assertEquals(0, gbM.calculateXForce(gbM1), delta);
+	assertEquals(0, gbM.calculateYForce(gbM1), delta);
 
 	// HINT: There's no method on the Body to get the forces--but gbA is
 	// a GravBody. So you can add methods to gravBody that isnt' on the
 	// interface to get the forces you need solely for testing purposes.
-	gbEarth.addForceFrom(gbSun);
+	gbM1.addForceFrom(gbM);
+	gbM2.addForceFrom(gbM);
 	//gbG.addForceFrom(gbF);
-	assertEquals(-3.5E22, gbEarth.getXForce(), delta);
-	
+	assertEquals(-4.26841801E-8, gbM1.getXForce(), delta);
+	assertEquals(2.84561201E-8, gbM1.getYForce(), delta);
 	/////	gbA.addForceFrom(gbC);
 	
 	// TODO: Assert that the x and y components of force on gbA are correct
@@ -260,16 +264,16 @@ public class TestGravBody {
     public void testCalculateXForce(){
 	GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
         GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
-	double delta = 0.00001;
-        assertEquals(1.9E-7, gbA.calculateXForce(gbB), delta);
+	double delta = 0.000000001;
+        assertEquals(-4.26841801E-8, gbB.calculateXForce(gbA), delta);
     }
 
     @Test
     public void testCalculateYForce(){
         GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
         GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
-        double delta = 0.00001;
-        assertEquals(3.7E-8, gbA.calculateYForce(gbB), delta);
+        double delta = 0.00000001;
+        assertEquals(2.8456120E-8, gbB.calculateYForce(gbA), delta);
     }
 
     @Test
@@ -277,8 +281,7 @@ public class TestGravBody {
         GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
         //GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
         double delta = 0.00001;
-	double xa = 1.9E-7/40;
-        assertEquals(xa, gbA.calculateXAccel(), delta);
+        assertEquals(-1.0671045E-9, gbA.calculateXAccel(), delta);
     }
 
     @Test///recalculate this and x force and y force and x accel using the new angle in radians!!!!!!!!Do later pleasee!
@@ -286,7 +289,7 @@ public class TestGravBody {
         GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
         //GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
         double delta = 0.00001;
-        double ya = 3.7E-8/1000;
+        double ya = 2.84561201E-8/1000;
         assertEquals(ya, gbA.calculateYAccel(), delta);
     }
 
@@ -296,6 +299,13 @@ public class TestGravBody {
 	double delta = 0.0001;
 	assertEquals(0, gbA.getXForce(), delta);
     }
+
+  @Test
+      public void testGetYForce(){
+      GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
+      double delta = 0.0001;
+      assertEquals(0, gbA.getYForce(), delta);
+  }
 
     
 }
