@@ -232,6 +232,7 @@ public class TestGravBody {
         GravBody gbM = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
         GravBody gbM2 = new GravBody(5, 1, 0, 0, 75, 0, 0, 0);
 	double time = 1; 
+	double delta = 0.01;
 	// TODO: For each GravBody object, add force from other two
 	gbM.addForceFrom(gbM1);
 	gbM.addForceFrom(gbM2);
@@ -241,11 +242,16 @@ public class TestGravBody {
 	gbM2.move(1);
 	// TODO: For each GravBody object, assert that new x and y coordinates
 	// are correct after movement
-	
+	assertEquals(1.43E-8, gbM.getXCoord(), delta);
+	assertEquals(6.71E-9, gbM.getYCoord(), delta);
 	// TODO: For each GravBody object, assert that x and y components of
 	// force are now 0
-
-	
+	assertEquals(0, gbM.getXForce(), delta);
+	assertEquals(0, gbM.getYForce(), delta);
+	assertEquals(0, gbM1.getXForce(), delta);
+	assertEquals(0, gbM2.getYForce(), delta);
+	assertEquals(0, gbM1.getXForce(), delta);
+	assertEquals(0, gbM1.getYForce(), delta);
 	// TODO: Repeat the above process on the same 3 GravBody objects once
 	// more.
     }
@@ -271,12 +277,12 @@ public class TestGravBody {
     @Test
 	public void testAngle(){ //Maybe You need to change the order of a/b/c because u calculate it from M not m1 or m2
 	//Gets Angles in Radians!!!    -----Caclaulate the angle on google in degrees, then if its negative, subtract from 180 then use that number and covert to rad as the expected answer. 
-	GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
-        GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
-        GravBody gbC = new GravBody(5, 1, 0, 0, 75, 0, 0, 0);
-	double delta = 1e-16;
-	assertEquals(0.5880026035475675, gbA.getAngle(gbB), delta);
-	assertEquals(0.19739555984988078, gbC.getAngle(gbB), delta);
+	GravBody gbM1 = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
+        GravBody gbM = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
+        GravBody gbM2 = new GravBody(5, 1, 0, 0, 75, 0, 0, 0);
+	double delta = .01;
+	assertEquals(2.56, gbM.getAngle(gbM1), delta);
+	assertEquals(0.19, gbM.getAngle(gbM2), delta);
 	
     }
 
@@ -296,10 +302,14 @@ public class TestGravBody {
         GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
         GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
         GravBody gbC = new GravBody(5, 1, 0, 0, 75, 0, 0, 0);
+
+	GravBody gbD = new GravBody(5, -1, 0, 0, 75, 0, 0, 0);
+	
 	double delta = 0.01;
         assertEquals(2.85E-8, gbB.calculateYForce(gbA), delta);
-	assertEquals(3.86E-8, gbB.calculateXForce(gbC), delta); 
+	assertEquals(3.86E-8, gbB.calculateYForce(gbC), delta); 
 
+	assertEquals(-3.86E-8, gbB.calculateYForce(gbD), delta);
     }
 
     @Test

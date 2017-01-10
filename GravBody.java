@@ -122,25 +122,25 @@ public class GravBody implements Body{
 	if((b.getXCoord() == this.xCoordinate) && this.xCoordinate >= 0){
 		return 0;
 	}
-	return Math.atan(Math.abs(b.getYCoord() - this.yCoordinate)/ Math.abs(b.getXCoord() - this.xCoordinate));
+	return Math.atan2((b.getYCoord() - this.yCoordinate), (b.getXCoord() - this.xCoordinate));
     }
 
     public double calculateXForce(Body b){
-	int direction = 1;
+	/*int direction = 1;
 	if(b.getXCoord() < this.getXCoord()){
 	    direction = -1;
-	}
-	xForce = direction * (calculateTotalForce(b) * Math.cos(getAngle(b))); //Change Name
+	    }*/
+	xForce = (calculateTotalForce(b) * Math.cos(getAngle(b))); //Change Name
 	return xForce; 
     }//Use instance variable of xForce same for y, that way you call it for acceleration
  
    public double calculateYForce(Body b){
-       int direction = 1;
+       /*int direction = 1;
        if(b.getYCoord() < this.getYCoord()){
 	   direction = -1;
-       }
+       }*/
 
-       yForce = direction * (calculateTotalForce(b) * Math.sin(getAngle(b))); //Change
+       yForce = (calculateTotalForce(b) * Math.sin(getAngle(b))); //Change
        return yForce; 
    }
 

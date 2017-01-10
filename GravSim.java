@@ -22,7 +22,7 @@ public class GravSim{
 	    return;
 	}
 	UniverseReader ur = new GravUniverseReader(args[0]);
-	double timeDelta = 0.001;
+	double timeDelta = 1;
 	if(args.length > 1){
 	    timeDelta = Double.parseDouble(args[1]);
 	}   
