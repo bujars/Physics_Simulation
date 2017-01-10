@@ -135,7 +135,12 @@ public class GravBody implements Body{
     }//Use instance variable of xForce same for y, that way you call it for acceleration
  
    public double calculateYForce(Body b){
-       yForce = calculateTotalForce(b) * Math.sin(getAngle(b)); //Change
+       int direction = 1;
+       if(b.getYCoord() < this.getYCoord()){
+	   direction = -1;
+       }
+
+       yForce = direction * (calculateTotalForce(b) * Math.sin(getAngle(b))); //Change
        return yForce; 
    }
 
