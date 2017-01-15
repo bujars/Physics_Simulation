@@ -59,7 +59,7 @@ public class GravBody implements Body{
     }
 
     public double getRadius(){
-	return 100;
+	return -1;
     }
 
     public int[] getRGB(){
@@ -101,8 +101,8 @@ public class GravBody implements Body{
 	yVelocity = yVelocity + (timeDelta * calculateYAccel());
 	xCoordinate = xCoordinate + (timeDelta * xVelocity);
 	yCoordinate = yCoordinate + (timeDelta * yVelocity);
-	xForce = 0;                                                                                                                       
-        yForce = 0;
+	xForce = 0; 
+	yForce = 0;
     }
 
     public double calculateTotalForce(Body b){
@@ -119,9 +119,9 @@ public class GravBody implements Body{
     }
 
     public double getAngle(Body b){
-	if((b.getXCoord() == this.xCoordinate) && this.xCoordinate >= 0){
+	/*if((b.getXCoord() == this.xCoordinate) && this.xCoordinate >= 0){
 		return 0;
-	}
+	}*/
 	return Math.atan2((b.getYCoord() - this.yCoordinate), (b.getXCoord() - this.xCoordinate));
     }
 

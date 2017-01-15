@@ -16,13 +16,13 @@ public class GravSim{
      * Optional command line arguments: timeDelta r-value b-value g-value 
      */
     public static void main(String[] args){
-		if(args.length == 0){
+	if(args.length == 0){
 	    System.out.println("usage: java GravSim fileName [timeDelta] " +
 			       "[r-value] [b-value] [g-value]");
 	    return;
 	}
 	UniverseReader ur = new GravUniverseReader(args[0]);
-	double timeDelta = 1;
+	double timeDelta = .001;
 	if(args.length > 1){
 	    timeDelta = Double.parseDouble(args[1]);
 	}   

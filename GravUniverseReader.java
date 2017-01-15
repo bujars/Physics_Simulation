@@ -48,7 +48,9 @@ public class GravUniverseReader extends UniverseReader{
 	// to verify that they worked correctly.
 	GravUniverseReader test1 = new GravUniverseReader("gravdata/test2.txt");
 	Body[] test1Bodies = test1.getBodies();
-	System.out.println(test1Bodies[0]);
+	for(int i = 0; i < test1Bodies.length; i++){
+	    System.out.println(test1Bodies[i]);
+	}
 	double test1Radius = test1.getUniverseRadius();
 	System.out.println(test1Radius);
     }

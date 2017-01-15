@@ -66,7 +66,7 @@ public abstract class PhysicsEngine{
     /**
      * Draws the data as a 2D visualization for each time step of the 
      */
-    private void drawData(){
+    private void drawData(){//set radius to negative one, then in engine, if its negative say screw it and choose the radius to draw at a fine 
 	// TODO: Clear the canvas
 	StdDraw.clear(bgColor);
 	// TODO: Draw each body on the offscreen canvas
@@ -74,7 +74,13 @@ public abstract class PhysicsEngine{
 	for(int i = 0; i < bodies.length; i++){
 	    rGB = bodies[i].getRGB();
 	    StdDraw.setPenColor(rGB[0], rGB[1], rGB[2]);
-	    StdDraw.circle(bodies[i].getXCoord(), bodies[i].getYCoord(), bodies[i].getRadius());
+	    if(bodies[i].getRadius() == -1){
+		StdDraw.setPenRadius(.01);
+	    }
+	    else{
+		StdDraw.setPenRadius(bodies[i].getRadius());
+	    }
+	    StdDraw.point(bodies[i].getXCoord(), bodies[i].getYCoord());
 	}
 	// TODO: Copy the offscreen canvs to the onscreen canvas
 	StdDraw.show();
