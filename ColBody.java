@@ -7,6 +7,9 @@ public class ColBody implements Body{
     private double radius;
     private int[] rgb;
     private double mass;
+    private double xForce;
+    private double yForce;
+
 
     public ColBody(double xCoord, double yCoord, double xVel, double yVel, double m, double r, int red, int green, int blue){
 	xCoordinate = xCoord;
@@ -48,11 +51,21 @@ public class ColBody implements Body{
     }
 
     public void addForceFrom(Body otherBody){
-	//To Do
+	xForce = xForce + this.calculateXForce(otherBody);
+        yForce = yForce + this.calculateYForce(otherBody);
+	if(areBodiesTouching(otherBody) && areBodiesMoving(otherBody)){
+	    xVelocity = xVelocity + calculateXVelocity(otherBody);
+	    yVelocity = yVelocity + calculateYVelocity(otherBody); 
+	}
     }
 
     public void move(double timeDelta){
-	//To Do
+	xVelocity = xVelocity + (timeDelta * calculateXAccel()); 
+	yVelocity = yVelocity + (timeDelta * calculateYAccel());
+	xCoordinate = xCoordinate + (timeDelta * xVelocity);
+	yCoordinate = yCoordinate + (timeDelta * yVelocity);
+	xForce = 0;
+	yForce = 0;
     }
     
     public double getXForce(){
@@ -84,12 +97,11 @@ public class ColBody implements Body{
         xForce = (calculateTotalForce(b) * Math.cos(getAngle(b)));
         return xForce;
     }
-ration                                                                             
 
     public double calculateYForce(Body b){
-    yForce = (calculateTotalForce(b) * Math.sin(getAngle(b)));
-    return yForce;
-}
+	yForce = (calculateTotalForce(b) * Math.sin(getAngle(b)));
+	return yForce;
+    }
 
     public double calculateXAccel(){
         if(getMass() == 0){
@@ -107,10 +119,18 @@ ration
 
     public boolean areBodiesTouching(Body otherBody){
 	boolean touching = false;
-	if((getDistance(otherBody) <= (this.radius + otherBody.getRadius())) && (calculateDotProduct(otherBody) < 0)){
+	if((getDistance(otherBody) <= (this.radius + otherBody.getRadius()))){
 	    touching = true; 
-	}//the distance between their centers is less than or equal to the sum of their radii. and when the dot product of the relative difference in the bodies' positions and the relative difference in the bodies' velocities is negative.
-	return touching; 
+	    }  
+	return touching;
+    }
+    
+    public boolean areBodiesMoving(Body otherBody){
+	boolean moving = false;
+	if(calculateDotProduct(otherBody) < 0){
+	    moving = true;
+	}//the dot product of the relative difference in the bodies' positions and the relative difference in the bodies' velocities is negative.
+	return moving; 
     }
     
     public double calculateDotProduct(Body otherBody){
@@ -121,7 +141,7 @@ ration
 	return ((deltaXPosition) * (deltaXVelocity))+ ((deltaYPosition) * (deltaYVelocity));
     }
 
-    public double calcaulateXVel(Body otherBody){
+    public double calculateXVelocity(Body otherBody){
 	double deltaXPosition = otherBody.getXCoord() - this.xCoordinate;
 	double deltaYPosition = otherBody.getYCoord() - this.yCoordinate;
 	double deltaXVelocity = otherBody.getXVel() - this.xVelocity;
@@ -129,15 +149,15 @@ ration
 	return ( (2 * (otherBody.getMass())) / ((this.mass) + (otherBody.getMass()) ) ) * (deltaXPosition) * ( (calculateDotProduct(otherBody))/ (((deltaXPosition) * (deltaXPosition)) + ((deltaYPosition) * (deltaYPosition)) ));
     }
 
-    public double calcaulateYVel(Body otherBody){
+    public double calculateYVelocity(Body otherBody){
         double deltaXPosition = otherBody.getXCoord() - this.xCoordinate;
         double deltaYPosition = otherBody.getYCoord() - this.yCoordinate;
         double deltaXVelocity = otherBody.getXVel() - this.xVelocity;
         double deltaYVelocity = otherBody.getYVel() - this.yVelocity;
-	return ( (2 * (otherBody.getMass())) / ((this.mass) + (otherBody.getMass()) ) ) * (deltaYPosition) * ( (calculateDotProduct(otherBody))/ (((deltaXPosition) * (deltaXPosition)) + ((deltYPosition) * (deltaYPosition)) ));
+	return ( (2 * (otherBody.getMass())) / ((this.mass) + (otherBody.getMass()) ) ) * (deltaYPosition) * ( (calculateDotProduct(otherBody))/ (((deltaXPosition) * (deltaXPosition)) + ((deltaYPosition) * (deltaYPosition)) ));
     }
 
     public String toString(){
-        return "XCoord: " + xCoordinate +" YCoord: " + yCoordinate + " XVeloc: " + xVelocity + " YVeloc: " + yVelocity + " RGB: " + rgb[0] + " " + rgb[1] + " " + rgb[2];
+        return "XCoord: " + xCoordinate +" YCoord: " + yCoordinate + " XVeloc: " + xVelocity + " YVeloc: " + yVelocity + " Mass: " + mass + " Radius: " + radius +  " RGB: " + rgb[0] + " " + rgb[1] + " " + rgb[2];
     }
 }
