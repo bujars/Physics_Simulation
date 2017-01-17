@@ -119,34 +119,21 @@ public class GravBody implements Body{
     }
 
     public double getAngle(Body b){
-	/*if((b.getXCoord() == this.xCoordinate) && this.xCoordinate >= 0){
-		return 0;
-	}*/
 	return Math.atan2((b.getYCoord() - this.yCoordinate), (b.getXCoord() - this.xCoordinate));
     }
 
     public double calculateXForce(Body b){
-	/*int direction = 1;
-	if(b.getXCoord() < this.getXCoord()){
-	    direction = -1;
-	    }*/
-	xForce = (calculateTotalForce(b) * Math.cos(getAngle(b))); //Change Name
+	xForce = (calculateTotalForce(b) * Math.cos(getAngle(b)));
 	return xForce; 
-    }//Use instance variable of xForce same for y, that way you call it for acceleration
- 
+    }
    public double calculateYForce(Body b){
-       /*int direction = 1;
-       if(b.getYCoord() < this.getYCoord()){
-	   direction = -1;
-       }*/
-
-       yForce = (calculateTotalForce(b) * Math.sin(getAngle(b))); //Change
+       yForce = (calculateTotalForce(b) * Math.sin(getAngle(b)));
        return yForce; 
    }
 
     public double calculateXAccel(){
 	if(getMass() == 0){
-	    return 0;//check getXForce!!!
+	    return 0;
 	}
 	return (xForce/getMass());
     }
@@ -158,14 +145,10 @@ public class GravBody implements Body{
 	return (yForce/getMass());
     }
 
-    /*  public double changeVelocity(Body b){
-	xVelocity = getVelocity()+ ///this is what you were trying to do above. You do not need it ! remove it! 
-    }*/
-
-
     public String toString(){
-	return "XCoord: " + xCoordinate +" YCoord: " + yCoordinate + " XVeloc: " + xVelocity + " YVeloc: " + yVelocity + " RGB: " + rgb[0] + " " + rgb[1] + " " + rgb[2];
+	return "XCoord: " + xCoordinate +" YCoord: " + yCoordinate + " XVeloc: " + xVelocity + " YVeloc: " + yVelocity + " Mass: " + mass + " RGB: " + rgb[0] + " " + rgb[1] + " " + rgb[2];
     }
+
     // TODO: Implment any additional methods for testing (i.e. methods
     // not listed on the Body interface). Look at TestGravBody for ideas
     // of helper methods you might need.

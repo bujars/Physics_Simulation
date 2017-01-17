@@ -66,7 +66,7 @@ public abstract class PhysicsEngine{
     /**
      * Draws the data as a 2D visualization for each time step of the 
      */
-    private void drawData(){//set radius to negative one, then in engine, if its negative say screw it and choose the radius to draw at a fine 
+    private void drawData(){//set radius to negative one, then in engine, if its negative say screw it and choose the radius to draw at a fine - this was done. 
 	// TODO: Clear the canvas
 	StdDraw.clear(bgColor);
 	// TODO: Draw each body on the offscreen canvas
