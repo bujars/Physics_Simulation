@@ -132,17 +132,21 @@ public class GravBody implements Body{
    }
 
     public double calculateXAccel(){
-	if(getMass() == 0){
+	if(this.mass == 0){
 	    return 0;
 	}
-	return (xForce/getMass());
+	// System.out.println(this.mass);
+	// System.out.println(this.xForce);
+	return (this.xForce/this.mass);
     }
 
     public double calculateYAccel(){
-	if(getMass() == 0){
+	if(this.mass == 0){
             return 0;
 	}
-	return (yForce/getMass());
+	//	System.out.println(this.mass);
+	//        System.out.println(this.yForce);
+	return (this.yForce/this.mass);
     }
 
     public String toString(){

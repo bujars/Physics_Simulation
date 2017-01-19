@@ -172,14 +172,11 @@ public class TestGravBody { ///FIX THE DELTA
     @Test
     public void testAddForceFrom(){
 	// HINT: The physics coursework/homework you did is helpful here      
-	GravBody gbEarth = new GravBody(1.5, 0, 0, 3.0E4, 5.972E24, 0, 0, 0);
-	GravBody gbSun = new GravBody(0, 0, 0, 0, 1.99E30, 0, 0, 0);
-	GravBody gbVenus = new GravBody(1, 0, 0, 3.5E4, 4.87E24, 0, 0, 0);
 	GravBody gbM1 = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
         GravBody gbM = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
         GravBody gbM2 = new GravBody(5, 1, 0, 0, 75, 0, 0, 0);
 
-	double delta = 0.0000000001;
+	double delta = 0.01;
 
 	//TODO: Assert that the x and y component of force on gbA are 0
         assertEquals(0, gbM.getXForce(), delta);
@@ -190,30 +187,19 @@ public class TestGravBody { ///FIX THE DELTA
 	// interface to get the forces you need solely for testing purposes.
 	gbM.addForceFrom(gbM1);
 	gbM.addForceFrom(gbM2);
-	//gbG.addForceFrom(gbF);
-	//delta = 1E-7;
+	delta = 1E-8;
 	assertEquals(1.4597691298065942E-7, gbM.getXForce(), delta);
-	//delta = 1E-8;
+	delta = 1E-9;
 	assertEquals(6.619388568435468E-8, gbM.getYForce(), delta);
-	/////	gbA.addForceFrom(gbC);
-	
 	// TODO: Assert that the x and y components of force on gbA are correct
-	
 	// TODO: Assert that the x and y components of force on gbB are 0
 	
 
+	delta = 0;
 	assertEquals(0, gbM2.getXForce(), delta);
 	assertEquals(0, gbM2.getYForce(), delta);
 	assertEquals(0, gbM1.getXForce(), delta);
 	assertEquals(0, gbM1.getYForce(), delta);
-
-	//assertEquals(0, gbM.calculateXForce(gbM2), delta);
-	//assertEquals(0, gbM.calculateYForce(gbM2), delta);
-	
-
-	//gbM1.addForceFrom(gbM);
-	//gbM2.addForceFrom(gbM);
-	
 
 	// TODO: Assert that x and y components of force on gbB are correct
 	// TODO: Write test ensuring that forces can be calculated correctly
@@ -234,7 +220,7 @@ public class TestGravBody { ///FIX THE DELTA
         GravBody gbM = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
         GravBody gbM2 = new GravBody(5, 1, 0, 0, 75, 0, 0, 0);
 	double time = 1; 
-	double delta = 1E-8;
+	double delta = 1E-11;
 	// TODO: For each GravBody object, add force from other two
 	gbM.addForceFrom(gbM1);
 	gbM.addForceFrom(gbM2);
@@ -244,9 +230,9 @@ public class TestGravBody { ///FIX THE DELTA
 	gbM2.move(time);
 	// TODO: For each GravBody object, assert that new x and y coordinates
 	// are correct after movement
-	assertEquals(1.45976912E-8, gbM.getXCoord(), delta);
-	delta = 1E-9;
-	assertEquals(6.71E-9, gbM.getYCoord(), delta);
+	assertEquals(1.45976912E-10, gbM.getXCoord(), delta);
+	delta = 1E-12;
+	assertEquals(6.61938856843E-11, gbM.getYCoord(), delta);
 	// TODO: For each GravBody object, assert that x and y components of
 	// force are now 0
 	assertEquals(0, gbM.getXForce(), delta);
@@ -283,9 +269,9 @@ public class TestGravBody { ///FIX THE DELTA
 	GravBody gbM1 = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
         GravBody gbM = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
         GravBody gbM2 = new GravBody(5, 1, 0, 0, 75, 0, 0, 0);
-	double delta = .0000001;
-	assertEquals(2.553590, gbM.getAngle(gbM1), delta);
-	assertEquals(0.1973955, gbM.getAngle(gbM2), delta);
+	double delta = .01;
+	assertEquals(2.56, gbM.getAngle(gbM1), delta);
+	assertEquals(0.19, gbM.getAngle(gbM2), delta);
 	
     }
 
@@ -317,32 +303,34 @@ public class TestGravBody { ///FIX THE DELTA
 
     @Test
     public void testCalculateXAccel(){
-        GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
-        GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
-        double delta = 1E-8;
-        assertEquals(-1.0671045E-9, gbA.calculateXAccel(), delta);
+        GravBody M1 = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
+        GravBody M = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
+        M.addForceFrom(M1);
+	double delta = 1E-12;
+        assertEquals(-4.2690580486E-11, M.calculateXAccel(), delta);
     }
 
     @Test///recalculate this and x force and y force and x accel using the new angle in radians!!!!!!!!Do later pleasee!
     public void testCalculateYAccel(){
-        GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
-        GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
-        double delta = 1E-11;
+        GravBody M1 = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
+        GravBody M = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
+	M.addForceFrom(M1);
+	double delta = 1E-12;
         double ya = 2.84561201E-8/1000;
-        assertEquals(ya, gbA.calculateYAccel(), delta);
+        assertEquals(ya, M.calculateYAccel(), delta);
     }
 
     @Test
     public void testGetXForce(){
 	GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
-	double delta = 1E-10;
+	double delta = 0.01;
 	assertEquals(0, gbA.getXForce(), delta);
     }
 
   @Test
       public void testGetYForce(){
       GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
-      double delta = 1E-10;
+      double delta = 0.01;
       assertEquals(0, gbA.getYForce(), delta);
   }
 

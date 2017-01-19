@@ -86,7 +86,8 @@ public class ColBody implements Body{
     }
 
     public double getDistance(Body b){
-        return Math.hypot(b.getXCoord() - this.xCoordinate, b.getYCoord() - this.yCoordinate);
+        System.out.println(Math.hypot((0.02-0.0),(-0.04-0.01)));
+	return Math.hypot(b.getXCoord() - this.xCoordinate, b.getYCoord() - this.yCoordinate);
     }
 
     public double getAngle(Body b){
