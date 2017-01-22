@@ -1,12 +1,11 @@
 /**
  * Class for representating two dimensional circular bodies for
  * physics simulations
- * @author Sean Stern
+ * @author Bujar Sefa
  * @version 1.0
  */
 public class GravBody implements Body{
 
-    // TODO: Add appropriate instance variables
     private double xCoordinate;
     private double yCoordinate;
     private double xVelocity;
@@ -20,7 +19,6 @@ public class GravBody implements Body{
     private int blueC;
     private int greenC;
 
-    // TODO: Add a constructor to initialize instance variables
     public GravBody(){
 	xCoordinate = 0;
 	yCoordinate = 0;
@@ -29,6 +27,7 @@ public class GravBody implements Body{
 	rgb = new int[]{0, 0, 0};
 	mass = 0;
     }
+
     public GravBody(double xCoord, double yCoord, double xVel, double yVel, double m, int red, int green, int blue){
 	xCoordinate = xCoord;
 	yCoordinate = yCoord;
@@ -41,7 +40,6 @@ public class GravBody implements Body{
 	greenC = green;
     }
     
-    // TODO: Implement all methods to satisfy interface
     public double getXCoord() {
 	return xCoordinate;
     }
@@ -96,8 +94,7 @@ public class GravBody implements Body{
     }
 
     public void move(double timeDelta){
-	xVelocity = xVelocity + (timeDelta * calculateXAccel()); //this calculates the new velocity not coordinate but calculate that here since we have time. Then use that and take time and multiple and store in xCoord
-	//Use force and get Velocity to move the cordinate.
+	xVelocity = xVelocity + (timeDelta * calculateXAccel());
 	yVelocity = yVelocity + (timeDelta * calculateYAccel());
 	xCoordinate = xCoordinate + (timeDelta * xVelocity);
 	yCoordinate = yCoordinate + (timeDelta * yVelocity);
@@ -126,6 +123,7 @@ public class GravBody implements Body{
 	xForce = (calculateTotalForce(b) * Math.cos(getAngle(b)));
 	return xForce; 
     }
+
    public double calculateYForce(Body b){
        yForce = (calculateTotalForce(b) * Math.sin(getAngle(b)));
        return yForce; 
@@ -135,8 +133,6 @@ public class GravBody implements Body{
 	if(this.mass == 0){
 	    return 0;
 	}
-	// System.out.println(this.mass);
-	// System.out.println(this.xForce);
 	return (this.xForce/this.mass);
     }
 
@@ -144,16 +140,10 @@ public class GravBody implements Body{
 	if(this.mass == 0){
             return 0;
 	}
-	//	System.out.println(this.mass);
-	//        System.out.println(this.yForce);
 	return (this.yForce/this.mass);
     }
 
     public String toString(){
 	return "XCoord: " + xCoordinate +" YCoord: " + yCoordinate + " XVeloc: " + xVelocity + " YVeloc: " + yVelocity + " Mass: " + mass + " RGB: " + rgb[0] + " " + rgb[1] + " " + rgb[2];
     }
-
-    // TODO: Implment any additional methods for testing (i.e. methods
-    // not listed on the Body interface). Look at TestGravBody for ideas
-    // of helper methods you might need.
 }

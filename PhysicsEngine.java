@@ -57,7 +57,7 @@ public abstract class PhysicsEngine{
      */
     private void setUpDrawingCanvas(){
         // TODO: Scale the drawing window so that x and y axes between 
-	StdDraw.setScale(-uniRad, uniRad);	
+	StdDraw.setScale(-uniRad, +uniRad);	
 	// TODO: Enable double buffering for efficient animation
 	StdDraw.enableDoubleBuffering(); 
 	
@@ -74,18 +74,16 @@ public abstract class PhysicsEngine{
 	for(int i = 0; i < bodies.length; i++){
 	    rGB = bodies[i].getRGB();
 	    StdDraw.setPenColor(rGB[0], rGB[1], rGB[2]);
-	    if(bodies[i].getRadius() == -1){
-		StdDraw.setPenRadius(.01);
-	    }
-	    else{
-		StdDraw.setPenRadius(bodies[i].getRadius());
-	    }
-	    StdDraw.point(bodies[i].getXCoord(), bodies[i].getYCoord());
+	    double bodRad = bodies[i].getRadius();
+	    if(bodRad < 0){
+		bodRad = (this.uniRad/100);
+	    }	
+	    StdDraw.filledCircle(bodies[i].getXCoord(), bodies[i].getYCoord(), bodRad);
 	}
 	// TODO: Copy the offscreen canvs to the onscreen canvas
 	StdDraw.show();
 	// TODO: Wait for a short amount of time
-	StdDraw.pause(1); //might have to cast dt, ask stern
+	StdDraw.pause(10); //might have to cast dt, ask stern
     }
     
     /**
