@@ -5,9 +5,9 @@ import static org.junit.Assert.assertArrayEquals;
 public class TestGravBody { 
     
     @Test
-    public void testGetXCoord() {
+	public void testGetXCoord() {
 	GravBody gb = new GravBody(1.0, 1.0, 1.0, 1.0, 1.0, 1, 1, 1);
- 	GravBody gc = new GravBody(0, 0, 0, 0, 0, 0, 0, 0);
+	GravBody gc = new GravBody(0, 0, 0, 0, 0, 0, 0, 0);
 	GravBody gd = new GravBody(2.95365, 1.52308, -3.24931, 6.34897, 5.96676, 255, 255, 0);
         GravBody ge = new GravBody(-1.0, -1.0, -1.0, -1.0, -1.0, -1, -1, -1);
 	GravBody gf = new GravBody(100.0, 100.0, 100.0, 100.0, 100.0, 100, 100, 100);
@@ -28,7 +28,7 @@ public class TestGravBody {
         GravBody gc = new GravBody(0, 0, 0, 0, 0, 0, 0, 0);
         GravBody gd = new GravBody(2.95365, 1.52308, -3.24931, 6.34897, 5.96676, 255, 255, 0);
         GravBody ge = new GravBody(-1.0, -1.0, -1.0, -1.0, -1.0, -1, -1, -1);
-        GravBody gf = new GravBody(100.0, 100.0, 100.0, 100.0, 100.0, 100, 100, 100);	
+        GravBody gf = new GravBody(100.0, 100.0, 100.0, 100.0, 100.0, 100, 100, 100);
 	double delta = 0.00001;
 
 	assertEquals(1, gb.getYCoord(), delta);
@@ -61,7 +61,7 @@ public class TestGravBody {
         GravBody gd = new GravBody(2.95365, 1.52308, -3.24931, 6.34897, 5.96676, 255, 255, 0);
         GravBody ge = new GravBody(-1, -1, -1, -1, -1, -1, -1, -1);
         GravBody gf = new GravBody(100, 100, 100, 100, 100, 100, 100, 100);
-	double delta = 0.00001;	
+	double delta = 0.00001;
 	assertEquals(1, gb.getYVel(), delta);
         assertEquals(0, gc.getYVel(), delta);
         assertEquals(6.34897, gd.getYVel(), delta);
@@ -70,14 +70,14 @@ public class TestGravBody {
     }
     
     @Test
-    public void testGetRadius() {
+	public void testGetRadius() {
         GravBody gb = new GravBody(0, 0, 0, 0, 0, 0, 0, 0);
         double delta = 0.00001;
         assertEquals(-1, gb.getRadius(), delta);
     }
     
     @Test
-    public void testGetRed(){
+	public void testGetRed(){
 	GravBody gbA = new GravBody(0, 0, 0, 0, 0, 255, 0, 0);
         double delta = 0.00001;
         assertEquals(255, gbA.getRed(), delta);
@@ -99,7 +99,7 @@ public class TestGravBody {
 
 
     @Test
-    public void testGetRGB() {                              
+	public void testGetRGB() {                              
 	GravBody gb = new GravBody(1, 1, 1, 1, 1, 1, 1, 1);
         GravBody gc = new GravBody(0, 0, 0, 0, 0, 0, 0, 0);
         GravBody gd = new GravBody(2.95365, 1.52308, -3.24931, 6.34897, 5.96676, 255, 255, 0);
@@ -149,10 +149,10 @@ public class TestGravBody {
         assertEquals(-1, ge.getMass(), delta);
 	assertEquals(100, gf.getMass(), delta);
 
-	}
+    }
    
     @Test
-    public void testAddForceFrom(){
+	public void testAddForceFrom(){
 	GravBody gbM1 = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
         GravBody gbM = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
         GravBody gbM2 = new GravBody(5, 1, 0, 0, 75, 0, 0, 0);
@@ -177,7 +177,7 @@ public class TestGravBody {
     }
 
     @Test
-    public void testMove(){
+	public void testMove(){
 	GravBody gbEarth = new GravBody(1.5, 0, 0, 3.0E4, 5.972E24, 0, 0, 0);
         GravBody gbSun = new GravBody(0, 0, 0, 0, 1.99E30, 0, 0, 0);
         GravBody gbVenus = new GravBody(1, 0, 0, 3.5E4, 4.87E24, 0, 0, 0);
@@ -216,7 +216,7 @@ public class TestGravBody {
     }
 
     @Test
-    public void testDistance(){
+	public void testDistance(){
 	GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
         GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
 	double delta = 1E-9; 
@@ -237,7 +237,7 @@ public class TestGravBody {
     }
 
     @Test
-    public void testCalculateXForce(){
+	public void testCalculateXForce(){
 	GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
         GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
 	GravBody gbC = new GravBody(5, 1, 0, 0, 75, 0, 0, 0);
@@ -249,7 +249,7 @@ public class TestGravBody {
     }
 
     @Test
-    public void testCalculateYForce(){ 
+	public void testCalculateYForce(){ 
         GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
         GravBody gbB = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
         GravBody gbC = new GravBody(5, 1, 0, 0, 75, 0, 0, 0);
@@ -263,7 +263,7 @@ public class TestGravBody {
     }
 
     @Test
-    public void testCalculateXAccel(){
+	public void testCalculateXAccel(){
         GravBody M1 = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
         GravBody M = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
         M.addForceFrom(M1);
@@ -272,7 +272,7 @@ public class TestGravBody {
     }
 
     @Test
-    public void testCalculateYAccel(){
+	public void testCalculateYAccel(){
         GravBody M1 = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
         GravBody M = new GravBody(0, 0, 0, 0, 1000, 0, 0, 0);
 	M.addForceFrom(M1);
@@ -282,18 +282,16 @@ public class TestGravBody {
     }
 
     @Test
-    public void testGetXForce(){
+	public void testGetXForce(){
 	GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
 	double delta = 0.01;
 	assertEquals(0, gbA.getXForce(), delta);
     }
 
-  @Test
-      public void testGetYForce(){
-      GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
-      double delta = 0.01;
-      assertEquals(0, gbA.getYForce(), delta);
-  }
-
-    
+    @Test
+	public void testGetYForce(){
+	GravBody gbA = new GravBody(-6, 4, 0, 0, 40, 0, 0, 0);
+	double delta = 0.01;
+	assertEquals(0, gbA.getYForce(), delta);
+    }
 }

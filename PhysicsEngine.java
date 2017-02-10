@@ -57,7 +57,7 @@ public abstract class PhysicsEngine{
      */
     private void setUpDrawingCanvas(){
         // TODO: Scale the drawing window so that x and y axes between 
-	StdDraw.setScale(-uniRad, +uniRad);	
+	StdDraw.setScale(-uniRad, +uniRad);
 	// TODO: Enable double buffering for efficient animation
 	StdDraw.enableDoubleBuffering(); 
 	
@@ -77,7 +77,7 @@ public abstract class PhysicsEngine{
 	    double bodRad = bodies[i].getRadius();
 	    if(bodRad < 0){
 		bodRad = (this.uniRad/100);
-	    }	
+	    }
 	    StdDraw.filledCircle(bodies[i].getXCoord(), bodies[i].getYCoord(), bodRad);
 	}
 	// TODO: Copy the offscreen canvs to the onscreen canvas

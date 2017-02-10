@@ -32,9 +32,9 @@ public class GravUniverseReader extends UniverseReader{
 	universeRadius = uniRadius;
 	bodies = new Body[numberGravBodies];
 	for(int i = 0; i < numberOfGravBodies; i++)
-	{
-	    bodies[i] = new GravBody(input.readDouble(), input.readDouble(), input.readDouble(), input.readDouble(),input.readDouble(), input.readInt(), input.readInt(), input.readInt());
-	}
+	    {
+		bodies[i] = new GravBody(input.readDouble(), input.readDouble(), input.readDouble(), input.readDouble(),input.readDouble(), input.readInt(), input.readInt(), input.readInt());
+	    }
 	// TODO: Read in data from file according to format
 	// TODO: Initialize parent class's protected instance variables
 	// with data read from file

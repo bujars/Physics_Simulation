@@ -34,7 +34,7 @@ public class GravBody implements Body{
 	xVelocity = xVel;
 	yVelocity = yVel;
 	mass = m;
-	rgb = new int[]{red, green, blue};	
+	rgb = new int[]{red, green, blue};
 	redC = red;
 	blueC = blue;
 	greenC = green;
@@ -104,8 +104,8 @@ public class GravBody implements Body{
 
     public double calculateTotalForce(Body b){
 	if(getDistance(b) == 0){
-		return 0; 
-	    }
+	    return 0; 
+	}
 	double g = 6.67E-11;
 	double fg = ((g)*(b.getMass())*(this.getMass()))/((getDistance(b))*(getDistance(b)));
 	return fg; 
@@ -124,10 +124,10 @@ public class GravBody implements Body{
 	return xForce; 
     }
 
-   public double calculateYForce(Body b){
-       yForce = (calculateTotalForce(b) * Math.sin(getAngle(b)));
-       return yForce; 
-   }
+    public double calculateYForce(Body b){
+	yForce = (calculateTotalForce(b) * Math.sin(getAngle(b)));
+	return yForce; 
+    }
 
     public double calculateXAccel(){
 	if(this.mass == 0){

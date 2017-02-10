@@ -7,8 +7,8 @@ public class ColBody implements Body{
     private double radius;
     private int[] rgb;
     private double mass;
-    private double xForce;
-    private double yForce;
+    //private double xForce;
+    //private double yForce;
     private double changeXVelocity;
     private double changeYVelocity;
 
@@ -50,8 +50,10 @@ public class ColBody implements Body{
         return mass;
     }
     public void addForceFrom(Body otherBody){
-        xForce = xForce + this.calculateXForce(otherBody);
-	yForce = yForce + this.calculateYForce(otherBody);
+        /*xForce = xForce + this.calculateXForce(otherBody);
+	  yForce = yForce + this.calculateYForce(otherBody);*/
+	changeXVelocity = 0;
+	changeYVelocity = 0;
 	if(areBodiesTouching(otherBody) && areBodiesMoving(otherBody)){
 	    changeXVelocity = this.calculateXVelocity(otherBody);
 	    changeYVelocity = this.calculateYVelocity(otherBody);
@@ -59,16 +61,19 @@ public class ColBody implements Body{
     }
 
     public void move(double timeDelta){
-	xVelocity = xVelocity + (timeDelta * calculateXAccel() + changeXVelocity);
-	yVelocity = yVelocity + (timeDelta * calculateYAccel() + changeYVelocity);
-        xCoordinate = xCoordinate + (timeDelta * (xVelocity));
+	//xVelocity = xVelocity + (timeDelta * calculateXAccel() + changeXVelocity);
+	//yVelocity = yVelocity + (timeDelta * calculateYAccel() + changeYVelocity);
+        xVelocity = (xVelocity + changeXVelocity);
+	yVelocity = (yVelocity + changeYVelocity);
+	xCoordinate = xCoordinate + (timeDelta * (xVelocity));
         yCoordinate = yCoordinate + (timeDelta * (yVelocity));
 	changeXVelocity = 0;
 	changeYVelocity = 0;
-        xForce = 0;
-        yForce = 0;
+        /*xForce = 0;
+        yForce = 0;*/
     }
 
+    /*
     public double getXForce(){
         return xForce;
     }
@@ -84,15 +89,15 @@ public class ColBody implements Body{
         double fg = ((g)*(b.getMass())*(this.getMass()))/((getDistance(b))*(getDistance(b)));
         return fg;
     }
-
+    */
     public double getDistance(Body b){
         return Math.hypot(b.getXCoord() - this.xCoordinate, b.getYCoord() - this.yCoordinate);
     }
-
+    /*
     public double getAngle(Body b){
         return Math.atan2((b.getYCoord() - this.yCoordinate), (b.getXCoord() - this.xCoordinate));
     }
-
+    
     public double calculateXForce(Body b){
         xForce = (calculateTotalForce(b) * Math.cos(getAngle(b)));
         return xForce;
@@ -116,7 +121,7 @@ public class ColBody implements Body{
         }
         return (yForce/getMass());
     }
-
+    */
     public boolean areBodiesTouching(Body otherBody){
         return (this.getDistance(otherBody) <= (this.radius + otherBody.getRadius()));
     }
@@ -154,8 +159,3 @@ public class ColBody implements Body{
         return "XCoord: " + xCoordinate +" YCoord: " + yCoordinate + " XVeloc: " + xVelocity + " YVeloc: " + yVelocity + " Mass: " + mass + " Radius: " + radius +  " RGB: " + rgb[0] + " " + rgb[1] + " " + rgb[2];
     }
 }
-
-
-
-
-
