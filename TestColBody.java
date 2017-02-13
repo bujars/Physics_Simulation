@@ -11,8 +11,9 @@ public class TestColBody{
      * C2 is used to test NOT touching or moving towards each other (with C1) 
      * C3 is used to test touching but NOT moving towards each other (with C1)
      * C4 is used to test touching and moving towards each other 
-     * C5 is used with C4 to test what it's testing
-     * C6 is used with C5 and C4 to test both touching and moving towards each other
+     * C5 is used with C4 to test touching and moving towards each other
+     * C6 is used with C0 and C1 to test both touching and moving towards each other
+     * 
      */
 
 
@@ -29,13 +30,15 @@ public class TestColBody{
 	assertEquals(4.0, M1.getXCoord(), delta);
 
 	ColBody C1 = new ColBody(0, 0, -1, -1, 10, 1, 0, 0, 255);
-	ColBody C2 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C2 = new ColBody(4, 4, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C3 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C4 = new ColBody(1, 1, -1, -1, 10, 1, 0, 0, 255);
 	ColBody C5 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C6 = new ColBody(-1, -1, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C0 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
 
 	assertEquals(0, C1.getXCoord(), delta);
-	assertEquals(1, C2.getXCoord(), delta);
+	assertEquals(4, C2.getXCoord(), delta);
 	assertEquals(1, C3.getXCoord(), delta);
 	assertEquals(1, C4.getXCoord(), delta);
 	assertEquals(0, C5.getXCoord(), delta);
@@ -55,13 +58,13 @@ public class TestColBody{
 	assertEquals(4.0, M1.getYCoord(), delta);
 
 	ColBody C1 = new ColBody(0, 0, -1, -1, 10, 1, 0, 0, 255);
-        ColBody C2 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
+        ColBody C2 = new ColBody(4, 4, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C3 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C4 = new ColBody(1, 1, -1, -1, 10, 1, 0, 0, 255);
 	ColBody C5 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
 
         assertEquals(0, C1.getYCoord(), delta);
-        assertEquals(1, C2.getYCoord(), delta);
+        assertEquals(4, C2.getYCoord(), delta);
 	assertEquals(1, C3.getYCoord(), delta);
 	assertEquals(1, C4.getYCoord(), delta);
 	assertEquals(0, C5.getYCoord(), delta);
@@ -80,10 +83,12 @@ public class TestColBody{
 	assertEquals(-1.0, M1.getXVel(), delta);
 
 	ColBody C1 = new ColBody(0, 0, -1, -1, 10, 1, 0, 0, 255);
-	ColBody C2 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C2 = new ColBody(4, 4, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C3 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C4 = new ColBody(1, 1, -1, -1, 10, 1, 0, 0, 255);
 	ColBody C5 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C6 = new ColBody(-1, -1, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C0 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
 
 	assertEquals(-1, C1.getXVel(), delta);
         assertEquals(1, C2.getXVel(), delta);
@@ -106,11 +111,12 @@ public class TestColBody{
 
 
 	ColBody C1 = new ColBody(0, 0, -1, -1, 10, 1, 0, 0, 255);
-        ColBody C2 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
+        ColBody C2 = new ColBody(4, 4, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C3 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C4 = new ColBody(1, 1, -1, -1, 10, 1, 0, 0, 255);
         ColBody C5 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
-
+	ColBody C6 = new ColBody(-1, -1, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C0 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
 
         assertEquals(-1, C1.getYVel(), delta);
         assertEquals(1, C2.getYVel(), delta);
@@ -134,10 +140,13 @@ public class TestColBody{
 	
 
 	ColBody C1 = new ColBody(0, 0, -1, -1, 10, 1, 0, 0, 255);
-	ColBody C2 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C2 = new ColBody(4, 4, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C3 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C4 = new ColBody(1, 1, -1, -1, 10, 1, 0, 0, 255);
         ColBody C5 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C6 = new ColBody(-1, -1, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C0 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
+
 
 	assertEquals(10, C1.getMass(), delta);
         assertEquals(10, C2.getMass(), delta);
@@ -161,11 +170,12 @@ public class TestColBody{
 	
 
 	ColBody C1 = new ColBody(0, 0, -1, -1, 10, 1, 0, 0, 255);
-	ColBody C2 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C2 = new ColBody(4, 4, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C3 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C4 = new ColBody(1, 1, -1, -1, 10, 1, 0, 0, 255);
         ColBody C5 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
-
+	ColBody C6 = new ColBody(-1, -1, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C0 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
 
 	assertEquals(1, C1.getRadius(), delta);
         assertEquals(1, C2.getRadius(), delta);
@@ -191,22 +201,39 @@ public class TestColBody{
     @Test
 	public void testAddForceFrom(){
 	ColBody C1 = new ColBody(0, 0, -1, -1, 10, 1, 0, 0, 255);
-	ColBody C2 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C2 = new ColBody(4, 4, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C3 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C4 = new ColBody(1, 1, -1, -1, 10, 1, 0, 0, 255);
         ColBody C5 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C6 = new ColBody(-1, -1, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C0 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
+	double delta = 0.00001;
+
 
 	//Testing Not moving towards each other or touching
-	double delta = 0.00001;
-	
 	assertEquals(-1, C1.getXVel(), delta);
 	assertEquals(-1, C1.getYVel(), delta);
+	assertEquals(1, C2.getXVel(), delta);
+	assertEquals(1, C2.getYVel(), delta);
+
 	C1.addForceFrom(C2);
+
 	assertEquals(0, C1.getChangeInXVelocity(), delta);
 	assertEquals(0, C1.getChangeInYVelocity(), delta);
+
+
+	//Testing Touching BUT NOT moving towards each other
 	assertEquals(-1, C1.getXVel(), delta);
 	assertEquals(-1, C1.getYVel(), delta);
-       
+	assertEquals(1, C3.getXVel(), delta);
+	assertEquals(1, C3.getYVel(), delta);
+	
+	C1.addForceFrom(C3);
+	
+	assertEquals(0, C1.getChangeInXVelocity(), delta);
+        assertEquals(0, C1.getChangeInYVelocity(), delta);
+
+
 
 	//Testing Touching and Moving towards each other
 	assertEquals(-1, C4.getXVel(), delta);
@@ -216,30 +243,43 @@ public class TestColBody{
 	C5.addForceFrom(C4);
 	assertEquals(-2, C5.getChangeInXVelocity(), delta);
 	assertEquals(-2, C5.getChangeInYVelocity(), delta);
-	/*assertEquals(-1, C5.getXVel(), delta);
-	assertEquals(-1, C5.getYVel(), delta);
-	assertEquals(1, C4.getXVel(), delta);
-	assertEquals(1, C4.getYVel(), delta);*/
+
+
+	//Testing Touching and Moving towards each other with 2 bodies acting on 1
+
+
 	}
 
     @Test
 	public void testMove(){
 	ColBody C1 = new ColBody(0, 0, -1, -1, 10, 1, 0, 0, 255);
-        ColBody C2 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
+        ColBody C2 = new ColBody(4, 4, 1, 1, 10, 1, 0, 0, 255);
         ColBody C3 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C4 = new ColBody(1, 1, -1, -1, 10, 1, 0, 0, 255);
 	ColBody C5 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C6 = new ColBody(-1, -1, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C0 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
 	double delta = 0.00001;
+	double time = 1;
 
 	//Testing Touching and Moving towards each other                                                                                                                        
         assertEquals(-1, C4.getXVel(), delta);
         assertEquals(-1, C4.getYVel(), delta);
         assertEquals(1, C5.getXVel(), delta);
         assertEquals(1, C5.getYVel(), delta);
-        C5.addForceFrom(C4);
-        assertEquals(-2, C5.getChangeInXVelocity(), delta);
+        
+
+	C5.addForceFrom(C4);
+	C4.addForceFrom(C5);
+
+	assertEquals(-2, C5.getChangeInXVelocity(), delta);
         assertEquals(-2, C5.getChangeInYVelocity(), delta);
-        assertEquals(-1, C5.getXVel(), delta);                                                                                                                                
+	
+
+	C5.move(time);
+	C4.move(time);
+
+	assertEquals(-1, C5.getXVel(), delta);                                                                                                                                
         assertEquals(-1, C5.getYVel(), delta);
 	assertEquals(1, C4.getXVel(), delta);                                                                                                                                  
         assertEquals(1, C4.getYVel(), delta);
@@ -280,55 +320,60 @@ public class TestColBody{
     }
     
     @Test
-	public void testGetDistance(){
+	public void testCalculateDistance(){
 	ColBody M = new ColBody(0.0, 0.0, 0.0, 0.0, 100, 3.0, 0, 0, 0);
         ColBody M1 = new ColBody(4.0, 4.0, -1.0, -1.0, 100, 3.0, 0, 0, 0);
 	double delta = 0.01;
-	assertEquals(5.65685424949, M.getDistance(M1), delta);
+	assertEquals(5.65685424949, M.calculateDistance(M1), delta);
 
 
 	ColBody C1 = new ColBody(0, 0, -1, -1, 10, 1, 0, 0, 255);
-        ColBody C2 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
+        ColBody C2 = new ColBody(4, 4, 1, 1, 10, 1, 0, 0, 255);
         ColBody C3 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
         ColBody C4 = new ColBody(1, 1, -1, -1, 10, 1, 0, 0, 255);
         ColBody C5 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C6 = new ColBody(-1, -1, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C0 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
 
-	assertEquals(Math.sqrt(2), C5.getDistance(C4), delta);
+	assertEquals(Math.sqrt(2), C5.calculateDistance(C4), delta);
 
 
     }
     @Test
-	   public void testAreBodiesTouching(){
+	   public void testIsTouching(){
 	   ColBody M = new ColBody(0.0, 0.0, 0.0, 0.0, 100, 3.0, 0, 0, 0);
 	   ColBody M1 = new ColBody(4.0, 4.0, -1.0, -1.0, 100, 3.0, 0, 0, 0);
-	   assertEquals(true, M.areBodiesTouching(M1));
+	   assertEquals(true, M.isTouching(M1));
 
 	   ColBody C1 = new ColBody(0, 0, -1, -1, 10, 1, 0, 0, 255);
-	   ColBody C2 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
+	   ColBody C2 = new ColBody(4, 4, 1, 1, 10, 1, 0, 0, 255);
 	   ColBody C3 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
 	   ColBody C4 = new ColBody(1, 1, -1, -1, 10, 1, 0, 0, 255);
 	   ColBody C5 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
+	   ColBody C6 = new ColBody(-1, -1, 1, 1, 10, 1, 0, 0, 255);
+	   ColBody C0 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
 
-
-	   assertEquals(true, C5.areBodiesTouching(C4));
+	   assertEquals(true, C5.isTouching(C4));
 
        }
     
     @Test
-	public void testAreBodiesMoving(){
+	public void testIsMovingTowards(){
 	ColBody M = new ColBody(0.0, 0.0, 0.0, 0.0, 100, 3.0, 0, 0, 0);
         ColBody M1 = new ColBody(4.0, 4.0, -1.0, -1.0, 100, 3.0, 0, 0, 0);
-	assertEquals(true, M.areBodiesMoving(M1));
+	assertEquals(true, M.isMovingTowards(M1));
 
 
 
 	ColBody C1 = new ColBody(0, 0, -1, -1, 10, 1, 0, 0, 255);
-        ColBody C2 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
+        ColBody C2 = new ColBody(4, 4, 1, 1, 10, 1, 0, 0, 255);
         ColBody C3 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
         ColBody C4 = new ColBody(1, 1, -1, -1, 10, 1, 0, 0, 255);
         ColBody C5 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C6 = new ColBody(-1, -1, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C0 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
 
-	assertEquals(true, C5.areBodiesMoving(C4));
+	assertEquals(true, C5.isMovingTowards(C4));
 	
 
     }
@@ -342,11 +387,12 @@ public class TestColBody{
 
 
 	ColBody C1 = new ColBody(0, 0, -1, -1, 10, 1, 0, 0, 255);
-        ColBody C2 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
+        ColBody C2 = new ColBody(4, 4, 1, 1, 10, 1, 0, 0, 255);
         ColBody C3 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
         ColBody C4 = new ColBody(1, 1, -1, -1, 10, 1, 0, 0, 255);
         ColBody C5 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
-
+	ColBody C6 = new ColBody(-1, -1, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C0 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
 	
 	assertEquals(-4, C5.calculateDotProduct(C4), delta);
 
@@ -363,10 +409,12 @@ public class TestColBody{
 
 
 	ColBody C1 = new ColBody(0, 0, -1, -1, 10, 1, 0, 0, 255);
-        ColBody C2 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
+        ColBody C2 = new ColBody(4, 4, 1, 1, 10, 1, 0, 0, 255);
         ColBody C3 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
         ColBody C4 = new ColBody(1, 1, -1, -1, 10, 1, 0, 0, 255);
         ColBody C5 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C6 = new ColBody(-1, -1, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C0 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
 
 	assertEquals(-2, C5.calculateXVelocity(C4), delta);
 
@@ -381,11 +429,12 @@ public class TestColBody{
 	assertEquals(-1, M.calculateYVelocity(M1), delta);
 
 	ColBody C1 = new ColBody(0, 0, -1, -1, 10, 1, 0, 0, 255);
-        ColBody C2 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
+        ColBody C2 = new ColBody(4, 4, 1, 1, 10, 1, 0, 0, 255);
         ColBody C3 = new ColBody(1, 1, 1, 1, 10, 1, 0, 0, 255);
         ColBody C4 = new ColBody(1, 1, -1, -1, 10, 1, 0, 0, 255);
         ColBody C5 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
-
+	ColBody C6 = new ColBody(-1, -1, 1, 1, 10, 1, 0, 0, 255);
+	ColBody C0 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
 
 	assertEquals(-2, C5.calculateYVelocity(C4), delta);
 

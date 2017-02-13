@@ -18,6 +18,8 @@ public class ColBody implements Body{
         mass = m;
         radius = r;
         rgb = new int[]{red, green, blue};
+	changeInXVelocity = 0;
+	changeInYVelocity = 0;
     }
 
     /**
@@ -98,14 +100,10 @@ public class ColBody implements Body{
       *        two dimensional body
       */
     public void addForceFrom(Body otherBody){
-	if(areBodiesTouching(otherBody) && areBodiesMoving(otherBody)){
+	if(isTouching(otherBody) && isMovingTowards(otherBody)){
 	    changeInXVelocity = changeInXVelocity + this.calculateXVelocity(otherBody);
 	    changeInYVelocity = changeInYVelocity + this.calculateYVelocity(otherBody);
         }
-	else{
-	    changeInXVelocity = 0;
-	    changeInYVelocity = 0;
-	}
     }
 
     /**
@@ -121,6 +119,8 @@ public class ColBody implements Body{
 	yVelocity = (yVelocity + changeInYVelocity);
 	xCoordinate = xCoordinate + (timeDelta * (xVelocity));
         yCoordinate = yCoordinate + (timeDelta * (yVelocity));
+	/*xVelocity = xVelocity - changeInXVelocity;
+	  yVelocity = yVelocity - changeInYVelocity;*/
 	changeInXVelocity = 0;
 	changeInYVelocity = 0;
     }
@@ -132,7 +132,7 @@ public class ColBody implements Body{
      * @return the distance between the centers of two bodies in decmial format. 
      *
      */
-     public double getDistance(Body b){
+     public double calculateDistance(Body b){
         return Math.hypot(b.getXCoord() - this.xCoordinate, b.getYCoord() - this.yCoordinate);
     }
 
@@ -143,8 +143,8 @@ public class ColBody implements Body{
      *
      * @param otherBody is the 
      */
-    public boolean areBodiesTouching(Body otherBody){
-        return (this.getDistance(otherBody) <= (this.radius + otherBody.getRadius()));
+    public boolean isTouching(Body otherBody){
+        return (this.calculateDistance(otherBody) <= (this.radius + otherBody.getRadius()));
     }
 
 
@@ -153,7 +153,7 @@ public class ColBody implements Body{
      *
      * @return if the dot product is less than zero or not
      */
-    public boolean areBodiesMoving(Body otherBody){
+    public boolean isMovingTowards(Body otherBody){
         return (this.calculateDotProduct(otherBody) < 0);
 
     }
