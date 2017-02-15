@@ -29,9 +29,7 @@ public class TestColBody{
 	assertEquals(0.0, M.getXCoord(), delta);
 	assertEquals(4.0, M1.getXCoord(), delta);
 	
-
-
-
+	
 	//For ReDo
 	ColBody C1 = new ColBody(0, 0, -1, -1, 10, 1, 0, 0, 255);
 	ColBody C2 = new ColBody(4, 4, 1, 1, 10, 1, 0, 0, 255);
@@ -48,7 +46,7 @@ public class TestColBody{
 	assertEquals(0, C5.getXCoord(), delta);
 	assertEquals(-1, C6.getXCoord(), delta);
 	assertEquals(0, C0.getXCoord(), delta);
-
+	
     }
     
     @Test
@@ -61,8 +59,8 @@ public class TestColBody{
         ColBody M1 = new ColBody(4.0, 4.0, -1.0, -1.0, 100, 3.0, 0, 0, 0);
 	assertEquals(0.0, M.getYCoord(), delta);
 	assertEquals(4.0, M1.getYCoord(), delta);
-
-
+	
+	
 	//For ReDo
 	ColBody C1 = new ColBody(0, 0, -1, -1, 10, 1, 0, 0, 255);
         ColBody C2 = new ColBody(4, 4, 1, 1, 10, 1, 0, 0, 255);
@@ -71,8 +69,8 @@ public class TestColBody{
 	ColBody C5 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C6 = new ColBody(-1, -1, 1, 1, 10, 1, 0, 0, 255);
         ColBody C0 = new ColBody(0, 0, 0, 0, 10, 1, 0, 0, 255);
-
-
+	
+	
         assertEquals(0, C1.getYCoord(), delta);
         assertEquals(4, C2.getYCoord(), delta);
 	assertEquals(1, C3.getYCoord(), delta);
@@ -106,7 +104,7 @@ public class TestColBody{
 	ColBody C5 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C6 = new ColBody(-1, -1, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C0 = new ColBody(0, 0, 0, 0, 10, 1, 0, 0, 255);
-
+	
 	assertEquals(-1, C1.getXVel(), delta);
         assertEquals(1, C2.getXVel(), delta);
 	assertEquals(1, C3.getXVel(), delta);
@@ -115,7 +113,7 @@ public class TestColBody{
 	assertEquals(1, C6.getXVel(), delta);
 	assertEquals(0, C0.getXVel(), delta);
 	
-
+	
     }
     
     @Test
@@ -123,14 +121,14 @@ public class TestColBody{
 	ColBody ca = new ColBody(1.0, 1.0, 1.0, 1.0, 1.0, .01, 0, 0, 255);
 	double delta = 0.00001;
 	assertEquals(1.0, ca.getYVel(), delta);
-
+	
 	ColBody M = new ColBody(0.0, 0.0, 0.0, 0.0, 100, 3.0, 0, 0, 0);
         ColBody M1 = new ColBody(4.0, 4.0, -1.0, -1.0, 100, 3.0, 0, 0, 0);
 	assertEquals(0.0, M.getYVel(), delta);
 	assertEquals(-1.0, M1.getYVel(), delta);
-
 	
-
+	
+	
 	
 	//For ReDo
 	ColBody C1 = new ColBody(0, 0, -1, -1, 10, 1, 0, 0, 255);
@@ -140,7 +138,7 @@ public class TestColBody{
         ColBody C5 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C6 = new ColBody(-1, -1, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C0 = new ColBody(0, 0, 0, 0, 10, 1, 0, 0, 255);
-
+	
         assertEquals(-1, C1.getYVel(), delta);
         assertEquals(1, C2.getYVel(), delta);
 	assertEquals(1, C3.getYVel(), delta);
@@ -163,7 +161,7 @@ public class TestColBody{
 	assertEquals(100, M1.getMass(), delta);
 	
 
-
+	
 	//For ReDo
 	ColBody C1 = new ColBody(0, 0, -1, -1, 10, 1, 0, 0, 255);
 	ColBody C2 = new ColBody(4, 4, 1, 1, 10, 1, 0, 0, 255);
@@ -302,7 +300,15 @@ public class TestColBody{
 	assertEquals(0, C6.getChangeInXVelocity(), delta);
 	assertEquals(0, C6.getChangeInYVelocity(), delta);
 
+	//Touching and Moving, 3 bodies  (done in class)
+	
+	ColBody B1 = new ColBody(0, 0, 0, 0, 10, 4, 0, 0, 0);
+	ColBody B2 = new ColBody(4, 4, -4, -2, 10, 2, 0, 0, 0);
+	ColBody B3 = new ColBody(-3, -3, 1, 2, 10, 1, 0, 0, 0);
 
+	assertEquals(0, B1.getXVel(), delta);
+	
+	
 	}
 
     @Test
