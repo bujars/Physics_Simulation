@@ -10,6 +10,12 @@ public class ColBody implements Body{
     private double changeInXVelocity;
     private double changeInYVelocity;
 
+    /**
+     * Constructor for ColBody with user given inputs
+     * The red/green/blue int values of rgb must be in the range of [0, 255]
+     *
+     *@param is in the format of xCoord, yCoord, xVel, yVel, mass, radius, red, green, blue
+     */
     public ColBody(double xCoord, double yCoord, double xVel, double yVel, double m, double r, int red, int green, int blue){
         xCoordinate = xCoord;
         yCoordinate = yCoord;
@@ -119,21 +125,19 @@ public class ColBody implements Body{
 	yVelocity = (yVelocity + changeInYVelocity);
 	xCoordinate = xCoordinate + (timeDelta * (xVelocity));
         yCoordinate = yCoordinate + (timeDelta * (yVelocity));
-	/*xVelocity = xVelocity - changeInXVelocity;
-	  yVelocity = yVelocity - changeInYVelocity;*/
 	changeInXVelocity = 0;
 	changeInYVelocity = 0;
     }
 
     /**
-     * Calculates the distnace between the centers of two dimensional bodies.
+     * Calculates the distance between the centers of the two dimensional bodies.
      *
-     *
+     * @param is the second dimensional bodie
      * @return the distance between the centers of two bodies in decmial format. 
      *
      */
      public double calculateDistance(Body b){
-        return Math.hypot(b.getXCoord() - this.xCoordinate, b.getYCoord() - this.yCoordinate);
+	 return Math.sqrt((Math.pow(Math.abs(b.getXCoord() - this.xCoordinate), 2)) + (Math.pow(Math.abs(b.getYCoord() - this.yCoordinate), 2)));
     }
 
 
@@ -186,7 +190,12 @@ public class ColBody implements Body{
 	return calc; 
 
     }
-
+  
+    /**
+     * Calcuates the change in y velocity when two bodies that excert forces on each other in perfectly ellastic collision
+     *
+     * @return the change in y velocity
+     */
     public double calculateYVelocity(Body otherBody){
         double deltaXPosition = otherBody.getXCoord() - this.xCoordinate;
         double deltaYPosition = otherBody.getYCoord() - this.yCoordinate;
@@ -197,10 +206,24 @@ public class ColBody implements Body{
 	return calc;
     }
 
+
+    /**
+     * Gets the change in  x component of the velocity of the dimensional body.                                                                                              
+     *                                                                                                                                                            
+     * @return the change in x component of the velocity of the two dimensional body.   
+     *
+     */
     public double getChangeInXVelocity(){
 	return changeInXVelocity;
     }
     
+
+    /**                                                                                                                                                            
+     * Gets the change in  y component of the velocity of the dimensional body.
+     * 
+     * @return the change in y component of the velocity of the two dimensional body.
+     *    
+     */
     public double getChangeInYVelocity(){
 	return changeInYVelocity;
     }
