@@ -235,7 +235,7 @@ public class TestColBody{
         ColBody C5 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C6 = new ColBody(-1, -1, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C0 = new ColBody(0, 0, 0, 0, 10, 1, 0, 0, 255);
-	double delta = 0.00001;
+	double delta = 0.5;
 
 
 	//Testing Not moving towards each other or touching
@@ -281,8 +281,9 @@ public class TestColBody{
 	assertEquals(2, C4.getChangeInXVelocity(), delta);
 	assertEquals(2, C4.getChangeInYVelocity(), delta);
 	
+
+
 	//Testing Touching and Moving towards each other with 2 bodies acting on 1
-	
 	assertEquals(1, C5.getXVel(), delta);
 	assertEquals(1, C5.getYVel(), delta);
 	assertEquals(1, C6.getXVel(), delta);
@@ -299,15 +300,26 @@ public class TestColBody{
 	assertEquals(2, C4.getChangeInYVelocity(), delta);
 	assertEquals(0, C6.getChangeInXVelocity(), delta);
 	assertEquals(0, C6.getChangeInYVelocity(), delta);
-
-	//Touching and Moving, 3 bodies  (done in class)
 	
+	
+	
+	//Touching and Moving, 3 bodies  (done in class)
 	ColBody B1 = new ColBody(0, 0, 0, 0, 10, 4, 0, 0, 0);
 	ColBody B2 = new ColBody(4, 4, -4, -2, 10, 2, 0, 0, 0);
 	ColBody B3 = new ColBody(-3, -3, 1, 2, 10, 1, 0, 0, 0);
-
-	assertEquals(0, B1.getXVel(), delta);
 	
+	assertEquals(0, B1.getXVel(), delta);
+	assertEquals(0, B1.getYVel(), delta);
+	assertEquals(-4, B2.getXVel(), delta);
+	assertEquals(-2, B2.getYVel(), delta);
+	assertEquals(1, B3.getXVel(), delta);
+	assertEquals(2, B3.getYVel(), delta);
+
+	B1.addForceFrom(B2);
+	B1.addForceFrom(B3);
+	
+	assertEquals(-3/2, B1.getChangeInXVelocity(), delta);
+	assertEquals(-3/2, B1.getChangeInYVelocity(), delta);
 	
 	}
 
@@ -320,7 +332,7 @@ public class TestColBody{
 	ColBody C5 = new ColBody(0, 0, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C6 = new ColBody(-1, -1, 1, 1, 10, 1, 0, 0, 255);
 	ColBody C0 = new ColBody(0, 0, 0, 0, 10, 1, 0, 0, 255);
-	double delta = 0.00001;
+	double delta = 0.5;
 	double time = 1;
 
 	//Testing Touching and Moving towards each other                                                                                                                        
@@ -329,10 +341,10 @@ public class TestColBody{
         assertEquals(1, C5.getXVel(), delta);
         assertEquals(1, C5.getYVel(), delta);
         
-
+	
 	C5.addForceFrom(C4);
 	C4.addForceFrom(C5);
-
+	
 	assertEquals(-2, C5.getChangeInXVelocity(), delta);
         assertEquals(-2, C5.getChangeInYVelocity(), delta);
 	assertEquals(2, C4.getChangeInXVelocity(), delta);
@@ -340,25 +352,47 @@ public class TestColBody{
 	
 	C5.move(time);
 	C4.move(time);
-
+	
 	assertEquals(-1, C5.getXVel(), delta);                                                                                                                    
         assertEquals(-1, C5.getYVel(), delta);
 	assertEquals(1, C4.getXVel(), delta);                                                                                                              
         assertEquals(1, C4.getYVel(), delta);
+	
+	//Testing Touching BUT NOT moving towards each other
+	assertEquals(-1, C1.getXVel(), delta);
+        assertEquals(-1, C1.getYVel(), delta);
+        assertEquals(1, C3.getXVel(), delta);
+        assertEquals(1, C3.getYVel(), delta);
 
+        C1.addForceFrom(C3);
+        C3.addForceFrom(C1);
 
-	//Testing Touching and Moving towards each other with 2 bodies acting on 1                                                                                 
+        assertEquals(0, C1.getChangeInXVelocity(), delta);
+        assertEquals(0, C1.getChangeInYVelocity(), delta);
+        assertEquals(0, C3.getChangeInXVelocity(), delta);
+        assertEquals(0, C3.getChangeInYVelocity(), delta);
 
+	C1.move(time);
+	C3.move(time);
+
+	assertEquals(-1, C1.getXVel(), delta);
+	assertEquals(-1, C1.getYVel(), delta);
+        assertEquals(1, C3.getXVel(), delta);
+        assertEquals(1, C3.getYVel(), delta);
+	
+	
+	
+	//Testing Touching and Moving towards each other with 2 bodies acting on 1
         assertEquals(-1, C5.getXVel(), delta);
         assertEquals(-1, C5.getYVel(), delta);
         assertEquals(1, C6.getXVel(), delta);
         assertEquals(1, C6.getYVel(), delta);
         assertEquals(0, C0.getXVel(), delta);
         assertEquals(0, C0.getYVel(), delta);
-
+	
 	C0.addForceFrom(C6);
         C0.addForceFrom(C4);
-
+	
 	
 	assertEquals(1, C0.getChangeInXVelocity(), delta);
         assertEquals(1, C0.getChangeInYVelocity(), delta);
@@ -367,17 +401,41 @@ public class TestColBody{
         assertEquals(0, C6.getChangeInXVelocity(), delta);
         assertEquals(0, C6.getChangeInYVelocity(), delta);
 	
-
+	
 	C0.move(time);
 	C4.move(time);
 	C6.move(time);
-
+	
 	assertEquals(1, C0.getXVel(), delta);
         assertEquals(1, C0.getYVel(), delta);
 	assertEquals(1, C6.getXVel(), delta);
         assertEquals(1, C6.getYVel(), delta);
         assertEquals(1, C4.getXVel(), delta);
         assertEquals(1, C4.getYVel(), delta);
+	
+	
+	//Touching and Moving, 3 bodies  (done in class)
+        ColBody B1 = new ColBody(0, 0, 0, 0, 10, 4, 0, 0, 0);
+        ColBody B2 = new ColBody(4, 4, -4, -2, 10, 2, 0, 0, 0);
+        ColBody B3 = new ColBody(-3, -3, 1, 2, 10, 1, 0, 0, 0);
+	
+        assertEquals(0, B1.getXVel(), delta);
+        assertEquals(0, B1.getYVel(), delta);
+        assertEquals(-4, B2.getXVel(), delta);
+        assertEquals(-2, B2.getYVel(), delta);
+	assertEquals(1, B3.getXVel(), delta);
+        assertEquals(2, B3.getYVel(), delta);
+	
+        B1.addForceFrom(B2);
+	B1.addForceFrom(B3);
+	
+        assertEquals(-3/2, B1.getChangeInXVelocity(), delta);
+        assertEquals(-3/2, B1.getChangeInYVelocity(), delta);
+	
+	B1.move(time);
+	
+	assertEquals(-3/2, B1.getXVel(), delta);
+	assertEquals(-3/2, B1.getYVel(), delta);
 	
 	
     }
@@ -445,7 +503,8 @@ public class TestColBody{
 	ColBody C0 = new ColBody(0, 0, 0, 0, 10, 1, 0, 0, 255);
 	
 	assertEquals(true, C5.isMovingTowards(C4));
-	
+	assertEquals(false, C1.isMovingTowards(C2));
+	assertEquals(false, C1.isMovingTowards(C3));
 
     }
     

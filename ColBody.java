@@ -137,7 +137,7 @@ public class ColBody implements Body{
      *
      */
      public double calculateDistance(Body b){
-	 return Math.sqrt((Math.pow(Math.abs(b.getXCoord() - this.xCoordinate), 2)) + (Math.pow(Math.abs(b.getYCoord() - this.yCoordinate), 2)));
+	 return Math.sqrt((Math.pow((b.getXCoord() - this.xCoordinate), 2)) + (Math.pow((b.getYCoord() - this.yCoordinate), 2)));
     }
 
 
