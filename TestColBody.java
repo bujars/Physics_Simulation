@@ -321,7 +321,36 @@ public class TestColBody{
 	assertEquals(-3/2, B1.getChangeInXVelocity(), delta);
 	assertEquals(-3/2, B1.getChangeInYVelocity(), delta);
 	
-	}
+
+
+	//Testing to see if addforcefrom is correct for the fourth test case where two bodies are colliding with another body. (Mamadou Test Case)                                               
+
+        ColBody M6 = new ColBody(2.0, 3.0, -2.0, -2.0, 15.0, 2.0, 0, 0, 0);
+        ColBody M7 = new ColBody(5.0, 4.0, -4.0, -2.0, 10.0, 3.0, 0, 0, 0);
+        ColBody M8 = new ColBody(-2.0, 3.0, 3.0, 2.0, 20.0, 3.0, 0, 0, 0);
+        delta = 0.001;
+
+        M6.addForceFrom(M7);
+        M6.addForceFrom(M8);
+
+        assertEquals(4.274, M6.getChangeInXVelocity(), delta);
+        assertEquals(-0.48, M6.getChangeInYVelocity(), delta);
+
+
+	//Testing to see if addforcefrom is correct for the fourth test case where two bodies are colliding with another body. (JunJie Test Case) 
+	
+	ColBody J1 = new ColBody(0, 0, 0, 0, 2, 2, 0, 0, 0);
+	ColBody J2 = new ColBody(-4, 0, 2, 0, 1, 3, 0, 0, 0);
+	ColBody J3 = new ColBody(2, 0, -1, 0, 4, 1, 0, 0, 0);	
+
+	J1.addForceFrom(J2);
+	J1.addForceFrom(J3);
+
+	assertEquals(0, J1.getChangeInXVelocity(), delta);
+	assertEquals(0, J1.getChangeInYVelocity(), delta);
+
+
+    }
 
     @Test
 	public void testMove(){
@@ -358,6 +387,13 @@ public class TestColBody{
 	assertEquals(1, C4.getXVel(), delta);                                                                                                              
         assertEquals(1, C4.getYVel(), delta);
 	
+	assertEquals(0.0, C5.getChangeInXVelocity(), delta);
+	assertEquals(0.0, C5.getChangeInYVelocity(), delta);
+	assertEquals(0.0, C4.getChangeInXVelocity(), delta);
+	assertEquals(0.0, C4.getChangeInYVelocity(), delta);
+
+
+
 	//Testing Touching BUT NOT moving towards each other
 	assertEquals(-1, C1.getXVel(), delta);
         assertEquals(-1, C1.getYVel(), delta);
@@ -380,8 +416,14 @@ public class TestColBody{
         assertEquals(1, C3.getXVel(), delta);
         assertEquals(1, C3.getYVel(), delta);
 	
-	
-	
+	assertEquals(0.0, C1.getChangeInXVelocity(), delta);
+        assertEquals(0.0, C1.getChangeInYVelocity(), delta);
+	assertEquals(0.0, C3.getChangeInXVelocity(), delta);
+	assertEquals(0.0, C3.getChangeInYVelocity(), delta);
+
+
+
+
 	//Testing Touching and Moving towards each other with 2 bodies acting on 1
         assertEquals(-1, C5.getXVel(), delta);
         assertEquals(-1, C5.getYVel(), delta);
@@ -413,6 +455,9 @@ public class TestColBody{
         assertEquals(1, C4.getXVel(), delta);
         assertEquals(1, C4.getYVel(), delta);
 	
+	assertEquals(0.0, C0.getChangeInXVelocity(), delta);
+        assertEquals(0.0, C0.getChangeInYVelocity(), delta);
+
 	
 	//Touching and Moving, 3 bodies  (done in class)
         ColBody B1 = new ColBody(0, 0, 0, 0, 10, 4, 0, 0, 0);
@@ -436,8 +481,58 @@ public class TestColBody{
 	
 	assertEquals(-3/2, B1.getXVel(), delta);
 	assertEquals(-3/2, B1.getYVel(), delta);
+
+	assertEquals(0.0, B1.getChangeInXVelocity(), delta);
+        assertEquals(0.0, B1.getChangeInYVelocity(), delta);
+
+
 	
+	//Testing to see if move is correct for the fourth test case where two bodies are colliding with another body. (Mamadou Test Case)
+  
+	ColBody M6 = new ColBody(2.0, 3.0, -2.0, -2.0, 15.0, 2.0, 0, 0, 0);
+	ColBody M7 = new ColBody(5.0, 4.0, -4.0, -2.0, 10.0, 3.0, 0, 0, 0);
+	ColBody M8 = new ColBody(-2.0, 3.0, 3.0, 2.0, 20.0, 3.0, 0, 0, 0);
+	delta = 0.001;
+
+	M6.addForceFrom(M7);
+	M6.addForceFrom(M8);
 	
+	assertEquals(4.274, M6.getChangeInXVelocity(), delta);
+	assertEquals(-0.48, M6.getChangeInYVelocity(), delta);
+
+	M6.move(time);
+	
+	assertEquals(4.274, M6.getXCoord(), delta);
+	assertEquals(0.52, M6.getYCoord(), delta);
+ 
+	assertEquals(0.0, M6.getChangeInXVelocity(), delta);
+	assertEquals(0.0, M6.getChangeInYVelocity(), delta);
+ 
+ 
+	//Testing to see if move is correct for the fourth test case where two bodies are colliding with another body. (JunJie Test Case)                                                        
+
+        ColBody J1 = new ColBody(0, 0, 0, 0, 2, 2, 0, 0, 0);
+        ColBody J2 = new ColBody(-4, 0, 2, 0, 1, 3, 0, 0, 0);
+        ColBody J3 = new ColBody(2, 0, -1, 0, 4, 1, 0, 0, 0);
+
+        J1.addForceFrom(J2);
+        J1.addForceFrom(J3);
+
+        assertEquals(0, J1.getChangeInXVelocity(), delta);
+        assertEquals(0, J1.getChangeInYVelocity(), delta);
+	
+	time = 0.1;
+	J1.move(time);
+
+        assertEquals(0, J1.getXCoord(), delta);
+        assertEquals(0, J1.getYCoord(), delta);
+
+        assertEquals(0.0, J1.getChangeInXVelocity(), delta);
+	assertEquals(0.0, J1.getChangeInYVelocity(), delta);
+
+
+
+
     }
     
     @Test

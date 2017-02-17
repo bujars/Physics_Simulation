@@ -143,9 +143,9 @@ public class ColBody implements Body{
 
     /**
      * Checks to see if two Bodies are touching one another - that being,
-     * the sum of the radiuses of the two dimensional bodies are greater than or requal to the distance between the centers of the two dimensional bodies
+     * the sum of the radiuses of the two dimensional bodies are greater than or equal to the distance between the centers of the two dimensional bodies
      *
-     * @param otherBody is the 
+     * @return if the distance between the two bodies is less than or equal to their sum 
      */
     public boolean isTouching(Body otherBody){
         return (this.calculateDistance(otherBody) <= (this.radius + otherBody.getRadius()));
