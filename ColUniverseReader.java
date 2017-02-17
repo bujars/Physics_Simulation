@@ -16,7 +16,7 @@ public class ColUniverseReader extends UniverseReader{
     }
 
     public static void main(String[] args){
-        ColUniverseReader test1 = new ColUniverseReader("gravdata/coltest0.txt");
+        ColUniverseReader test1 = new ColUniverseReader("coltest0.txt");
         Body[] test1Bodies = test1.getBodies();
         for(int i = 0; i < test1Bodies.length; i++){
             System.out.println(test1Bodies[i]);
