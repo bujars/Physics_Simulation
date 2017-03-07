@@ -29,28 +29,28 @@ public class ColBody implements Body{
     }
 
     /**
-      * Gets the x-coordinate of the two dimensional body. This method is useful
-      * for visualizing the simluation.
-      * 
-      * @return the x-coordinate of the two dimensional body.
-      */
+     * Gets the x-coordinate of the two dimensional body. This method is useful
+     * for visualizing the simluation.
+     * 
+     * @return the x-coordinate of the two dimensional body.
+     */
     public double getXCoord(){
         return xCoordinate;
     }
 
     /**
-      * Gets the y-coordinate of the two dimensional body. This method is useful
-      * for visualizing the simulation.
-      *
-      * @return the y-coordinate of the two dimensional body.
-      */
+     * Gets the y-coordinate of the two dimensional body. This method is useful
+     * for visualizing the simulation.
+     *
+     * @return the y-coordinate of the two dimensional body.
+     */
     public double getYCoord(){
         return yCoordinate;
     }
 
     /**
-      * Gets the x component of the velocity of the dimensional body.
-      * 
+     * Gets the x component of the velocity of the dimensional body.
+     * 
      * @return the x component of the velocity of the two dimensional body.
      */
     public double getXVel(){
@@ -58,53 +58,53 @@ public class ColBody implements Body{
     }
 
     /**
-      * Gets the y component of the velocity  of the two dimensional body. 
-      *
-      * @return the y component of the velocity of the two dimensional body.
-      */
+     * Gets the y component of the velocity  of the two dimensional body. 
+     *
+     * @return the y component of the velocity of the two dimensional body.
+     */
     public double getYVel(){
         return yVelocity;
     }
 
     /**
-      * Gets the radius of the two dimensional body. This method is useful for
-      * visualizing the simulation.
-      *
-      * @return the radius of the two dimensional body.
-      */
+     * Gets the radius of the two dimensional body. This method is useful for
+     * visualizing the simulation.
+     *
+     * @return the radius of the two dimensional body.
+     */
     public double getRadius(){
         return radius;
     }
 
     /**
-      * Gets the color (red, green, and blue values on a 0-255 scale) of the
-      * body. This method is useful for visualizing the simulation.
-      *
-      * @return an array of length 3 representing the color of the body; the
-      *         value at 0th index represents red on a 0-255 scale, the value
-      *         at the 1st green on a 0-255 scale, and the value at 2nd blue
-      *         on a 0-255 scale 
-      */
+     * Gets the color (red, green, and blue values on a 0-255 scale) of the
+     * body. This method is useful for visualizing the simulation.
+     *
+     * @return an array of length 3 representing the color of the body; the
+     *         value at 0th index represents red on a 0-255 scale, the value
+     *         at the 1st green on a 0-255 scale, and the value at 2nd blue
+     *         on a 0-255 scale 
+     */
     public int[] getRGB(){
         return rgb;
     }
 
     /**
-      * Gets the mass of two dimensional body.
-      *
-      * @return the mass of the two dimensional body.
-      */
+     * Gets the mass of two dimensional body.
+     *
+     * @return the mass of the two dimensional body.
+     */
     public double getMass(){
         return mass;
     }
 
     /**
-      * Calculates the force exterted on this two dimensional body by another
-      * two dimensional body.
-      *
-      * @param otherBody the {@link TwoDimBody} exterting a force on this two
-      *        two dimensional body
-      */
+     * Calculates the force exterted on this two dimensional body by another
+     * two dimensional body.
+     *
+     * @param otherBody the {@link TwoDimBody} exterting a force on this two
+     *        two dimensional body
+     */
     public void addForceFrom(Body otherBody){
 	if(isTouching(otherBody) && isMovingTowards(otherBody)){
 	    changeInXVelocity = changeInXVelocity + this.calculateXVelocity(otherBody);
@@ -113,13 +113,13 @@ public class ColBody implements Body{
     }
 
     /**
-      * Based on the forces exterted on this two dimensional body and the 
-      * existing position of the two dimensional body, determines the new
-      * position of the body after moving for the provided amount of time.
-      * Also should reset the forces on the {@link Body} to 0.
-      *
-      * @param timeDelta the amount of time the body moves
-      */
+     * Based on the forces exterted on this two dimensional body and the 
+     * existing position of the two dimensional body, determines the new
+     * position of the body after moving for the provided amount of time.
+     * Also should reset the forces on the {@link Body} to 0.
+     *
+     * @param timeDelta the amount of time the body moves
+     */
     public void move(double timeDelta){
 	xVelocity = (xVelocity + changeInXVelocity);
 	yVelocity = (yVelocity + changeInYVelocity);
@@ -136,8 +136,8 @@ public class ColBody implements Body{
      * @return the distance between the centers of two bodies in decmial format. 
      *
      */
-     public double calculateDistance(Body b){
-	 return Math.sqrt((Math.pow((b.getXCoord() - this.xCoordinate), 2)) + (Math.pow((b.getYCoord() - this.yCoordinate), 2)));
+    public double calculateDistance(Body b){
+	return Math.sqrt((Math.pow((b.getXCoord() - this.xCoordinate), 2)) + (Math.pow((b.getYCoord() - this.yCoordinate), 2)));
     }
 
 

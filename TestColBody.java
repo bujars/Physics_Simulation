@@ -535,7 +535,7 @@ public class TestColBody{
 
     }
     
-    @Test
+        @Test
 	public void testCalculateDistance(){
 	ColBody M = new ColBody(0.0, 0.0, 0.0, 0.0, 100, 3.0, 0, 0, 0);
         ColBody M1 = new ColBody(4.0, 4.0, -1.0, -1.0, 100, 3.0, 0, 0, 0);
@@ -557,7 +557,7 @@ public class TestColBody{
 	assertEquals(Math.sqrt(2), C0.calculateDistance(C6), delta);
 	assertEquals(Math.sqrt(2), C0.calculateDistance(C4), delta);
 
-    }
+	}
     @Test
 	public void testIsTouching(){
 	ColBody M = new ColBody(0.0, 0.0, 0.0, 0.0, 100, 3.0, 0, 0, 0);
