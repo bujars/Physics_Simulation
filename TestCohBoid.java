@@ -99,7 +99,14 @@ public class TestCohBoid {
 	CohBoid T3 = new CohBoid(5, 1, 1, 1);
 	double delta = 0.1;
     
-	// How do we test this? And How should it be coded? -- Something to figure out on Wednesday
+
+	T0.addForceFrom(T1);
+	T0.addForceFrom(T2);
+	T0.addForceFrom(T3);
+
+	assertEquals(5, T0.getChangeInXVelocity(), delta);
+	assertEquals(.6666, T0.getChangeInYVelocity(), delta);
+	
 
 }
     

@@ -76,7 +76,7 @@ public class CohBoid implements Body{
      *        two dimensional boid
      */
     public void addForceFrom(Body otherBoid){
-	recordNeighborsPosition(otherBoid);
+        recordNeighborsPosition(otherBoid);
 	double xCenter = this.calcXNeighborsCenter();
 	double yCenter = this.calcYNeighborsCenter();
 	double xCohesionForce = calcXCohesionForce(xCenter);
@@ -167,6 +167,14 @@ public class CohBoid implements Body{
      */
     public double calcYCohesionForce(Double yCenter){
 	changeInYVelocity = yCenter - this.yCoordinate; 
+	return changeInYVelocity;
+    }
+
+    public double getChangeInXVelocity(){
+	return changeInXVelocity;
+    }
+
+    public double getChangeInYVelocity(){
 	return changeInYVelocity;
     }
 
