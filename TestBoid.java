@@ -7,10 +7,10 @@ public class TestBoid {
 
     @Test
 	public void testGetXCoord(){
-	CohBoid T0 = new CohBoid(0, 0, 0, 0);
-	CohBoid T1 = new CohBoid(4, 3, -1, 1);
-	CohBoid T2 = new CohBoid(6, -2, 0, 1);
-	CohBoid T3 = new CohBoid(5, 1, 1, 1);
+	Boid T0 = new Boid(0, 0, 0, 0);
+	Boid T1 = new Boid(4, 3, -1, 1);
+	Boid T2 = new Boid(6, -2, 0, 1);
+	Boid T3 = new Boid(5, 1, 1, 1);
 	double delta = 0.1; 
 
 	assertEquals(0, T0.getXCoord(), delta);
@@ -22,10 +22,10 @@ public class TestBoid {
 
     @Test
 	public void testGetYCoord() {
-	CohBoid T0 = new CohBoid(0, 0, 0, 0);
-	CohBoid T1 = new CohBoid(4, 3, -1, 1);
-	CohBoid T2 = new CohBoid(6, -2, 0, 1);
-	CohBoid T3 = new CohBoid(5, 1, 1, 1);
+	Boid T0 = new Boid(0, 0, 0, 0);
+        Boid T1 = new Boid(4, 3, -1, 1);
+        Boid T2 = new Boid(6, -2, 0, 1);
+        Boid T3 = new Boid(5, 1, 1, 1);	
 	double delta = 0.1;
  
 	assertEquals(0, T0.getYCoord(), delta);
@@ -36,10 +36,10 @@ public class TestBoid {
 
     @Test
 	public void testGetXVel() {
-	CohBoid T0 = new CohBoid(0, 0, 0, 0);
-	CohBoid T1 = new CohBoid(4, 3, -1, 1);
-	CohBoid T2 = new CohBoid(6, -2, 0, 1);
-	CohBoid T3 = new CohBoid(5, 1, 1, 1);
+	Boid T0 = new Boid(0, 0, 0, 0);
+        Boid T1 = new Boid(4, 3, -1, 1);
+        Boid T2 = new Boid(6, -2, 0, 1);
+        Boid T3 = new Boid(5, 1, 1, 1);
 	double delta = 0.1;
 	
 	assertEquals(0, T0.getXVel(), delta);
@@ -50,10 +50,10 @@ public class TestBoid {
 
     @Test
 	public void testGetYVel() {
-	CohBoid T0 = new CohBoid(0, 0, 0, 0);
-	CohBoid T1 = new CohBoid(4, 3, -1, 1);
-	CohBoid T2 = new CohBoid(6, -2, 0, 1);
-	CohBoid T3 = new CohBoid(5, 1, 1, 1);
+	Boid T0 = new Boid(0, 0, 0, 0);
+        Boid T1 = new Boid(4, 3, -1, 1);
+        Boid T2 = new Boid(6, -2, 0, 1);
+        Boid T3 = new Boid(5, 1, 1, 1);
 	double delta = 0.1;
     
 	assertEquals(0, T0.getYVel(), delta);
@@ -65,38 +65,38 @@ public class TestBoid {
 
     @Test
 	public void testGetRadius() {
-	CohBoid T0 = new CohBoid(0, 0, 0, 0);
-	CohBoid T1 = new CohBoid(4, 3, -1, 1);
-	CohBoid T2 = new CohBoid(6, -2, 0, 1);
-	CohBoid T3 = new CohBoid(5, 1, 1, 1);
+	Boid T0 = new Boid(0, 0, 0, 0);
+        Boid T1 = new Boid(4, 3, -1, 1);
+        Boid T2 = new Boid(6, -2, 0, 1);
+        Boid T3 = new Boid(5, 1, 1, 1);
 	double delta = 0.1;
     }
 
     @Test
 	public void testGetRGB() {
-	CohBoid T0 = new CohBoid(0, 0, 0, 0);
-	CohBoid T1 = new CohBoid(4, 3, -1, 1);
-	CohBoid T2 = new CohBoid(6, -2, 0, 1);
-	CohBoid T3 = new CohBoid(5, 1, 1, 1);
+	Boid T0 = new Boid(0, 0, 0, 0);
+        Boid T1 = new Boid(4, 3, -1, 1);
+        Boid T2 = new Boid(6, -2, 0, 1);
+        Boid T3 = new Boid(5, 1, 1, 1);
 	double delta = 0.1;
     }
     
     
     @Test
 	public void testGetMass() {
-	CohBoid T0 = new CohBoid(0, 0, 0, 0);
-	CohBoid T1 = new CohBoid(4, 3, -1, 1);
-	CohBoid T2 = new CohBoid(6, -2, 0, 1);
-	CohBoid T3 = new CohBoid(5, 1, 1, 1);
+	Boid T0 = new Boid(0, 0, 0, 0);
+        Boid T1 = new Boid(4, 3, -1, 1);
+        Boid T2 = new Boid(6, -2, 0, 1);
+        Boid T3 = new Boid(5, 1, 1, 1);
 	double delta = 0.1;
     }
    
     @Test
 	public void testAddForceFrom(){
-	CohBoid T0 = new CohBoid(0, 0, 0, 0);
-	CohBoid T1 = new CohBoid(4, 3, -1, 1);
-	CohBoid T2 = new CohBoid(6, -2, 0, 1);
-	CohBoid T3 = new CohBoid(5, 1, 1, 1);
+	Boid T0 = new Boid(0, 0, 0, 0);
+        Boid T1 = new Boid(4, 3, -1, 1);
+        Boid T2 = new Boid(6, -2, 0, 1);
+        Boid T3 = new Boid(5, 1, 1, 1);
 	double delta = 0.1;
     
 
@@ -109,22 +109,41 @@ public class TestBoid {
 	
 
     }
+
+   @Test
+       public void testAddCohesionForceFrom(){
+       Boid T0 = new Boid(0, 0, 0, 0);
+       Boid T1 = new Boid(4, 3, -1, 1);
+       Boid T2 = new Boid(6, -2, 0, 1);
+       Boid T3 = new Boid(5, 1, 1, 1);
+       double delta = 0.1;
+
+
+       T0.addCohesionForceFrom(T1);
+       T0.addCohesionForceFrom(T2);
+       T0.addCohesionForceFrom(T3);
+
+       assertEquals(5, T0.getChangeInXVelocity(), delta);
+       assertEquals(.6666, T0.getChangeInYVelocity(), delta);
+
+
+   }
     
     @Test
 	public void testMove(){
-	CohBoid T0 = new CohBoid(0, 0, 0, 0);
-	CohBoid T1 = new CohBoid(4, 3, -1, 1);
-	CohBoid T2 = new CohBoid(6, -2, 0, 1);
-	CohBoid T3 = new CohBoid(5, 1, 1, 1);
+	Boid T0 = new Boid(0, 0, 0, 0);
+        Boid T1 = new Boid(4, 3, -1, 1);
+        Boid T2 = new Boid(6, -2, 0, 1);
+        Boid T3 = new Boid(5, 1, 1, 1);
 	double delta = 0.1;
     }
 
     @Test 
 	public void testRecordNeighborsPosition(){
-	CohBoid T0 = new CohBoid(0, 0, 0, 0);
-        CohBoid T1 = new CohBoid(4, 3, -1, 1);
-	CohBoid T2 = new CohBoid(6, -2, 0, 1);
-        CohBoid T3 = new CohBoid(5, 1, 1, 1);
+	Boid T0 = new Boid(0, 0, 0, 0);
+        Boid T1 = new Boid(4, 3, -1, 1);
+        Boid T2 = new Boid(6, -2, 0, 1);
+        Boid T3 = new Boid(5, 1, 1, 1);
 	double delta = 0.0001;
 
 	T0.recordNeighborsPosition(T1);
@@ -138,10 +157,10 @@ public class TestBoid {
 
     @Test
 	public void testGetSumOfNeighborsX(){
-	CohBoid T0 = new CohBoid(0, 0, 0, 0);
-	CohBoid T1 = new CohBoid(4, 3, -1, 1);
-        CohBoid T2 = new CohBoid(6, -2, 0, 1);
-	CohBoid T3 = new CohBoid(5, 1, 1, 1);
+	Boid T0 = new Boid(0, 0, 0, 0);
+        Boid T1 = new Boid(4, 3, -1, 1);
+        Boid T2 = new Boid(6, -2, 0, 1);
+        Boid T3 = new Boid(5, 1, 1, 1);
 	double delta = 0.0001;
 
 	//Since we didnt add anything, sum should be zero
@@ -150,10 +169,10 @@ public class TestBoid {
     
     @Test
 	public void testGetSumOfNeighborsY(){
-	CohBoid T0 = new CohBoid(0, 0, 0, 0);
-        CohBoid T1 = new CohBoid(4, 3, -1, 1);
-	CohBoid T2 = new CohBoid(6, -2, 0, 1);
-	CohBoid T3 = new CohBoid(5, 1, 1, 1);
+	Boid T0 = new Boid(0, 0, 0, 0);
+        Boid T1 = new Boid(4, 3, -1, 1);
+        Boid T2 = new Boid(6, -2, 0, 1);
+        Boid T3 = new Boid(5, 1, 1, 1);
 	double delta = 0.0001;
 
 	//Since we didnt add anything, sum should be zero                                               
@@ -162,10 +181,10 @@ public class TestBoid {
 
     @Test
 	public void testCalcXNeighborsCenter(){
-	CohBoid T0 = new CohBoid(0, 0, 0, 0);
-        CohBoid T1 = new CohBoid(4, 3, -1, 1);
-	CohBoid T2 = new CohBoid(6, -2, 0, 1);
-	CohBoid T3 = new CohBoid(5, 1, 1, 1);
+	Boid T0 = new Boid(0, 0, 0, 0);
+        Boid T1 = new Boid(4, 3, -1, 1);
+        Boid T2 = new Boid(6, -2, 0, 1);
+        Boid T3 = new Boid(5, 1, 1, 1);
 	double delta = 0.0001;
 
 	T0.recordNeighborsPosition(T1);
@@ -182,10 +201,10 @@ public class TestBoid {
 
     @Test
 	public void testCalcYNeighborsCenter(){
-	CohBoid T0 = new CohBoid(0, 0, 0, 0);
-	CohBoid T1 = new CohBoid(4, 3, -1, 1);
-	CohBoid T2 = new CohBoid(6, -2, 0, 1);
-	CohBoid T3 = new CohBoid(5, 1, 1, 1);
+	Boid T0 = new Boid(0, 0, 0, 0);
+        Boid T1 = new Boid(4, 3, -1, 1);
+        Boid T2 = new Boid(6, -2, 0, 1);
+        Boid T3 = new Boid(5, 1, 1, 1);
 	double delta = 0.0001;
 	
 	T0.recordNeighborsPosition(T1);
@@ -201,10 +220,10 @@ public class TestBoid {
 
     @Test
 	public void testCalcXCohesionForce(){
-	CohBoid T0 = new CohBoid(0, 0, 0, 0);
-	CohBoid T1 = new CohBoid(4, 3, -1, 1);
-	CohBoid T2 = new CohBoid(6, -2, 0, 1);
-        CohBoid T3 = new CohBoid(5, 1, 1, 1);
+	Boid T0 = new Boid(0, 0, 0, 0);
+        Boid T1 = new Boid(4, 3, -1, 1);
+        Boid T2 = new Boid(6, -2, 0, 1);
+        Boid T3 = new Boid(5, 1, 1, 1);
 	double delta = 0.0001;
 
 	T0.recordNeighborsPosition(T1);
@@ -225,10 +244,10 @@ public class TestBoid {
 
    @Test
        public void testCalcYCohesionForce(){
-       CohBoid T0 = new CohBoid(0, 0, 0, 0);
-       CohBoid T1 = new CohBoid(4, 3, -1, 1);
-       CohBoid T2 = new CohBoid(6, -2, 0, 1);
-       CohBoid T3 = new CohBoid(5, 1, 1, 1);
+       Boid T0 = new Boid(0, 0, 0, 0);
+       Boid T1 = new Boid(4, 3, -1, 1);
+       Boid T2 = new Boid(6, -2, 0, 1);
+       Boid T3 = new Boid(5, 1, 1, 1);
        double delta = 0.0001;
 
        T0.recordNeighborsPosition(T1);
@@ -246,5 +265,32 @@ public class TestBoid {
        assertEquals(0.6666, T0.calcYCohesionForce(yCenter), delta);
    }   
     
+
+    @Test
+	public void testGetChangeInXVelocity(){
+	Boid T0 = new Boid(0, 0, 0, 0);
+        Boid T1 = new Boid(4, 3, -1, 1);
+        Boid T2 = new Boid(6, -2, 0, 1);
+        Boid T3 = new Boid(5, 1, 1, 1);
+	double delta = 0.0001;
+
+	double changeX = T0.calcXCohesionForce(0);
+	assertEquals(0, getChangeInXVelocity(), delta);
+	
+
+    }
+
+    @Test 
+	public void testGetChangeInYVelocity(){
+	Boid T0 = new Boid(0, 0, 0, 0);
+        Boid T1 = new Boid(4, 3, -1, 1);
+        Boid T2 = new Boid(6, -2, 0, 1);
+        Boid T3 = new Boid(5, 1, 1, 1);
+	double delta = 0.0001;
+
+	double changeY = T0.calcYCohesionForce(0);
+	assertEquals(0, getChangeInYVelocity(), delta);
+
+    }
 
 }
