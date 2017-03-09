@@ -274,8 +274,8 @@ public class TestBoid {
         Boid T3 = new Boid(5, 1, 1, 1);
 	double delta = 0.0001;
 
-	double changeX = T0.calcXCohesionForce(0);
-	assertEquals(0, getChangeInXVelocity(), delta);
+	double changeX = T0.calcXCohesionForce(0.0);
+	assertEquals(0, T0.getChangeInXVelocity(), delta);
 	
 
     }
@@ -288,8 +288,8 @@ public class TestBoid {
         Boid T3 = new Boid(5, 1, 1, 1);
 	double delta = 0.0001;
 
-	double changeY = T0.calcYCohesionForce(0);
-	assertEquals(0, getChangeInYVelocity(), delta);
+	double changeY = T0.calcYCohesionForce(0.0);
+	assertEquals(0, T0.getChangeInYVelocity(), delta);
 
     }
 

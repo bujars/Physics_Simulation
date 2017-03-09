@@ -101,6 +101,13 @@ public class Boid implements Body{
 	addCohesionForceFrom(otherBoid);
     }
 
+
+    /**
+     * Calculates the cohesion force excerted on this two dimenional boid by another 
+     * two dimensional boid.
+     *
+     *
+     */
     public void addCohesionForceFrom(Body otherBoid){
         recordNeighborsPosition(otherBoid);
         double xCenter = this.calcXNeighborsCenter();
