@@ -9,6 +9,9 @@ public class Boid implements Body{
     private double sumOfNeighborsY; 
     private double changeInXVelocity;
     private double changeInYVelocity; 
+    private double sumOfNeighborsVelX;
+    private double sumOfNeighborsVelY;
+
 
     public Boid(double xCoord, double yCoord, double xVel, double yVel){
         xCoordinate = xCoord;
@@ -99,16 +102,23 @@ public class Boid implements Body{
      */
     public void addForceFrom(Body otherBoid){
 	addCohesionForceFrom(otherBoid);
+	addAlignmentForceFrom(otherBoid);
+	countOfNeighbors++;
     }
 
+    /**
+      * Calculates the cohesion force excerted on this two dimenional boid by another 
+      * two dimensional boid.
+      *
+      *
+      */
     public void addCohesionForceFrom(Body otherBoid){
         recordNeighborsPosition(otherBoid);
-        double xCenter = this.calcXNeighborsCenter();
-        double yCenter = this.calcYNeighborsCenter();
-        double xCohesionForce = calcXCohesionForce(xCenter);
-        double yCohesionForce = calcYCohesionForce(yCenter);
     }
 
+    public void addAlignmentForceFrom(Body otherBoid){
+	recordNeighborsVelocities(otherBoid);
+    }
 
 
     /**
@@ -120,7 +130,15 @@ public class Boid implements Body{
      * @param timeDelta the amount of time the body moves
      */
     public void move(double timeDelta){
+	//For Cohesion
+	double xCenter = this.calcXNeighborsCenter();
+        double yCenter = this.calcYNeighborsCenter();
+        double xCohesionForce = calcXCohesionForce(xCenter);
+        double yCohesionForce = calcYCohesionForce(yCenter);
 
+	//For Alignment
+	double xAlignmentForce = calcXAlignmentForce();
+	double yAlignmentForce = calcYAlignmentForce();
     }
 
 
@@ -133,7 +151,6 @@ public class Boid implements Body{
     public void recordNeighborsPosition(Body otherBoid){
 	sumOfNeighborsX = sumOfNeighborsX + otherBoid.getXCoord();
 	sumOfNeighborsY = sumOfNeighborsY + otherBoid.getYCoord();
-	countOfNeighbors++;
     }
 
 
@@ -159,7 +176,6 @@ public class Boid implements Body{
 	return countOfNeighbors;
     }
 
-
     /**
      * Calculates the x coordinate of the center of the neighbors
      *
@@ -182,10 +198,10 @@ public class Boid implements Body{
      * UPDATE IT
      */
     public double calcXCohesionForce(Double xCenter){
-	changeInXVelocity = xCenter - this.xCoordinate;
-	return changeInXVelocity;
+	double xCohesion = xCenter - this.xCoordinate;
+	changeInXVelocity = changeInXVelocity + xCohesion;
+	return xCohesion;
     }
-
 
     /**
      * Calculates the Cohesion force of this boid.
@@ -193,14 +209,15 @@ public class Boid implements Body{
      * UPDATE IT
      */
     public double calcYCohesionForce(Double yCenter){
-	changeInYVelocity = yCenter - this.yCoordinate; 
-	return changeInYVelocity;
+	double yCohesion = yCenter - this.yCoordinate;
+	changeInYVelocity = changeInYVelocity + yCohesion; 
+	return yCohesion;
     }
 
 
     /**
-     * Gets the change in  x component of the velocity of the dimensional body.                                                                                              
-     *                                                                                                                                                            
+     * Gets the change in  x component of the velocity of the dimensional body.
+     *
      * @return the change in x component of the velocity of the two dimensional body.   
      *
      */
@@ -209,7 +226,7 @@ public class Boid implements Body{
     }
 
 
-    /**                                                                                                                                                            
+    /**
      * Gets the change in  y component of the velocity of the dimensional body.
      * 
      * @return the change in y component of the velocity of the two dimensional body.
@@ -217,6 +234,34 @@ public class Boid implements Body{
      */
     public double getChangeInYVelocity(){
 	return changeInYVelocity;
+    }
+
+
+
+    public void recordNeighborsVelocities(Body otherBoid){
+	sumOfNeighborsVelX = sumOfNeighborsVelX + otherBoid.getXVel();
+	sumOfNeighborsVelY = sumOfNeighborsVelY + otherBoid.getYVel(); 
+    }
+
+    public double getSumOfNeighborsVelX(){
+	return sumOfNeighborsVelX;
+    }
+
+    public double getSumOfNeighborsVelY(){
+	return sumOfNeighborsVelY;
+    }
+
+
+    public double calcXAlignmentForce(){
+	double xAlignment = sumOfNeighborsX/countOfNeighbors;
+        changeInXVelocity = changeInXVelocity +xAlignment;
+        return xAlignement;
+    }
+
+    public double calcYAlignmentForce(){
+	double yAlignment = sumOfNeighborsY/countOfNeighbors;
+	changeInXVelocity = changeInXVelocity + yAlignment;
+	return yAlignement; 
     }
 
     public String toString(){
