@@ -274,6 +274,7 @@ public class TestBoid {
         Boid t3 = new Boid(5, 1, 1, 1);
 	double delta = 0.0001;
 
+
 	double changeX = t0.calcXCohesionForce(0);
 	assertEquals(0, t0.getChangeInXVelocity(), delta);
 	
