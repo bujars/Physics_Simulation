@@ -164,7 +164,7 @@ public class TestBoid {
 	double delta = 0.0001;
 
 	//Since we didnt add anything, sum should be zero
-	assertEquals(0, T0.getSumOfNeighborsX(), delta);
+	assertEquals(0, t0.getSumOfNeighborsX(), delta);
     }
     
     @Test
@@ -196,7 +196,7 @@ public class TestBoid {
 	assertEquals(3, t0.getCountOfNeighbors(), delta);
 
 
-	assertEquals(5, T0.calcXNeighborsCenter(), delta);
+	assertEquals(5, t0.calcXNeighborsCenter(), delta);
     }
 
     @Test
@@ -275,7 +275,7 @@ public class TestBoid {
 	double delta = 0.0001;
 
 
-	double changeX = t0.calcXCohesionForce(0);
+	double changeX = t0.calcXCohesionForce(0.0);
 	assertEquals(0, t0.getChangeInXVelocity(), delta);
 	
 
@@ -289,38 +289,87 @@ public class TestBoid {
         Boid t3 = new Boid(5, 1, 1, 1);
 	double delta = 0.0001;
 
-	double changeY = t0.calcYCohesionForce(0);
+	double changeY = t0.calcYCohesionForce(0.0);
 	assertEquals(0, t0.getChangeInYVelocity(), delta);
 
     }
 
     @Test
 	public void testRecordNeighborsVelocities(){
-
+	Boid t4 = new Boid(0, 0, -1.5, 2);
+	Boid t5 = new Boid(3, 2, 0, 2);
+	Boid t6 = new Boid(-3, 3, -2, 2);
+	double delta = 0.0001;
+	
+	t4.recordNeighborsVelocities(t5);
+	t4.recordNeighborsVelocities(t6);
+	assertEquals(-2, t4.getSumOfNeighborsVelX(), delta);
+	assertEquals(4, t4.getSumOfNeighborsVelY(), delta);
     }
     
     @Test
 	public void testCalcXAlignmentForce(){
-
+	Boid t4 = new Boid(0, 0, -1.5, 2);
+	Boid t5 = new Boid(3, 2, 0, 2);
+	Boid t6 = new Boid(-3, 3, -2, 2);
+	double delta = 0.0001;
+	
+	t4.addAlignmentForceFrom(t5);
+	t4.addAlignmentForceFrom(t6);
+	
+	double xAlignment = t4.calcXAlignmentForce();
+        
+	assertEquals(-1, t4.getChangeInXVelocity(), delta);
     }
 
     @Test 
 	public void testCalcYAlignmentForce(){
+	Boid t4 = new Boid(0, 0, -1.5, 2);
+	Boid t5 = new Boid(3, 2, 0, 2);
+	Boid t6 = new Boid(-3, 3, -2, 2);
+	double delta = 0.0001;
 
+	t4.addAlignmentForceFrom(t5);
+	t4.addAlignmentForceFrom(t6);
+	
+        double yAlignment = t4.calcYAlignmentForce();
+	
+	assertEquals(-1, t4.getChangeInYVelocity(), delta);
     }
 
     @Test
 	public void testGetSumOfXVelocities(){
-
+	Boid t4 = new Boid(0, 0, -1.5, 2);
+	Boid t5 = new Boid(3, 2, 0, 2);
+	Boid t6 = new Boid(-3, 3, -2, 2);
+	double delta = 0.0001;
+    
+	//Nothing added to variable   
+	assertEquals(0, t4.getSumOfNeighborsVelX(), delta);
     }
     
     @Test
 	public void testGetSumOfYVelocities(){
-	
+	Boid t4 = new Boid(0, 0, -1.5, 2);
+	Boid t5 = new Boid(3, 2, 0, 2);
+	Boid t6 = new Boid(-3, 3, -2, 2);
+	double delta = 0.0001;
+
+	//Nothing added to variable
+	assertEquals(0, t4.getSumOfNeighborsVelY(), delta);
     }
     
     @Test
-	public voi testAddAlignmentForceFrom(){
+	public void testAddAlignmentForceFrom(){
+	Boid t4 = new Boid(0, 0, -1.5, 2);
+	Boid t5 = new Boid(3, 2, 0, 2);
+	Boid t6 = new Boid(-3, 3, -2, 2);
+	double delta = 0.0001;
 
+	t4.addAlignmentForceFrom(t5);
+	t4.addAlignmentForceFrom(t6);
+	
+	assertEquals(-2, t4.getSumOfNeighborsVelX(), delta);
+	assertEquals(4, t4.getSumOfNeighborsVelY(), delta);
     }
 }

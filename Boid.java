@@ -255,13 +255,13 @@ public class Boid implements Body{
     public double calcXAlignmentForce(){
 	double xAlignment = sumOfNeighborsX/countOfNeighbors;
         changeInXVelocity = changeInXVelocity +xAlignment;
-        return xAlignement;
+        return xAlignment;
     }
 
     public double calcYAlignmentForce(){
 	double yAlignment = sumOfNeighborsY/countOfNeighbors;
 	changeInXVelocity = changeInXVelocity + yAlignment;
-	return yAlignement; 
+	return yAlignment; 
     }
 
     public String toString(){
