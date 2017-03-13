@@ -372,4 +372,124 @@ public class TestBoid {
 	assertEquals(-2, t4.getSumOfNeighborsVelX(), delta);
 	assertEquals(4, t4.getSumOfNeighborsVelY(), delta);
     }
+
+    @Test 
+	public void testAddSeparationForceFrom(){
+	Boid t7 = new Boid(0, 0, 0, 1);
+	Boid t8 = new Boid(3, 3, -3, -3);
+	Boid t9 = new Boid(5, 10, -5, -10);
+	Boid t10 = new Boid(-4, 1, 4, -1);
+	double delta = 0.0001;
+    }
+
+  @Test
+      public void testCalcXDistToThis(){
+      Boid t7 = new Boid(0, 0, 0, 1);
+      Boid t8 = new Boid(3, 3, -3, -3);
+      Boid t9 = new Boid(5, 10, -5, -10);
+      Boid t10 = new Boid(-4, 1, 4, -1);
+      double delta = 0.0001;
+  
+      double xDist = t7.calcXDistToThis(t8);
+      assertEquals(-3, xDist, delta);
+      assertEquals(-3, t7.getSumOfXDist(), delta);
+      
+      xDist = t7.calcXDistToThis(t9);
+      assertEquals(-5, xDist, delta);
+      assertEquals(-8, t7.getSumOfXDist(), delta);
+
+      xDist = t8.calcXDistToThis(t10);
+      assertEquals(4, xDist, delta);
+      assertEquals(-4, t7.getSumOfXDist(), delta);
+
+}
+
+
+  @Test
+      public void testCalcYDistToThis(){
+      Boid t7 = new Boid(0, 0, 0, 1);
+      Boid t8 = new Boid(3, 3, -3, -3);
+      Boid t9 = new Boid(5, 10, -5, -10);
+      Boid t10 = new Boid(-4, 1, 4, -1);
+      double delta = 0.0001;
+  
+      double xDist = t7.calcYDistToThis(t8);
+      assertEquals(-3, YDist, delta);
+      assertEquals(-3, t7.getSumOfYDist(), delta);
+
+      xDist = t7.calcYDistToThis(t9);
+      assertEquals(-5, yDist, delta);
+      assertEquals(-8, t7.getSumOfYDist(), delta);
+
+      xDist = t8.calcYDistToThis(t10);
+      assertEquals(4, yDist, delta);
+      assertEquals(-4, t7.getSumOfYDist(), delta);
+}
+
+  @Test
+      public void testCalcDistance(){
+      Boid t7 = new Boid(0, 0, 0, 1);
+      Boid t8 = new Boid(3, 3, -3, -3);
+      Boid t9 = new Boid(5, 10, -5, -10);
+      Boid t10 = new Boid(-4, 1, 4, -1);
+      double delta = 0.0001;
+
+      double distance = t7.calcDistance(t8);
+      assertEquals(18, distance, delta);
+      assertEquals(18, t7.getSumOfDistance(), delta);
+
+      xDist = t7.calcDistance(t9);
+      assertEquals(125, distance, delta);
+      assertEquals(142, t7.getSumOfDistance(), delta);
+
+      distance = t8.calcDistance(t10);
+      assertEquals(17, distance, delta);
+      assertEquals(159, t7.getSumOfDistance(), delta);
+  }
+
+  @Test
+      public void testCalcXSeparationForce(){
+      Boid t7 = new Boid(0, 0, 0, 1);
+      Boid t8 = new Boid(3, 3, -3, -3);
+      Boid t9 = new Boid(5, 10, -5, -10);
+      Boid t10 = new Boid(-4, 1, 4, -1);
+      double delta = 0.0001;
+  }
+
+  @Test
+      public void testCalcSeparationForce(){
+      Boid t7 = new Boid(0, 0, 0, 1);
+      Boid t8 = new Boid(3, 3, -3, -3);
+      Boid t9 = new Boid(5, 10, -5, -10);
+      Boid t10 = new Boid(-4, 1, 4, -1);
+      double delta = 0.0001;
+  }
+
+  @Test
+      public void testGetSumXDistToThis(){
+      Boid t7 = new Boid(0, 0, 0, 1);
+      Boid t8 = new Boid(3, 3, -3, -3);
+      Boid t9 = new Boid(5, 10, -5, -10);
+      Boid t10 = new Boid(-4, 1, 4, -1);
+      double delta = 0.0001;
+  }
+
+  @Test
+      public void testGetSumYDistToThis(){
+      Boid t7 = new Boid(0, 0, 0, 1);
+      Boid t8 = new Boid(3, 3, -3, -3);
+      Boid t9 = new Boid(5, 10, -5, -10);
+      Boid t10 = new Boid(-4, 1, 4, -1);
+      double delta = 0.0001;
+  }
+
+
+  @Test
+      public void testGetSumOfDistance(){
+      Boid t7 = new Boid(0, 0, 0, 1);
+      Boid t8 = new Boid(3, 3, -3, -3);
+      Boid t9 = new Boid(5, 10, -5, -10);
+      Boid t10 = new Boid(-4, 1, 4, -1);
+      double delta = 0.0001;
+  }
 }

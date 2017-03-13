@@ -11,8 +11,10 @@ public class Boid implements Body{
     private double changeInYVelocity; 
     private double sumOfNeighborsVelX;
     private double sumOfNeighborsVelY;
-
-
+    private double sumOfXDistToThis;
+    private double sumOfYDistToThis;
+    private double sumOfDistance;
+    
     public Boid(double xCoord, double yCoord, double xVel, double yVel){
         xCoordinate = xCoord;
         yCoordinate = yCoord;
@@ -118,6 +120,11 @@ public class Boid implements Body{
 
     public void addAlignmentForceFrom(Body otherBoid){
 	recordNeighborsVelocities(otherBoid);
+    }
+
+    public void addSeparationForceFrom(Body otherBoid){
+	calcXDistToThis(otherBoid);
+	calcYDistToThis(otherBoid);
     }
 
 
@@ -262,6 +269,44 @@ public class Boid implements Body{
 	double yAlignment = sumOfNeighborsY/countOfNeighbors;
 	changeInXVelocity = changeInXVelocity + yAlignment;
 	return yAlignment; 
+    }
+
+    public double calcXDistToThis(Body otherBoid){
+	double calcXDistToThis = xCoordinate - otherBoid.getXCoord();
+	sumOfXDistToThis = sumOfXDistToThis + calcXDistToThis;
+	return calcXDistToThis;
+    }
+    
+    public double calcYDistToThis(Body otherBoid){
+	double calcYDistToThis = yCoordinate - otherBoid.getYCoord();
+        sumOfYDistToThis = sumOfYDistToThis + calcYDistToThis;
+        return calcYDistToThis;
+    }
+
+    public double calcDistance(Body otherBoid){
+	double distance =  Math.sqrt((Math.pow((otherBoid.getXCoord() - this.xCoordinate), 2)) + (Math.pow((otherBoid.getYCoord() - this.yCoordinate), 2)));
+	sumOfDistance = sumOfDistance + distance; 
+	return distance;
+    }
+
+    public double calcXSeparationForce(){
+	return sumOfXDistToThis / sumOfDistance; 
+    }
+
+    public double calcYSeparationForce(){
+	return sumOfYDistToThis / sumOfDistance;
+    }
+
+    public double getSumXDistToThis(){
+	return sumXDistToThis;
+    }
+    
+    public double getSumYDistToThis(){
+	return sumYDistToThis; 
+    }
+    
+    public double getSumOfDistance(){
+	return sumOfDistance; 
     }
 
     public String toString(){
