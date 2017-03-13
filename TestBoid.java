@@ -380,6 +380,8 @@ public class TestBoid {
 	Boid t9 = new Boid(5, 10, -5, -10);
 	Boid t10 = new Boid(-4, 1, 4, -1);
 	double delta = 0.0001;
+   
+
     }
 
   @Test
@@ -457,7 +459,7 @@ public class TestBoid {
   }
 
   @Test
-      public void testCalcSeparationForce(){
+      public void testCalcYSeparationForce(){
       Boid t7 = new Boid(0, 0, 0, 1);
       Boid t8 = new Boid(3, 3, -3, -3);
       Boid t9 = new Boid(5, 10, -5, -10);
@@ -483,13 +485,4 @@ public class TestBoid {
       double delta = 0.0001;
   }
 
-
-  @Test
-      public void testGetSumOfDistance(){
-      Boid t7 = new Boid(0, 0, 0, 1);
-      Boid t8 = new Boid(3, 3, -3, -3);
-      Boid t9 = new Boid(5, 10, -5, -10);
-      Boid t10 = new Boid(-4, 1, 4, -1);
-      double delta = 0.0001;
-  }
 }

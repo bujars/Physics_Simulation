@@ -13,7 +13,6 @@ public class Boid implements Body{
     private double sumOfNeighborsVelY;
     private double sumOfXDistToThis;
     private double sumOfYDistToThis;
-    private double sumOfDistance;
     
     public Boid(double xCoord, double yCoord, double xVel, double yVel){
         xCoordinate = xCoord;
@@ -272,29 +271,20 @@ public class Boid implements Body{
     }
 
     public double calcXDistToThis(Body otherBoid){
-	double calcXDistToThis = xCoordinate - otherBoid.getXCoord();
-	sumOfXDistToThis = sumOfXDistToThis + calcXDistToThis;
+	double calcXDistToThis = (xCoordinate - otherBoid.getXCoord()) / calcDistance(otherBoid);
+	sumOfXDistToThis = sumOfXDistToThis + (calcXDistToThis);
 	return calcXDistToThis;
     }
     
     public double calcYDistToThis(Body otherBoid){
-	double calcYDistToThis = yCoordinate - otherBoid.getYCoord();
-        sumOfYDistToThis = sumOfYDistToThis + calcYDistToThis;
+	double calcYDistToThis = (yCoordinate - otherBoid.getYCoord()) / calcDistance(otherBoid);
+        sumOfYDistToThis = sumOfYDistToThis + (calcYDistToThis);
         return calcYDistToThis;
     }
 
     public double calcDistance(Body otherBoid){
 	double distance =  Math.sqrt((Math.pow((otherBoid.getXCoord() - this.xCoordinate), 2)) + (Math.pow((otherBoid.getYCoord() - this.yCoordinate), 2)));
-	sumOfDistance = sumOfDistance + distance; 
 	return distance;
-    }
-
-    public double calcXSeparationForce(){
-	return sumOfXDistToThis / sumOfDistance; 
-    }
-
-    public double calcYSeparationForce(){
-	return sumOfYDistToThis / sumOfDistance;
     }
 
     public double getSumXDistToThis(){
@@ -305,10 +295,6 @@ public class Boid implements Body{
 	return sumYDistToThis; 
     }
     
-    public double getSumOfDistance(){
-	return sumOfDistance; 
-    }
-
     public String toString(){
         return "XCoord: " + xCoordinate +" YCoord: " + yCoordinate + " XVeloc: " + xVelocity + " YVeloc: " + yVelocity;
     }
