@@ -295,9 +295,6 @@ public class Boid implements Body{
 	return sumOfYDistToThis; 
     }
     
-    public String toString(){
-        return "XCoord: " + xCoordinate +" YCoord: " + yCoordinate + " XVeloc: " + xVelocity + " YVeloc: " + yVelocity;
-    }
 
 
 
@@ -329,4 +326,9 @@ public class Boid implements Body{
     public double getCurYAlignmentForce(){
 	return sumOfNeighborsVelY;
     }
+
+    public String toString(){
+        return "XCoord: " + xCoordinate +" YCoord: " + yCoordinate + " XVeloc: " + xVelocity + " YVeloc: " + yVelocity;
+    }
+
 }
