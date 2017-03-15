@@ -97,7 +97,7 @@ public class TestBoid {
         Boid b1 = new Boid(3, 2, -2, 0);
         Boid b2 = new Boid(1, 4, -3, -3);
         Boid b3 = new Boid(-1, 2, -1, 1);
-	double delta;
+	double delta = 0.1;
 
 
 	b0.addForceFrom(b1);
@@ -112,7 +112,7 @@ public class TestBoid {
 	delta = 0.1;
 	assertEquals(-2.0, b0.getCurXAlignmentForce(), delta);
 	delta = 0.1;
-	assertEquals(0.0, b0.getCurYCohesionForce(), delta);
+	assertEquals(0.0, b0.getCurYAlignmentForce(), delta);
 
 	b0.addForceFrom(b2);
 	delta = 0.1;
@@ -126,7 +126,7 @@ public class TestBoid {
 	delta = 0.1;
 	assertEquals(-2.5, b0.getCurXAlignmentForce(), delta);
 	delta = 0.1;
-	assertEquals(-1.5, b0.getCurYCohesionForce(), delta);
+	assertEquals(-1.5, b0.getCurYAlignmentForce(), delta);
 
 	b0.addForceFrom(b3);
 	delta = 0.1;
@@ -140,7 +140,7 @@ public class TestBoid {
 	delta = 0.1;
 	assertEquals(-2.0, b0.getCurXAlignmentForce(), delta);
 	delta = 0.00001;
-	assertEquals(-0.66667, b0.getCurYCohesionForce(), delta);
+	assertEquals(-0.66667, b0.getCurYAlignmentForce(), delta);
 
 
     }
@@ -352,9 +352,8 @@ public class TestBoid {
 	t4.addAlignmentForceFrom(t5);
 	t4.addAlignmentForceFrom(t6);
 	
-	double xAlignment = t4.calcXAlignmentForce();
-        
-	assertEquals(-1, t4.getChangeInXVelocity(), delta);
+	double xAlignment = t4.calcXAlignmentForce();  
+	assertEquals(-1, xAlignment, delta);
     }
 
     @Test 
@@ -368,8 +367,7 @@ public class TestBoid {
 	t4.addAlignmentForceFrom(t6);
 	
         double yAlignment = t4.calcYAlignmentForce();
-	
-	assertEquals(-1, t4.getChangeInYVelocity(), delta);
+	assertEquals(-1, yAlignment, delta);
     }
 
     @Test
@@ -414,9 +412,15 @@ public class TestBoid {
 	Boid t8 = new Boid(3, 3, -3, -3);
 	Boid t9 = new Boid(5, 10, -5, -10);
 	Boid t10 = new Boid(-4, 1, 4, -1);
-	double delta = 0.0001;
+	double delta = 0.00001;
    
+	Boid b0 = new Boid(0, 0, 0, 1);
+        Boid b1 = new Boid(3, 2, -2, 0);
+        Boid b2 = new Boid(1, 4, -3, -3);
+        Boid b3 = new Boid(-1, 2, -1, 1);
 
+	b0.addSeparationForceFrom(b1);
+	assertEquals(-0.23077, b0.getSumOfXDistToThis(), delta);
     }
 
   @Test
@@ -425,19 +429,17 @@ public class TestBoid {
       Boid t8 = new Boid(3, 3, -3, -3);
       Boid t9 = new Boid(5, 10, -5, -10);
       Boid t10 = new Boid(-4, 1, 4, -1);
-      double delta = 0.0001;
+      double delta = 0.00001;
   
-      double xDist = t7.calcXDistToThis(t8);
-      assertEquals(-3, xDist, delta);
-      assertEquals(-3, t7.getSumOfXDistToThis(), delta);
-      
-      xDist = t7.calcXDistToThis(t9);
-      assertEquals(-5, xDist, delta);
-      assertEquals(-8, t7.getSumOfXDistToThis(), delta);
-
-      xDist = t8.calcXDistToThis(t10);
-      assertEquals(4, xDist, delta);
-      assertEquals(-4, t7.getSumOfXDistToThis(), delta);
+      t7.addSeparationForceFrom(t8);
+      t7.calcXDistToThis(t8);
+      assertEquals(-0.16666, t7.getSumOfXDistToThis(), delta);
+      t7.addSeparationForceFrom(t9);
+      t7.calcXDistToThis(t9);
+      assertEquals(-0.20666, t7.getSumOfXDistToThis(), delta);
+      t7.addSeparationForceFrom(t10);
+      t7.calcXDistToThis(t10);
+      assertEquals(0.02867, t7.getSumOfXDistToThis(), delta);
 
 }
 
@@ -450,16 +452,13 @@ public class TestBoid {
       Boid t10 = new Boid(-4, 1, 4, -1);
       double delta = 0.0001;
   
-      double yDist = t7.calcYDistToThis(t8);
-      assertEquals(-3, yDist, delta);
+      t7.calcYDistToThis(t8);
       assertEquals(-3, t7.getSumOfYDistToThis(), delta);
 
-      yDist = t7.calcYDistToThis(t9);
-      assertEquals(-5, yDist, delta);
+      t7.calcYDistToThis(t9);
       assertEquals(-8, t7.getSumOfYDistToThis(), delta);
 
-      yDist = t8.calcYDistToThis(t10);
-      assertEquals(4, yDist, delta);
+      t7.calcYDistToThis(t10);
       assertEquals(-4, t7.getSumOfYDistToThis(), delta);
 }
 

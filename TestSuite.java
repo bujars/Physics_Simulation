@@ -6,7 +6,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
    TestGravBody.class,
    TestColBody.class,
-       TestCohBoid.class,
+       TestBoid.class,
    // TODO: Add other test classes here as needed
 })
 

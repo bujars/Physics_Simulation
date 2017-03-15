@@ -59,8 +59,6 @@ public class Boid implements Body{
         return yVelocity;
     }
 
-
-
     /**
      * Gets the radius of the two dimensional boid. This method is useful for
      * visualizing the simulation.
@@ -104,6 +102,7 @@ public class Boid implements Body{
     public void addForceFrom(Body otherBoid){
 	addCohesionForceFrom(otherBoid);
 	addAlignmentForceFrom(otherBoid);
+	addSeparationForceFrom(otherBoid);
 	countOfNeighbors++;
     }
 
@@ -126,7 +125,6 @@ public class Boid implements Body{
 	calcYDistToThis(otherBoid);
     }
 
-
     /**
      * Based on the forces exterted on this two dimensional boid and the 
      * existing position of the two dimensional boid, determines the new
@@ -147,8 +145,6 @@ public class Boid implements Body{
 	double yAlignmentForce = calcYAlignmentForce();
     }
 
-
-
     /**
      * Stores the other boid's x and y position on the instance variable, added to "this" boid. 
      *
@@ -159,8 +155,6 @@ public class Boid implements Body{
 	sumOfNeighborsY = sumOfNeighborsY + otherBoid.getYCoord();
     }
 
-
-
     /**
      * Returns the sumOfNeighbors X
      *
@@ -169,7 +163,6 @@ public class Boid implements Body{
 	return sumOfNeighborsX; 
     }
     
-
     /**
      * Returens the sumOfNeighbors Y
      *
@@ -220,7 +213,6 @@ public class Boid implements Body{
 	return yCohesion;
     }
 
-
     /**
      * Gets the change in  x component of the velocity of the dimensional body.
      *
@@ -231,7 +223,6 @@ public class Boid implements Body{
 	return changeInXVelocity;
     }
 
-
     /**
      * Gets the change in  y component of the velocity of the dimensional body.
      * 
@@ -241,8 +232,6 @@ public class Boid implements Body{
     public double getChangeInYVelocity(){
 	return changeInYVelocity;
     }
-
-
 
     public void recordNeighborsVelocities(Body otherBoid){
 	sumOfNeighborsVelX = sumOfNeighborsVelX + otherBoid.getXVel();
@@ -257,7 +246,6 @@ public class Boid implements Body{
 	return sumOfNeighborsVelY;
     }
 
-
     public double calcXAlignmentForce(){
 	double xAlignment = sumOfNeighborsX/countOfNeighbors;
         changeInXVelocity = changeInXVelocity +xAlignment;
@@ -270,16 +258,14 @@ public class Boid implements Body{
 	return yAlignment; 
     }
 
-    public double calcXDistToThis(Body otherBoid){
+    public void calcXDistToThis(Body otherBoid){
 	double calcXDistToThis = (xCoordinate - otherBoid.getXCoord()) / calcDistance(otherBoid);
 	sumOfXDistToThis = sumOfXDistToThis + (calcXDistToThis);
-	return calcXDistToThis;
     }
     
-    public double calcYDistToThis(Body otherBoid){
+    public void calcYDistToThis(Body otherBoid){
 	double calcYDistToThis = (yCoordinate - otherBoid.getYCoord()) / calcDistance(otherBoid);
         sumOfYDistToThis = sumOfYDistToThis + (calcYDistToThis);
-        return calcYDistToThis;
     }
 
     public double calcDistance(Body otherBoid){
@@ -295,20 +281,12 @@ public class Boid implements Body{
 	return sumOfYDistToThis; 
     }
     
-
-
-
-    /**
-     * Basically used to see the accumulators current value. 
-     * Same as its get Method just named better
-     *
-     */
     public double getCurXCohesionForce(){
-	return sumOfNeighborsX;
+	return (sumOfNeighborsX / countOfNeighbors) - xCoordinate;
     }
 
     public double getCurYCohesionForce(){
-	return sumOfNeighborsY;
+	return (sumOfNeighborsY / countOfNeighbors) - yCoordinate;
     }
 
     public double getCurXSeparationForce(){
