@@ -93,20 +93,55 @@ public class TestBoid {
    
     @Test
 	public void testAddForceFrom(){
-	Boid t0 = new Boid(0, 0, 0, 0);
-        Boid t1 = new Boid(4, 3, -1, 1);
-        Boid t2 = new Boid(6, -2, 0, 1);
-        Boid t3 = new Boid(5, 1, 1, 1);
-	double delta = 0.1;
-    
+	Boid b0 = new Boid(0, 0, 0, 1);
+        Boid b1 = new Boid(3, 2, -2, 0);
+        Boid b2 = new Boid(1, 4, -3, -3);
+        Boid b3 = new Boid(-1, 2, -1, 1);
+	double delta;
 
-	t0.addForceFrom(t1);
-	t0.addForceFrom(t2);
-	t0.addForceFrom(t3);
 
-	assertEquals(5, t0.getChangeInXVelocity(), delta);
-	assertEquals(.6666, t0.getChangeInYVelocity(), delta);
-	
+	b0.addForceFrom(b1);
+	delta = 0.1;
+	assertEquals(3.0, b0.getCurXCohesionForce(), delta);
+	delta = 0.1;
+	assertEquals(2.0, b0.getCurYCohesionForce(), delta);
+	delta = 0.00001;
+	assertEquals(-0.23077, b0.getCurXSeparationForce(), delta);
+	delta = 0.00001;
+	assertEquals(-0.15385, b0.getCurYSeparationForce(), delta);
+	delta = 0.1;
+	assertEquals(-2.0, b0.getCurXAlignmentForce(), delta);
+	delta = 0.1;
+	assertEquals(0.0, b0.getCurYCohesionForce(), delta);
+
+	b0.addForceFrom(b2);
+	delta = 0.1;
+	assertEquals(2.0, b0.getCurXCohesionForce(), delta);
+	delta = 0.1;
+	assertEquals(3.0, b0.getCurYCohesionForce(), delta);
+	delta = 0.00001;
+	assertEquals(-0.14480, b0.getCurXSeparationForce(), delta);
+	delta = 0.00001;
+	assertEquals(-0.19457, b0.getCurYSeparationForce(), delta);
+	delta = 0.1;
+	assertEquals(-2.5, b0.getCurXAlignmentForce(), delta);
+	delta = 0.1;
+	assertEquals(-1.5, b0.getCurYCohesionForce(), delta);
+
+	b0.addForceFrom(b3);
+	delta = 0.1;
+	assertEquals(1.0, b0.getCurXCohesionForce(), delta);
+	delta = 0.00001;
+	assertEquals(2.66667, b0.getCurYCohesionForce(), delta);
+	delta = 0.00001;
+	assertEquals(-0.02986, b0.getCurXSeparationForce(), delta);
+	delta = 0.00001;
+	assertEquals(-0.28718, b0.getCurYSeparationForce(), delta);
+	delta = 0.1;
+	assertEquals(-2.0, b0.getCurXAlignmentForce(), delta);
+	delta = 0.00001;
+	assertEquals(-0.66667, b0.getCurYCohesionForce(), delta);
+
 
     }
 
@@ -394,15 +429,15 @@ public class TestBoid {
   
       double xDist = t7.calcXDistToThis(t8);
       assertEquals(-3, xDist, delta);
-      assertEquals(-3, t7.getSumOfXDist(), delta);
+      assertEquals(-3, t7.getSumOfXDistToThis(), delta);
       
       xDist = t7.calcXDistToThis(t9);
       assertEquals(-5, xDist, delta);
-      assertEquals(-8, t7.getSumOfXDist(), delta);
+      assertEquals(-8, t7.getSumOfXDistToThis(), delta);
 
       xDist = t8.calcXDistToThis(t10);
       assertEquals(4, xDist, delta);
-      assertEquals(-4, t7.getSumOfXDist(), delta);
+      assertEquals(-4, t7.getSumOfXDistToThis(), delta);
 
 }
 
@@ -415,17 +450,17 @@ public class TestBoid {
       Boid t10 = new Boid(-4, 1, 4, -1);
       double delta = 0.0001;
   
-      double xDist = t7.calcYDistToThis(t8);
-      assertEquals(-3, YDist, delta);
-      assertEquals(-3, t7.getSumOfYDist(), delta);
+      double yDist = t7.calcYDistToThis(t8);
+      assertEquals(-3, yDist, delta);
+      assertEquals(-3, t7.getSumOfYDistToThis(), delta);
 
-      xDist = t7.calcYDistToThis(t9);
+      yDist = t7.calcYDistToThis(t9);
       assertEquals(-5, yDist, delta);
-      assertEquals(-8, t7.getSumOfYDist(), delta);
+      assertEquals(-8, t7.getSumOfYDistToThis(), delta);
 
-      xDist = t8.calcYDistToThis(t10);
+      yDist = t8.calcYDistToThis(t10);
       assertEquals(4, yDist, delta);
-      assertEquals(-4, t7.getSumOfYDist(), delta);
+      assertEquals(-4, t7.getSumOfYDistToThis(), delta);
 }
 
   @Test
@@ -438,15 +473,10 @@ public class TestBoid {
 
       double distance = t7.calcDistance(t8);
       assertEquals(18, distance, delta);
-      assertEquals(18, t7.getSumOfDistance(), delta);
-
-      xDist = t7.calcDistance(t9);
+      distance = t7.calcDistance(t9);
       assertEquals(125, distance, delta);
-      assertEquals(142, t7.getSumOfDistance(), delta);
-
-      distance = t8.calcDistance(t10);
+      distance = t7.calcDistance(t10);
       assertEquals(17, distance, delta);
-      assertEquals(159, t7.getSumOfDistance(), delta);
   }
 
   @Test

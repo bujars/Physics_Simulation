@@ -287,16 +287,46 @@ public class Boid implements Body{
 	return distance;
     }
 
-    public double getSumXDistToThis(){
-	return sumXDistToThis;
+    public double getSumOfXDistToThis(){
+	return sumOfXDistToThis;
     }
     
-    public double getSumYDistToThis(){
-	return sumYDistToThis; 
+    public double getSumOfYDistToThis(){
+	return sumOfYDistToThis; 
     }
     
     public String toString(){
         return "XCoord: " + xCoordinate +" YCoord: " + yCoordinate + " XVeloc: " + xVelocity + " YVeloc: " + yVelocity;
     }
 
+
+
+    /**
+     * Basically used to see the accumulators current value. 
+     * Same as its get Method just named better
+     *
+     */
+    public double getCurXCohesionForce(){
+	return sumOfNeighborsX;
+    }
+
+    public double getCurYCohesionForce(){
+	return sumOfNeighborsY;
+    }
+
+    public double getCurXSeparationForce(){
+	return sumOfXDistToThis;
+    }
+    
+    public double getCurYSeparationForce(){
+	return sumOfYDistToThis;
+    }
+    
+    public double getCurXAlignmentForce(){
+	return sumOfNeighborsVelX;
+    }
+
+    public double getCurYAlignmentForce(){
+	return sumOfNeighborsVelY;
+    }
 }
