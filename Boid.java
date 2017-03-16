@@ -205,7 +205,6 @@ public class Boid implements Body{
     /**
      * Calculates the Cohesion force of this boid.
      * 
-     * UPDATE IT
      */
     public double calcYCohesionForce(Double yCenter){
 	double yCohesion = yCenter - this.yCoordinate;
@@ -247,24 +246,24 @@ public class Boid implements Body{
     }
 
     public double calcXAlignmentForce(){
-	double xAlignment = sumOfNeighborsX/countOfNeighbors;
-        changeInXVelocity = changeInXVelocity +xAlignment;
+	double xAlignment = sumOfNeighborsVelX/countOfNeighbors;
+        changeInXVelocity = changeInXVelocity + xAlignment;
         return xAlignment;
     }
 
     public double calcYAlignmentForce(){
-	double yAlignment = sumOfNeighborsY/countOfNeighbors;
+	double yAlignment = sumOfNeighborsVelY/countOfNeighbors;
 	changeInXVelocity = changeInXVelocity + yAlignment;
 	return yAlignment; 
     }
 
     public void calcXDistToThis(Body otherBoid){
-	double calcXDistToThis = (xCoordinate - otherBoid.getXCoord()) / calcDistance(otherBoid);
+	double calcXDistToThis = (xCoordinate - otherBoid.getXCoord()) / Math.pow(calcDistance(otherBoid), 2);
 	sumOfXDistToThis = sumOfXDistToThis + (calcXDistToThis);
     }
     
     public void calcYDistToThis(Body otherBoid){
-	double calcYDistToThis = (yCoordinate - otherBoid.getYCoord()) / calcDistance(otherBoid);
+	double calcYDistToThis = (yCoordinate - otherBoid.getYCoord()) / Math.pow(calcDistance(otherBoid), 2);
         sumOfYDistToThis = sumOfYDistToThis + (calcYDistToThis);
     }
 
@@ -290,19 +289,19 @@ public class Boid implements Body{
     }
 
     public double getCurXSeparationForce(){
-	return sumOfXDistToThis;
+	return sumOfXDistToThis / countOfNeighbors;
     }
     
     public double getCurYSeparationForce(){
-	return sumOfYDistToThis;
+	return sumOfYDistToThis / countOfNeighbors;
     }
     
     public double getCurXAlignmentForce(){
-	return sumOfNeighborsVelX;
+	return sumOfNeighborsVelX / countOfNeighbors;
     }
 
     public double getCurYAlignmentForce(){
-	return sumOfNeighborsVelY;
+	return sumOfNeighborsVelY / countOfNeighbors;
     }
 
     public String toString(){

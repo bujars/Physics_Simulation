@@ -136,7 +136,7 @@ public class TestBoid {
 	delta = 0.00001;
 	assertEquals(-0.02986, b0.getCurXSeparationForce(), delta);
 	delta = 0.00001;
-	assertEquals(-0.28718, b0.getCurYSeparationForce(), delta);
+	assertEquals(-0.26305, b0.getCurYSeparationForce(), delta);
 	delta = 0.1;
 	assertEquals(-2.0, b0.getCurXAlignmentForce(), delta);
 	delta = 0.00001;
@@ -158,8 +158,8 @@ public class TestBoid {
        t0.addCohesionForceFrom(t2);
        t0.addCohesionForceFrom(t3);
 
-       assertEquals(5, t0.getChangeInXVelocity(), delta);
-       assertEquals(.6666, t0.getChangeInYVelocity(), delta);
+       assertEquals(15, t0.getSumOfNeighborsX(), delta);
+       assertEquals(2, t0.getSumOfNeighborsY(), delta);
 
 
    }
@@ -187,7 +187,6 @@ public class TestBoid {
 	
 	assertEquals(15, t0.getSumOfNeighborsX(), delta);
 	assertEquals(2, t0.getSumOfNeighborsY(), delta);
-	assertEquals(3, t0.getCountOfNeighbors(), delta);
     }
 
     @Test
@@ -222,14 +221,9 @@ public class TestBoid {
         Boid t3 = new Boid(5, 1, 1, 1);
 	double delta = 0.0001;
 
-	t0.recordNeighborsPosition(t1);
-	t0.recordNeighborsPosition(t2);
-	t0.recordNeighborsPosition(t3);
-
-	assertEquals(15, t0.getSumOfNeighborsX(), delta);
-	assertEquals(2, t0.getSumOfNeighborsY(), delta);
-	assertEquals(3, t0.getCountOfNeighbors(), delta);
-
+	t0.addForceFrom(t1);
+	t0.addForceFrom(t2);
+	t0.addForceFrom(t3);
 
 	assertEquals(5, t0.calcXNeighborsCenter(), delta);
     }
@@ -242,13 +236,9 @@ public class TestBoid {
         Boid t3 = new Boid(5, 1, 1, 1);
 	double delta = 0.0001;
 	
-	t0.recordNeighborsPosition(t1);
-	t0.recordNeighborsPosition(t2);
-	t0.recordNeighborsPosition(t3);
-	
-	assertEquals(15, t0.getSumOfNeighborsX(), delta);
-	assertEquals(2, t0.getSumOfNeighborsY(), delta);
-	assertEquals(3, t0.getCountOfNeighbors(), delta);
+	t0.addForceFrom(t1);
+	t0.addForceFrom(t2);
+	t0.addForceFrom(t3);
 
 	assertEquals(0.6666, t0.calcYNeighborsCenter(), delta);
     }
@@ -261,14 +251,11 @@ public class TestBoid {
         Boid t3 = new Boid(5, 1, 1, 1);
 	double delta = 0.0001;
 
-	t0.recordNeighborsPosition(t1);
-	t0.recordNeighborsPosition(t2);
-	t0.recordNeighborsPosition(t3);
+	t0.addForceFrom(t1);
+	t0.addForceFrom(t2);
+	t0.addForceFrom(t3);
 
 	assertEquals(15, t0.getSumOfNeighborsX(), delta);
-	assertEquals(2, t0.getSumOfNeighborsY(), delta);
-	assertEquals(3, t0.getCountOfNeighbors(), delta);
-
 
 	assertEquals(5, t0.calcXNeighborsCenter(), delta);
 
@@ -285,13 +272,11 @@ public class TestBoid {
        Boid t3 = new Boid(5, 1, 1, 1);
        double delta = 0.0001;
 
-       t0.recordNeighborsPosition(t1);
-       t0.recordNeighborsPosition(t2);
-       t0.recordNeighborsPosition(t3);
+       t0.addForceFrom(t1);
+       t0.addForceFrom(t2);
+       t0.addForceFrom(t3);
 
-       assertEquals(15, t0.getSumOfNeighborsX(), delta);
        assertEquals(2, t0.getSumOfNeighborsY(), delta);
-       assertEquals(3, t0.getCountOfNeighbors(), delta);
 
 
        assertEquals(0.6666, t0.calcYNeighborsCenter(), delta);
@@ -349,8 +334,8 @@ public class TestBoid {
 	Boid t6 = new Boid(-3, 3, -2, 2);
 	double delta = 0.0001;
 	
-	t4.addAlignmentForceFrom(t5);
-	t4.addAlignmentForceFrom(t6);
+	t4.addForceFrom(t5);
+	t4.addForceFrom(t6);
 	
 	double xAlignment = t4.calcXAlignmentForce();  
 	assertEquals(-1, xAlignment, delta);
@@ -363,11 +348,11 @@ public class TestBoid {
 	Boid t6 = new Boid(-3, 3, -2, 2);
 	double delta = 0.0001;
 
-	t4.addAlignmentForceFrom(t5);
-	t4.addAlignmentForceFrom(t6);
+	t4.addForceFrom(t5);
+	t4.addForceFrom(t6);
 	
         double yAlignment = t4.calcYAlignmentForce();
-	assertEquals(-1, yAlignment, delta);
+	assertEquals(2, yAlignment, delta);
     }
 
     @Test
@@ -412,7 +397,7 @@ public class TestBoid {
 	Boid t8 = new Boid(3, 3, -3, -3);
 	Boid t9 = new Boid(5, 10, -5, -10);
 	Boid t10 = new Boid(-4, 1, 4, -1);
-	double delta = 0.00001;
+	double delta = 0.000001;
    
 	Boid b0 = new Boid(0, 0, 0, 1);
         Boid b1 = new Boid(3, 2, -2, 0);
@@ -421,6 +406,8 @@ public class TestBoid {
 
 	b0.addSeparationForceFrom(b1);
 	assertEquals(-0.23077, b0.getSumOfXDistToThis(), delta);
+	
+	b0.addSeparationForceFrom(b2);
     }
 
   @Test
@@ -429,17 +416,14 @@ public class TestBoid {
       Boid t8 = new Boid(3, 3, -3, -3);
       Boid t9 = new Boid(5, 10, -5, -10);
       Boid t10 = new Boid(-4, 1, 4, -1);
-      double delta = 0.00001;
+      double delta = 0.0001;
   
-      t7.addSeparationForceFrom(t8);
       t7.calcXDistToThis(t8);
-      assertEquals(-0.16666, t7.getSumOfXDistToThis(), delta);
-      t7.addSeparationForceFrom(t9);
+      assertEquals(-0.1666, t7.getSumOfXDistToThis(), delta);
       t7.calcXDistToThis(t9);
-      assertEquals(-0.20666, t7.getSumOfXDistToThis(), delta);
-      t7.addSeparationForceFrom(t10);
+      assertEquals(-0.2066, t7.getSumOfXDistToThis(), delta);
       t7.calcXDistToThis(t10);
-      assertEquals(0.02867, t7.getSumOfXDistToThis(), delta);
+      assertEquals(0.0286, t7.getSumOfXDistToThis(), delta);
 
 }
 
@@ -453,13 +437,13 @@ public class TestBoid {
       double delta = 0.0001;
   
       t7.calcYDistToThis(t8);
-      assertEquals(-3, t7.getSumOfYDistToThis(), delta);
+      assertEquals(-0.1666, t7.getSumOfYDistToThis(), delta);
 
       t7.calcYDistToThis(t9);
-      assertEquals(-8, t7.getSumOfYDistToThis(), delta);
+      assertEquals(-0.2466, t7.getSumOfYDistToThis(), delta);
 
       t7.calcYDistToThis(t10);
-      assertEquals(-4, t7.getSumOfYDistToThis(), delta);
+      assertEquals(-0.3054, t7.getSumOfYDistToThis(), delta);
 }
 
   @Test
@@ -471,11 +455,11 @@ public class TestBoid {
       double delta = 0.0001;
 
       double distance = t7.calcDistance(t8);
-      assertEquals(18, distance, delta);
+      assertEquals(4.2426, distance, delta);
       distance = t7.calcDistance(t9);
-      assertEquals(125, distance, delta);
+      assertEquals(11.1803, distance, delta);
       distance = t7.calcDistance(t10);
-      assertEquals(17, distance, delta);
+      assertEquals(4.1231, distance, delta);
   }
 
   @Test
