@@ -97,6 +97,7 @@ public class TestBoid {
         Boid b1 = new Boid(3, 2, -2, 0);
         Boid b2 = new Boid(1, 4, -3, -3);
         Boid b3 = new Boid(-1, 2, -1, 1);
+	Boid b4 = new Boid(0, 0, 0, 1);
 	double delta = 0.1;
 
 
@@ -142,6 +143,48 @@ public class TestBoid {
 	delta = 0.00001;
 	assertEquals(-0.66667, b0.getCurYAlignmentForce(), delta);
 
+
+	b1.addForceFrom(b0);
+	delta = 0.1;
+	assertEquals(-3.0, b0.getCurXCohesionForce(), delta);
+	delta = 0.1;
+	assertEquals(-2.0, b0.getCurYCohesionForce(), delta);
+	delta = 0.00001;
+	assertEquals(0.23077, b0.getCurXSeparationForce(), delta);
+	delta = 0.00001;
+	assertEquals(0.15385, b0.getCurYSeparationForce(), delta);
+	delta = 0.1;
+	assertEquals(0.0, b0.getCurXAlignmentForce(), delta);
+	delta = 0.1;
+	assertEquals(1.0, b0.getCurYAlignmentForce(), delta);
+	
+	b1.addForceFrom(b2);
+	delta = 0.1;
+	assertEquals(-2.5, b0.getCurXCohesionForce(), delta);
+	delta = 0.1;
+	assertEquals(0.0, b0.getCurYCohesionForce(), delta);
+	delta = 0.00001;
+	assertEquals(0.24038, b0.getCurXSeparationForce(), delta);
+	delta = 0.00001;
+	assertEquals(-0.04808, b0.getCurYSeparationForce(), delta);
+	delta = 0.1;
+	assertEquals(-1.5, b0.getCurXAlignmentForce(), delta);
+	delta = 0.1;
+	assertEquals(-1.0, b0.getCurYAlignmentForce(), delta);
+
+	b1.addForceFrom(b3);
+	delta = 0.1;
+	assertEquals(-3.0, b0.getCurXCohesionForce(), delta);
+	delta = 0.1;
+	assertEquals(0.0, b0.getCurYCohesionForce(), delta);
+	delta = 0.00001;
+	assertEquals(0.24359, b0.getCurXSeparationForce(), delta);
+	delta = 0.00001;
+	assertEquals(-0.03205, b0.getCurYSeparationForce(), delta);
+	delta = 0.00001;
+	assertEquals(-1.33333, b0.getCurXAlignmentForce(), delta);
+	delta = 0.00001; 
+	assertEquals(-0.33333, b0.getCurYAlignmentForce(), delta);
 
     }
 
@@ -497,5 +540,9 @@ public class TestBoid {
       Boid t10 = new Boid(-4, 1, 4, -1);
       double delta = 0.0001;
   }
+    /*
+    @Test 
+	public void test 
+    */
 
 }
