@@ -113,16 +113,21 @@ public class Boid implements Body{
       *
       */
     public void addCohesionForceFrom(Body otherBoid){
-        recordNeighborsPosition(otherBoid);
+	sumOfNeighborsX = sumOfNeighborsX + otherBoid.getXCoord();
+        sumOfNeighborsY = sumOfNeighborsY + otherBoid.getYCoord();
     }
 
     public void addAlignmentForceFrom(Body otherBoid){
-	recordNeighborsVelocities(otherBoid);
+	sumOfNeighborsVelX = sumOfNeighborsVelX + otherBoid.getXVel();
+        sumOfNeighborsVelY = sumOfNeighborsVelY + otherBoid.getYVel();	
     }
 
     public void addSeparationForceFrom(Body otherBoid){
-	calcXDistToThis(otherBoid);
-	calcYDistToThis(otherBoid);
+	double calcXDistToThis = (xCoordinate - otherBoid.getXCoord()) / Math.pow(calcDistance(otherBoid), 2);
+        sumOfXDistToThis = sumOfXDistToThis + (calcXDistToThis);
+
+        double calcYDistToThis = (yCoordinate - otherBoid.getYCoord()) / Math.pow(calcDistance(otherBoid), 2);
+        sumOfYDistToThis = sumOfYDistToThis + (calcYDistToThis);
     }
 
     /**
@@ -143,16 +148,6 @@ public class Boid implements Body{
 	//For Alignment
 	double xAlignmentForce = calcXAlignmentForce();
 	double yAlignmentForce = calcYAlignmentForce();
-    }
-
-    /**
-     * Stores the other boid's x and y position on the instance variable, added to "this" boid. 
-     *
-     *
-     */
-    public void recordNeighborsPosition(Body otherBoid){
-	sumOfNeighborsX = sumOfNeighborsX + otherBoid.getXCoord();
-	sumOfNeighborsY = sumOfNeighborsY + otherBoid.getYCoord();
     }
 
     /**
@@ -180,7 +175,7 @@ public class Boid implements Body{
      *
      */
     public double calcXNeighborsCenter(){
-	return sumOfNeighborsX / countOfNeighbors;
+	return (sumOfNeighborsX / countOfNeighbors) - xCoordinate;
     }
 
     /**
@@ -188,7 +183,7 @@ public class Boid implements Body{
      *
      */ 
     public double calcYNeighborsCenter(){
-	return sumOfNeighborsY / countOfNeighbors; 
+	return (sumOfNeighborsY / countOfNeighbors) - yCoordinate; 
     }
 
     /**
@@ -197,7 +192,7 @@ public class Boid implements Body{
      * UPDATE IT
      */
     public double calcXCohesionForce(Double xCenter){
-	double xCohesion = xCenter - this.xCoordinate;
+	double xCohesion = xCenter;
 	changeInXVelocity = changeInXVelocity + xCohesion;
 	return xCohesion;
     }
@@ -207,7 +202,7 @@ public class Boid implements Body{
      * 
      */
     public double calcYCohesionForce(Double yCenter){
-	double yCohesion = yCenter - this.yCoordinate;
+	double yCohesion = yCenter;
 	changeInYVelocity = changeInYVelocity + yCohesion; 
 	return yCohesion;
     }
@@ -232,11 +227,6 @@ public class Boid implements Body{
 	return changeInYVelocity;
     }
 
-    public void recordNeighborsVelocities(Body otherBoid){
-	sumOfNeighborsVelX = sumOfNeighborsVelX + otherBoid.getXVel();
-	sumOfNeighborsVelY = sumOfNeighborsVelY + otherBoid.getYVel(); 
-    }
-
     public double getSumOfNeighborsVelX(){
 	return sumOfNeighborsVelX;
     }
@@ -255,16 +245,6 @@ public class Boid implements Body{
 	double yAlignment = sumOfNeighborsVelY/countOfNeighbors;
 	changeInXVelocity = changeInXVelocity + yAlignment;
 	return yAlignment; 
-    }
-
-    public void calcXDistToThis(Body otherBoid){
-	double calcXDistToThis = (xCoordinate - otherBoid.getXCoord()) / Math.pow(calcDistance(otherBoid), 2);
-	sumOfXDistToThis = sumOfXDistToThis + (calcXDistToThis);
-    }
-    
-    public void calcYDistToThis(Body otherBoid){
-	double calcYDistToThis = (yCoordinate - otherBoid.getYCoord()) / Math.pow(calcDistance(otherBoid), 2);
-        sumOfYDistToThis = sumOfYDistToThis + (calcYDistToThis);
     }
 
     public double calcDistance(Body otherBoid){

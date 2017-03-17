@@ -215,22 +215,6 @@ public class TestBoid {
 	double delta = 0.1;
     }
 
-    @Test 
-	public void testRecordNeighborsPosition(){
-	Boid t0 = new Boid(0, 0, 0, 0);
-        Boid t1 = new Boid(4, 3, -1, 1);
-        Boid t2 = new Boid(6, -2, 0, 1);
-        Boid t3 = new Boid(5, 1, 1, 1);
-	double delta = 0.0001;
-
-	t0.recordNeighborsPosition(t1);
-	t0.recordNeighborsPosition(t2);
-	t0.recordNeighborsPosition(t3);
-	
-	assertEquals(15, t0.getSumOfNeighborsX(), delta);
-	assertEquals(2, t0.getSumOfNeighborsY(), delta);
-    }
-
     @Test
 	public void testGetSumOfNeighborsX(){
 	Boid t0 = new Boid(0, 0, 0, 0);
@@ -355,19 +339,6 @@ public class TestBoid {
 	assertEquals(0, t0.getChangeInYVelocity(), delta);
 
     }
-
-    @Test
-	public void testRecordNeighborsVelocities(){
-	Boid t4 = new Boid(0, 0, -1.5, 2);
-	Boid t5 = new Boid(3, 2, 0, 2);
-	Boid t6 = new Boid(-3, 3, -2, 2);
-	double delta = 0.0001;
-	
-	t4.recordNeighborsVelocities(t5);
-	t4.recordNeighborsVelocities(t6);
-	assertEquals(-2, t4.getSumOfNeighborsVelX(), delta);
-	assertEquals(4, t4.getSumOfNeighborsVelY(), delta);
-    }
     
     @Test
 	public void testCalcXAlignmentForce(){
@@ -453,42 +424,6 @@ public class TestBoid {
     }
 
   @Test
-      public void testCalcXDistToThis(){
-      Boid t7 = new Boid(0, 0, 0, 1);
-      Boid t8 = new Boid(3, 3, -3, -3);
-      Boid t9 = new Boid(5, 10, -5, -10);
-      Boid t10 = new Boid(-4, 1, 4, -1);
-      double delta = 0.0001;
-  
-      t7.calcXDistToThis(t8);
-      assertEquals(-0.1666, t7.getSumOfXDistToThis(), delta);
-      t7.calcXDistToThis(t9);
-      assertEquals(-0.2066, t7.getSumOfXDistToThis(), delta);
-      t7.calcXDistToThis(t10);
-      assertEquals(0.0286, t7.getSumOfXDistToThis(), delta);
-
-}
-
-
-  @Test
-      public void testCalcYDistToThis(){
-      Boid t7 = new Boid(0, 0, 0, 1);
-      Boid t8 = new Boid(3, 3, -3, -3);
-      Boid t9 = new Boid(5, 10, -5, -10);
-      Boid t10 = new Boid(-4, 1, 4, -1);
-      double delta = 0.0001;
-  
-      t7.calcYDistToThis(t8);
-      assertEquals(-0.1666, t7.getSumOfYDistToThis(), delta);
-
-      t7.calcYDistToThis(t9);
-      assertEquals(-0.2466, t7.getSumOfYDistToThis(), delta);
-
-      t7.calcYDistToThis(t10);
-      assertEquals(-0.3054, t7.getSumOfYDistToThis(), delta);
-}
-
-  @Test
       public void testCalcDistance(){
       Boid t7 = new Boid(0, 0, 0, 1);
       Boid t8 = new Boid(3, 3, -3, -3);
@@ -544,7 +479,7 @@ public class TestBoid {
   }
     
     @Test 
-	public void testgetCurXCohesionForce(){
+	public void testGetCurXCohesionForce(){
 	Boid b0 = new Boid(0, 0, 0, 1);
         Boid b1 = new Boid(3, 2, -2, 0);
         Boid b2 = new Boid(1, 4, -3, -3);
@@ -561,7 +496,7 @@ public class TestBoid {
     }
     
   @Test
-      public void testgetCurYCohesionForce(){
+      public void testGetCurYCohesionForce(){
       Boid b0 = new Boid(0, 0, 0, 1);
       Boid b1 = new Boid(3, 2, -2, 0);
       Boid b2 = new Boid(1, 4, -3, -3);
@@ -577,7 +512,7 @@ public class TestBoid {
   }
 
   @Test
-      public void testgetCurXSeparationForce(){
+      public void testGetCurXSeparationForce(){
       Boid b0 = new Boid(0, 0, 0, 1);
       Boid b1 = new Boid(3, 2, -2, 0);
       Boid b2 = new Boid(1, 4, -3, -3);
@@ -594,7 +529,7 @@ public class TestBoid {
   }
 
   @Test
-      public void testgetCurYSeparationForce(){
+      public void testGetCurYSeparationForce(){
       Boid b0 = new Boid(0, 0, 0, 1);
       Boid b1 = new Boid(3, 2, -2, 0);
       Boid b2 = new Boid(1, 4, -3, -3);
@@ -611,7 +546,7 @@ public class TestBoid {
   }
 
   @Test
-      public void testgetCurXAlignmentForce(){
+      public void testGetCurXAlignmentForce(){
       Boid b0 = new Boid(0, 0, 0, 1);
       Boid b1 = new Boid(3, 2, -2, 0);
       Boid b2 = new Boid(1, 4, -3, -3);
@@ -628,7 +563,7 @@ public class TestBoid {
   }
 
   @Test
-      public void testgetCurYAlignmentForce(){
+      public void testGetCurYAlignmentForce(){
       Boid b0 = new Boid(0, 0, 0, 1);
       Boid b1 = new Boid(3, 2, -2, 0);
       Boid b2 = new Boid(1, 4, -3, -3);
