@@ -100,7 +100,7 @@ public class TestBoid {
 	double delta = 0.1;
 
 
-	/*b0.addForceFrom(b1);
+	b0.addForceFrom(b1);
 	delta = 0.1;
 	assertEquals(3.0, b0.getCurXCohesionForce(), delta);
 	delta = 0.1;
@@ -141,7 +141,7 @@ public class TestBoid {
 	assertEquals(-2.0, b0.getCurXAlignmentForce(), delta);
 	delta = 0.00001;
 	assertEquals(-0.66667, b0.getCurYAlignmentForce(), delta);
-	*/
+	
 
 	b1.addForceFrom(b0);
 	delta = 0.1;
