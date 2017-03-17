@@ -281,7 +281,7 @@ public class Boid implements Body{
     }
     
     public double getCurXCohesionForce(){
-	return (sumOfNeighborsX / countOfNeighbors) - xCoordinate;
+	return (sumOfNeighborsX / countOfNeighbors) - this.xCoordinate;
     }
 
     public double getCurYCohesionForce(){
