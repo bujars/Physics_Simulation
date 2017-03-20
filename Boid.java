@@ -13,12 +13,16 @@ public class Boid implements Body{
     private double sumOfNeighborsVelY;
     private double sumOfXDistToThis;
     private double sumOfYDistToThis;
+    private double radius;
+    private int[] rgb; 
     
-    public Boid(double xCoord, double yCoord, double xVel, double yVel){
+    public Boid(double xCoord, double yCoord, double xVel, double yVel, double rad, int red, int green, int blue){
         xCoordinate = xCoord;
         yCoordinate = yCoord;
         xVelocity = xVel;
         yVelocity = yVel;
+	radius = rad;
+	rgb = new int[]{red, green, blue};
     }
 
     /**
@@ -66,7 +70,7 @@ public class Boid implements Body{
      * @return the radius of the two dimensional boid.
      */
     public double getRadius(){
-	return -1;
+	return radius;
     }
 
     /**
@@ -79,7 +83,6 @@ public class Boid implements Body{
      *         on a 0-255 scale 
      */
     public int[] getRGB(){
-	int[] rgb = new int[]{0, 0, 0};
 	return rgb;
     }
 
@@ -100,10 +103,12 @@ public class Boid implements Body{
      *        two dimensional boid
      */
     public void addForceFrom(Body otherBoid){
-	addCohesionForceFrom(otherBoid);
-	addAlignmentForceFrom(otherBoid);
-	addSeparationForceFrom(otherBoid);
-	countOfNeighbors++;
+	if(radius >= calcDistance(otherBoid)){
+	    addCohesionForceFrom(otherBoid);
+	    addAlignmentForceFrom(otherBoid);
+	    addSeparationForceFrom(otherBoid);
+	    countOfNeighbors++;
+	}
     }
 
     /**
@@ -139,6 +144,7 @@ public class Boid implements Body{
      * @param timeDelta the amount of time the body moves
      */
     public void move(double timeDelta){
+	/*
 	//For Cohesion
 	double xCenter = this.calcXNeighborsCenter();
         double yCenter = this.calcYNeighborsCenter();
@@ -148,6 +154,15 @@ public class Boid implements Body{
 	//For Alignment
 	double xAlignmentForce = calcXAlignmentForce();
 	double yAlignmentForce = calcYAlignmentForce();
+	*/
+    
+	changeInXVelocity = (getCurXCohesionForce() + getCurXAlignmentForce() + getCurXSeparationForce()) / 3;
+	changeInYVelocity = (getCurYCohesionForce() + getCurYAlignmentForce() + getCurYSeparationForce()) / 3;
+	xVelocity = xVelocity + changeInXVelocity; 
+	yVelocity = yVelocity + changeInYVelocity;
+	xCoordinate = xCoordinate + (xVelocity * timeDelta);
+	yCoordinate = yCoordinate + (yVelocity * timeDelta);
+	
     }
 
     /**
@@ -187,27 +202,6 @@ public class Boid implements Body{
     }
 
     /**
-     * Calaulcates the Cohesion Force of this boid: 
-     * 
-     * UPDATE IT
-     */
-    public double calcXCohesionForce(Double xCenter){
-	double xCohesion = xCenter;
-	changeInXVelocity = changeInXVelocity + xCohesion;
-	return xCohesion;
-    }
-
-    /**
-     * Calculates the Cohesion force of this boid.
-     * 
-     */
-    public double calcYCohesionForce(Double yCenter){
-	double yCohesion = yCenter;
-	changeInYVelocity = changeInYVelocity + yCohesion; 
-	return yCohesion;
-    }
-
-    /**
      * Gets the change in  x component of the velocity of the dimensional body.
      *
      * @return the change in x component of the velocity of the two dimensional body.   
@@ -233,18 +227,6 @@ public class Boid implements Body{
 
     public double getSumOfNeighborsVelY(){
 	return sumOfNeighborsVelY;
-    }
-
-    public double calcXAlignmentForce(){
-	double xAlignment = sumOfNeighborsVelX/countOfNeighbors;
-        changeInXVelocity = changeInXVelocity + xAlignment;
-        return xAlignment;
-    }
-
-    public double calcYAlignmentForce(){
-	double yAlignment = sumOfNeighborsVelY/countOfNeighbors;
-	changeInXVelocity = changeInXVelocity + yAlignment;
-	return yAlignment; 
     }
 
     public double calcDistance(Body otherBoid){

@@ -270,49 +270,6 @@ public class TestBoid {
     }
 
     @Test
-	public void testCalcXCohesionForce(){
-	Boid t0 = new Boid(0, 0, 0, 0);
-        Boid t1 = new Boid(4, 3, -1, 1);
-        Boid t2 = new Boid(6, -2, 0, 1);
-        Boid t3 = new Boid(5, 1, 1, 1);
-	double delta = 0.0001;
-
-	t0.addForceFrom(t1);
-	t0.addForceFrom(t2);
-	t0.addForceFrom(t3);
-
-	assertEquals(15, t0.getSumOfNeighborsX(), delta);
-
-	assertEquals(5, t0.calcXNeighborsCenter(), delta);
-
-	double xCenter = t0.calcXNeighborsCenter();
-	assertEquals(5, t0.calcXCohesionForce(xCenter), delta);
-    
-    }
-
-   @Test
-       public void testCalcYCohesionForce(){
-       Boid t0 = new Boid(0, 0, 0, 0);
-       Boid t1 = new Boid(4, 3, -1, 1);
-       Boid t2 = new Boid(6, -2, 0, 1);
-       Boid t3 = new Boid(5, 1, 1, 1);
-       double delta = 0.0001;
-
-       t0.addForceFrom(t1);
-       t0.addForceFrom(t2);
-       t0.addForceFrom(t3);
-
-       assertEquals(2, t0.getSumOfNeighborsY(), delta);
-
-
-       assertEquals(0.6666, t0.calcYNeighborsCenter(), delta);
-
-       double yCenter = t0.calcYNeighborsCenter();
-       assertEquals(0.6666, t0.calcYCohesionForce(yCenter), delta);
-   }   
-    
-
-    @Test
 	public void testGetChangeInXVelocity(){
 	Boid t0 = new Boid(0, 0, 0, 0);
         Boid t1 = new Boid(4, 3, -1, 1);
@@ -338,34 +295,6 @@ public class TestBoid {
 	double changeY = t0.calcYCohesionForce(0.0);
 	assertEquals(0, t0.getChangeInYVelocity(), delta);
 
-    }
-    
-    @Test
-	public void testCalcXAlignmentForce(){
-	Boid t4 = new Boid(0, 0, -1.5, 2);
-	Boid t5 = new Boid(3, 2, 0, 2);
-	Boid t6 = new Boid(-3, 3, -2, 2);
-	double delta = 0.0001;
-	
-	t4.addForceFrom(t5);
-	t4.addForceFrom(t6);
-	
-	double xAlignment = t4.calcXAlignmentForce();  
-	assertEquals(-1, xAlignment, delta);
-    }
-
-    @Test 
-	public void testCalcYAlignmentForce(){
-	Boid t4 = new Boid(0, 0, -1.5, 2);
-	Boid t5 = new Boid(3, 2, 0, 2);
-	Boid t6 = new Boid(-3, 3, -2, 2);
-	double delta = 0.0001;
-
-	t4.addForceFrom(t5);
-	t4.addForceFrom(t6);
-	
-        double yAlignment = t4.calcYAlignmentForce();
-	assertEquals(2, yAlignment, delta);
     }
 
     @Test
