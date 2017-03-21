@@ -144,25 +144,20 @@ public class Boid implements Body{
      * @param timeDelta the amount of time the body moves
      */
     public void move(double timeDelta){
-	/*
-	//For Cohesion
-	double xCenter = this.calcXNeighborsCenter();
-        double yCenter = this.calcYNeighborsCenter();
-        double xCohesionForce = calcXCohesionForce(xCenter);
-        double yCohesionForce = calcYCohesionForce(yCenter);
-
-	//For Alignment
-	double xAlignmentForce = calcXAlignmentForce();
-	double yAlignmentForce = calcYAlignmentForce();
-	*/
-    
 	changeInXVelocity = (getCurXCohesionForce() + getCurXAlignmentForce() + getCurXSeparationForce()) / 3;
 	changeInYVelocity = (getCurYCohesionForce() + getCurYAlignmentForce() + getCurYSeparationForce()) / 3;
 	xVelocity = xVelocity + changeInXVelocity; 
 	yVelocity = yVelocity + changeInYVelocity;
 	xCoordinate = xCoordinate + (xVelocity * timeDelta);
 	yCoordinate = yCoordinate + (yVelocity * timeDelta);
-	
+	changeInXVelocity = 0;
+	changeInYVelocity = 0;
+	sumOfXDistToThis = 0;
+	sumOfYDistToThis = 0;
+	sumOfNeighborsVelX = 0;
+	sumOfNeighborsVelY = 0;
+	sumOfNeighborsX = 0;
+	sumOfNeighborsY = 0;
     }
 
     /**
@@ -243,26 +238,44 @@ public class Boid implements Body{
     }
     
     public double getCurXCohesionForce(){
+	if(countOfNeighbors == 0.0){
+            return 0.0;
+	}
 	return (sumOfNeighborsX / countOfNeighbors) - this.xCoordinate;
     }
 
     public double getCurYCohesionForce(){
+	if(countOfNeighbors == 0.0){
+            return 0.0;
+	}
 	return (sumOfNeighborsY / countOfNeighbors) - this.yCoordinate;
     }
 
     public double getCurXSeparationForce(){
+	if(countOfNeighbors == 0.0){
+            return 0.0;
+        }
 	return sumOfXDistToThis / countOfNeighbors;
     }
     
     public double getCurYSeparationForce(){
+	if(countOfNeighbors == 0.0){
+            return 0.0;
+        }	
 	return sumOfYDistToThis / countOfNeighbors;
     }
     
     public double getCurXAlignmentForce(){
+	if(countOfNeighbors == 0.0){
+            return 0.0;
+        }
 	return sumOfNeighborsVelX / countOfNeighbors;
     }
 
     public double getCurYAlignmentForce(){
+	if(countOfNeighbors == 0.0){
+            return 0.0;
+        }
 	return sumOfNeighborsVelY / countOfNeighbors;
     }
 

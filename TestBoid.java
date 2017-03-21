@@ -7,96 +7,119 @@ public class TestBoid {
 
     @Test
 	public void testGetXCoord(){
-	Boid t0 = new Boid(0, 0, 0, 0);
-	Boid t1 = new Boid(4, 3, -1, 1);
-	Boid t2 = new Boid(6, -2, 0, 1);
-	Boid t3 = new Boid(5, 1, 1, 1);
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+	Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+	Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+	Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
 	double delta = 0.1; 
 
-	assertEquals(0, t0.getXCoord(), delta);
-	assertEquals(4, t1.getXCoord(), delta);
-	assertEquals(6, t2.getXCoord(), delta);
-	assertEquals(5, t3.getXCoord(), delta);
+	assertEquals(0, b0.getXCoord(), delta);
+	assertEquals(3, b1.getXCoord(), delta);
+	assertEquals(1, b2.getXCoord(), delta);
+	assertEquals(-1, b3.getXCoord(), delta);
 
     }
 
     @Test
 	public void testGetYCoord() {
-	Boid t0 = new Boid(0, 0, 0, 0);
-        Boid t1 = new Boid(4, 3, -1, 1);
-        Boid t2 = new Boid(6, -2, 0, 1);
-        Boid t3 = new Boid(5, 1, 1, 1);	
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
 	double delta = 0.1;
  
-	assertEquals(0, t0.getYCoord(), delta);
-	assertEquals(3, t1.getYCoord(), delta);
-	assertEquals(-2, t2.getYCoord(), delta);
-	assertEquals(1, t3.getYCoord(), delta);
+	assertEquals(0, b0.getYCoord(), delta);
+	assertEquals(2, b1.getYCoord(), delta);
+	assertEquals(4, b2.getYCoord(), delta);
+	assertEquals(2, b3.getYCoord(), delta);
     }
 
     @Test
 	public void testGetXVel() {
-	Boid t0 = new Boid(0, 0, 0, 0);
-        Boid t1 = new Boid(4, 3, -1, 1);
-        Boid t2 = new Boid(6, -2, 0, 1);
-        Boid t3 = new Boid(5, 1, 1, 1);
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
 	double delta = 0.1;
 	
-	assertEquals(0, t0.getXVel(), delta);
-	assertEquals(-1, t1.getXVel(), delta);
-	assertEquals(0, t2.getXVel(), delta);
-	assertEquals(1, t3.getXVel(), delta);
+	assertEquals(0, b0.getXVel(), delta);
+	assertEquals(-2, b1.getXVel(), delta);
+	assertEquals(-3, b2.getXVel(), delta);
+	assertEquals(-1, b3.getXVel(), delta);
     }
 
     @Test
 	public void testGetYVel() {
-	Boid t0 = new Boid(0, 0, 0, 0);
-        Boid t1 = new Boid(4, 3, -1, 1);
-        Boid t2 = new Boid(6, -2, 0, 1);
-        Boid t3 = new Boid(5, 1, 1, 1);
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
 	double delta = 0.1;
     
-	assertEquals(0, t0.getYVel(), delta);
-	assertEquals(1, t1.getYVel(), delta);
-	assertEquals(1, t2.getYVel(), delta);
-	assertEquals(1, t3.getYVel(), delta);
+	assertEquals(1, b0.getYVel(), delta);
+	assertEquals(0, b1.getYVel(), delta);
+	assertEquals(-3, b2.getYVel(), delta);
+	assertEquals(1, b3.getYVel(), delta);
 
     }
 
     @Test
 	public void testGetRadius() {
-	Boid t0 = new Boid(0, 0, 0, 0);
-        Boid t1 = new Boid(4, 3, -1, 1);
-        Boid t2 = new Boid(6, -2, 0, 1);
-        Boid t3 = new Boid(5, 1, 1, 1);
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
 	double delta = 0.1;
+	
+	assertEquals(5, b0.getRadius(), delta);
+	assertEquals(4.1, b1.getRadius(), delta);
+	assertEquals(5, b2.getRadius(), delta);
+	assertEquals(5, b3.getRadius(), delta);
     }
 
     @Test
 	public void testGetRGB() {
-	Boid t0 = new Boid(0, 0, 0, 0);
-        Boid t1 = new Boid(4, 3, -1, 1);
-        Boid t2 = new Boid(6, -2, 0, 1);
-        Boid t3 = new Boid(5, 1, 1, 1);
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
 	double delta = 0.1;
+
+	int gbr = 255;
+	int gbg = 255;
+	int gbb = 255;
+	int[] rgb = new int[]{gbr, gbg, gbb};
+	assertArrayEquals(rgb, b0.getRGB());
+	gbr = 0;
+	gbg = 0;
+	rgb = new int[]{gbr, gbg, gbb};
+	assertArrayEquals(rgb, b1.getRGB());
+	gbr = 255;
+	gbb = 0;
+	rgb = new int[]{gbr, gbg, gbb};
+	assertArrayEquals(rgb, b2.getRGB());
+	gbr = 0;
+	gbg = 255;
+	rgb = new int[]{gbr, gbg, gbb};
+	assertArrayEquals(rgb, b3.getRGB());
     }
     
     
     @Test
 	public void testGetMass() {
-	Boid t0 = new Boid(0, 0, 0, 0);
-        Boid t1 = new Boid(4, 3, -1, 1);
-        Boid t2 = new Boid(6, -2, 0, 1);
-        Boid t3 = new Boid(5, 1, 1, 1);
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
 	double delta = 0.1;
     }
    
     @Test
 	public void testAddForceFrom(){
-	Boid b0 = new Boid(0, 0, 0, 1);
-        Boid b1 = new Boid(3, 2, -2, 0);
-        Boid b2 = new Boid(1, 4, -3, -3);
-        Boid b3 = new Boid(-1, 2, -1, 1);
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
 	double delta = 0.1;
 
 
@@ -185,222 +208,301 @@ public class TestBoid {
 	delta = 0.00001; 
 	assertEquals(-0.33333, b1.getCurYAlignmentForce(), delta);
 
+
+
+
+	b0 = new Boid(0, 0, 0, 1, 2, 255, 255, 255);
+	b1 = new Boid(3, 2, -2, 0, 2, 0, 0, 255);
+	b2 = new Boid(1, 4, -3, -3, 2, 255, 0, 0);
+	b3 = new Boid(-1, 2, -1, 1, 2, 0, 255, 0);
+	
+	
+	b0.addForceFrom(b1);
+	assertEquals(0.0, b0.getCurXCohesionForce(), delta);
+	assertEquals(0.0, b0.getCurYCohesionForce(), delta);
+	assertEquals(0.0, b0.getCurXSeparationForce(), delta);
+	assertEquals(0.0, b0.getCurYSeparationForce(), delta);
+	assertEquals(0.0, b0.getCurXAlignmentForce(), delta);
+	assertEquals(0.0, b0.getCurYAlignmentForce(), delta);
+
+	b0.addForceFrom(b2);
+	assertEquals(0.0, b0.getCurXCohesionForce(), delta);
+	assertEquals(0.0, b0.getCurYCohesionForce(), delta);
+	assertEquals(0.0, b0.getCurXSeparationForce(), delta);
+	assertEquals(0.0, b0.getCurYSeparationForce(), delta);
+	assertEquals(0.0, b0.getCurXAlignmentForce(), delta);
+	assertEquals(0.0, b0.getCurYAlignmentForce(), delta);
+
+	b0.addForceFrom(b3);
+	assertEquals(0.0, b0.getCurXCohesionForce(), delta);
+	assertEquals(0.0, b0.getCurYCohesionForce(), delta);
+	assertEquals(0.0, b0.getCurXSeparationForce(), delta);
+	assertEquals(0.0, b0.getCurYSeparationForce(), delta);
+	assertEquals(0.0, b0.getCurXAlignmentForce(), delta);
+	assertEquals(0.0, b0.getCurYAlignmentForce(), delta);
+	
+	
+	b1.addForceFrom(b0);
+	assertEquals(0.0, b1.getCurXCohesionForce(), delta);
+	assertEquals(0.0, b1.getCurYCohesionForce(), delta);
+	assertEquals(0.0, b1.getCurXSeparationForce(), delta);
+	assertEquals(0.0, b1.getCurYSeparationForce(), delta);
+	assertEquals(0.0, b1.getCurXAlignmentForce(), delta);
+	assertEquals(0.0, b1.getCurYAlignmentForce(), delta);
+	
+	b1.addForceFrom(b2);
+	assertEquals(0.0, b1.getCurXCohesionForce(), delta);
+	assertEquals(0.0, b1.getCurYCohesionForce(), delta);
+	assertEquals(0.0, b1.getCurXSeparationForce(), delta);
+	assertEquals(0.0, b1.getCurYSeparationForce(), delta);
+	assertEquals(0.0, b1.getCurXAlignmentForce(), delta);
+	assertEquals(0.0, b1.getCurYAlignmentForce(), delta);
+	
+	b1.addForceFrom(b3);
+	assertEquals(0.0, b1.getCurXCohesionForce(), delta);
+	assertEquals(0.0, b1.getCurYCohesionForce(), delta);
+	assertEquals(0.0, b1.getCurXSeparationForce(), delta);
+	assertEquals(0.0, b1.getCurYSeparationForce(), delta);
+	assertEquals(0.0, b1.getCurXAlignmentForce(), delta);
+	assertEquals(0.0, b1.getCurYAlignmentForce(), delta);
+
     }
 
    @Test
        public void testAddCohesionForceFrom(){
-       Boid t0 = new Boid(0, 0, 0, 0);
-       Boid t1 = new Boid(4, 3, -1, 1);
-       Boid t2 = new Boid(6, -2, 0, 1);
-       Boid t3 = new Boid(5, 1, 1, 1);
+       Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+       Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+       Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+       Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
        double delta = 0.1;
 
 
-       t0.addCohesionForceFrom(t1);
-       t0.addCohesionForceFrom(t2);
-       t0.addCohesionForceFrom(t3);
+       b0.addCohesionForceFrom(b1);
+       b0.addCohesionForceFrom(b2);
+       b0.addCohesionForceFrom(b3);
 
-       assertEquals(15, t0.getSumOfNeighborsX(), delta);
-       assertEquals(2, t0.getSumOfNeighborsY(), delta);
+       assertEquals(3, b0.getSumOfNeighborsX(), delta);
+       assertEquals(8, b0.getSumOfNeighborsY(), delta);
 
 
    }
     
     @Test
 	public void testMove(){
-	Boid t0 = new Boid(0, 0, 0, 0);
-        Boid t1 = new Boid(4, 3, -1, 1);
-        Boid t2 = new Boid(6, -2, 0, 1);
-        Boid t3 = new Boid(5, 1, 1, 1);
-	double delta = 0.1;
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
+	double delta = 0.0001;
+	double timeDelta = 10;
+
+	b0.addForceFrom(b1);
+	b0.addForceFrom(b2);
+	b0.addForceFrom(b3);
+
+
+	b0.move(timeDelta);
+
+	assertEquals(-0.3432, b0.getXVel(), delta);
+	assertEquals(1.5789, b0.getYVel(), delta);
+	
+	assertEquals(-3.4328, b0.getXCoord(), delta);
+	assertEquals(15.7898, b0.getYCoord(), delta);
+    
+	b1.addForceFrom(b0);
+	b1.addForceFrom(b2);
+	b1.addForceFrom(b3);
+
+	b1.move(timeDelta);
+
+	assertEquals(-1.3632, b1.getXVel(), delta);
+	assertEquals(-0.1217, b1.getYVel(), delta);
+	
+	assertEquals(26.368, b1.getXCoord(), delta);
+	assertEquals(18.782, b1.getYCoord(), delta);
     }
 
     @Test
 	public void testGetSumOfNeighborsX(){
-	Boid t0 = new Boid(0, 0, 0, 0);
-        Boid t1 = new Boid(4, 3, -1, 1);
-        Boid t2 = new Boid(6, -2, 0, 1);
-        Boid t3 = new Boid(5, 1, 1, 1);
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
 	double delta = 0.0001;
 
 	//Since we didnt add anything, sum should be zero
-	assertEquals(0, t0.getSumOfNeighborsX(), delta);
+	assertEquals(0, b0.getSumOfNeighborsX(), delta);
     }
     
     @Test
 	public void testGetSumOfNeighborsY(){
-	Boid t0 = new Boid(0, 0, 0, 0);
-        Boid t1 = new Boid(4, 3, -1, 1);
-        Boid t2 = new Boid(6, -2, 0, 1);
-        Boid t3 = new Boid(5, 1, 1, 1);
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
 	double delta = 0.0001;
 
 	//Since we didnt add anything, sum should be zero                                               
-        assertEquals(0, t0.getSumOfNeighborsY(), delta);
+        assertEquals(0, b0.getSumOfNeighborsY(), delta);
     }
 
     @Test
 	public void testCalcXNeighborsCenter(){
-	Boid t0 = new Boid(0, 0, 0, 0);
-        Boid t1 = new Boid(4, 3, -1, 1);
-        Boid t2 = new Boid(6, -2, 0, 1);
-        Boid t3 = new Boid(5, 1, 1, 1);
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
 	double delta = 0.0001;
 
-	t0.addForceFrom(t1);
-	t0.addForceFrom(t2);
-	t0.addForceFrom(t3);
+	b0.addForceFrom(b1);
+	b0.addForceFrom(b2);
+	b0.addForceFrom(b3);
 
-	assertEquals(5, t0.calcXNeighborsCenter(), delta);
+	assertEquals(1, b0.calcXNeighborsCenter(), delta);
     }
 
     @Test
 	public void testCalcYNeighborsCenter(){
-	Boid t0 = new Boid(0, 0, 0, 0);
-        Boid t1 = new Boid(4, 3, -1, 1);
-        Boid t2 = new Boid(6, -2, 0, 1);
-        Boid t3 = new Boid(5, 1, 1, 1);
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
 	double delta = 0.0001;
 	
-	t0.addForceFrom(t1);
-	t0.addForceFrom(t2);
-	t0.addForceFrom(t3);
+	b0.addForceFrom(b1);
+	b0.addForceFrom(b2);
+	b0.addForceFrom(b3);
 
-	assertEquals(0.6666, t0.calcYNeighborsCenter(), delta);
+	assertEquals(2.6666, b0.calcYNeighborsCenter(), delta);
     }
 
     @Test
 	public void testGetChangeInXVelocity(){
-	Boid t0 = new Boid(0, 0, 0, 0);
-        Boid t1 = new Boid(4, 3, -1, 1);
-        Boid t2 = new Boid(6, -2, 0, 1);
-        Boid t3 = new Boid(5, 1, 1, 1);
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
 	double delta = 0.0001;
 
-
-	double changeX = t0.calcXCohesionForce(0.0);
-	assertEquals(0, t0.getChangeInXVelocity(), delta);
+	assertEquals(0, b0.getChangeInXVelocity(), delta);
 	
 
     }
 
     @Test 
 	public void testGetChangeInYVelocity(){
-	Boid t0 = new Boid(0, 0, 0, 0);
-        Boid t1 = new Boid(4, 3, -1, 1);
-        Boid t2 = new Boid(6, -2, 0, 1);
-        Boid t3 = new Boid(5, 1, 1, 1);
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
 	double delta = 0.0001;
 
-	double changeY = t0.calcYCohesionForce(0.0);
-	assertEquals(0, t0.getChangeInYVelocity(), delta);
+	assertEquals(0, b0.getChangeInYVelocity(), delta);
 
     }
 
     @Test
 	public void testGetSumOfXVelocities(){
-	Boid t4 = new Boid(0, 0, -1.5, 2);
-	Boid t5 = new Boid(3, 2, 0, 2);
-	Boid t6 = new Boid(-3, 3, -2, 2);
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
 	double delta = 0.0001;
     
 	//Nothing added to variable   
-	assertEquals(0, t4.getSumOfNeighborsVelX(), delta);
+	assertEquals(0, b0.getSumOfNeighborsVelX(), delta);
     }
     
     @Test
 	public void testGetSumOfYVelocities(){
-	Boid t4 = new Boid(0, 0, -1.5, 2);
-	Boid t5 = new Boid(3, 2, 0, 2);
-	Boid t6 = new Boid(-3, 3, -2, 2);
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
 	double delta = 0.0001;
 
 	//Nothing added to variable
-	assertEquals(0, t4.getSumOfNeighborsVelY(), delta);
+	assertEquals(0, b0.getSumOfNeighborsVelY(), delta);
     }
     
     @Test
 	public void testAddAlignmentForceFrom(){
-	Boid t4 = new Boid(0, 0, -1.5, 2);
-	Boid t5 = new Boid(3, 2, 0, 2);
-	Boid t6 = new Boid(-3, 3, -2, 2);
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
 	double delta = 0.0001;
 
-	t4.addAlignmentForceFrom(t5);
-	t4.addAlignmentForceFrom(t6);
+	b0.addAlignmentForceFrom(b1);
+	b0.addAlignmentForceFrom(b2);
+	b0.addAlignmentForceFrom(b3);
 	
-	assertEquals(-2, t4.getSumOfNeighborsVelX(), delta);
-	assertEquals(4, t4.getSumOfNeighborsVelY(), delta);
+	assertEquals(-6, b0.getSumOfNeighborsVelX(), delta);
+	assertEquals(-2, b0.getSumOfNeighborsVelY(), delta);
     }
 
     @Test 
 	public void testAddSeparationForceFrom(){
-	Boid t7 = new Boid(0, 0, 0, 1);
-	Boid t8 = new Boid(3, 3, -3, -3);
-	Boid t9 = new Boid(5, 10, -5, -10);
-	Boid t10 = new Boid(-4, 1, 4, -1);
-	double delta = 0.000001;
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
+	double delta = 0.00001;
    
-	Boid b0 = new Boid(0, 0, 0, 1);
-        Boid b1 = new Boid(3, 2, -2, 0);
-        Boid b2 = new Boid(1, 4, -3, -3);
-        Boid b3 = new Boid(-1, 2, -1, 1);
-
 	b0.addSeparationForceFrom(b1);
 	assertEquals(-0.23077, b0.getSumOfXDistToThis(), delta);
-	
-	b0.addSeparationForceFrom(b2);
+	assertEquals(-0.15385, b0.getSumOfYDistToThis(), delta);
     }
 
   @Test
       public void testCalcDistance(){
-      Boid t7 = new Boid(0, 0, 0, 1);
-      Boid t8 = new Boid(3, 3, -3, -3);
-      Boid t9 = new Boid(5, 10, -5, -10);
-      Boid t10 = new Boid(-4, 1, 4, -1);
+      Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+      Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+      Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+      Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
       double delta = 0.0001;
 
-      double distance = t7.calcDistance(t8);
-      assertEquals(4.2426, distance, delta);
-      distance = t7.calcDistance(t9);
-      assertEquals(11.1803, distance, delta);
-      distance = t7.calcDistance(t10);
+      double distance = b0.calcDistance(b1);
+      assertEquals(3.6055, distance, delta);
+      distance = b0.calcDistance(b2);
       assertEquals(4.1231, distance, delta);
+      distance = b0.calcDistance(b3);
+      assertEquals(2.23606, distance, delta);
   }
 
 
   @Test
       public void testGetSumOfXDistToThis(){
-      Boid t7 = new Boid(0, 0, 0, 1);
-      Boid t8 = new Boid(3, 3, -3, -3);
-      Boid t9 = new Boid(5, 10, -5, -10);
-      Boid t10 = new Boid(-4, 1, 4, -1);
+      Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+      Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+      Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+      Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
       double delta = 0.0001;
-      
 
-      t7.addSeparationForceFrom(t8);
-      assertEquals(-0.1666, t7.getSumOfXDistToThis(), delta);
-      t7.addSeparationForceFrom(t9);
-      assertEquals(-0.2066, t7.getSumOfXDistToThis(), delta);
-      t7.addSeparationForceFrom(t10);
-      assertEquals(0.0286, t7.getSumOfXDistToThis(), delta);
+
+      b0.addSeparationForceFrom(b1);
+      assertEquals(-0.23077, b0.getSumOfXDistToThis(), delta);
+      b0.addSeparationForceFrom(b2);
+      assertEquals(-0.28959, b0.getSumOfXDistToThis(), delta);
+      b0.addSeparationForceFrom(b3);
+      assertEquals(-0.08959, b0.getSumOfXDistToThis(), delta);
       
   }
 
   @Test
       public void testGetSumOfYDistToThis(){
-      Boid t7 = new Boid(0, 0, 0, 1);
-      Boid t8 = new Boid(3, 3, -3, -3);
-      Boid t9 = new Boid(5, 10, -5, -10);
-      Boid t10 = new Boid(-4, 1, 4, -1);
+      Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+      Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+      Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+      Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
       double delta = 0.0001;
 
-      t7.addSeparationForceFrom(t8);
-      assertEquals(-0.1666, t7.getSumOfYDistToThis(), delta);
-      t7.addSeparationForceFrom(t9);
-      assertEquals(-0.2466, t7.getSumOfYDistToThis(), delta);
-      t7.addSeparationForceFrom(t10);
-      assertEquals(-0.3054, t7.getSumOfYDistToThis(), delta);
+      b0.addSeparationForceFrom(b1);
+      assertEquals(-0.1538, b0.getSumOfYDistToThis(), delta);
+      b0.addSeparationForceFrom(b2);
+      assertEquals(-0.38914, b0.getSumOfYDistToThis(), delta);
+      b0.addSeparationForceFrom(b3);
+      assertEquals(-0.78914, b0.getSumOfYDistToThis(), delta);
 
 
 
@@ -409,10 +511,10 @@ public class TestBoid {
     
     @Test 
 	public void testGetCurXCohesionForce(){
-	Boid b0 = new Boid(0, 0, 0, 1);
-        Boid b1 = new Boid(3, 2, -2, 0);
-        Boid b2 = new Boid(1, 4, -3, -3);
-        Boid b3 = new Boid(-1, 2, -1, 1);
+	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
 	double delta = 0.1;
 	
 	b1.addForceFrom(b0);
@@ -426,10 +528,10 @@ public class TestBoid {
     
   @Test
       public void testGetCurYCohesionForce(){
-      Boid b0 = new Boid(0, 0, 0, 1);
-      Boid b1 = new Boid(3, 2, -2, 0);
-      Boid b2 = new Boid(1, 4, -3, -3);
-      Boid b3 = new Boid(-1, 2, -1, 1);
+      Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+      Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+      Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+      Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
       double delta = 0.1;
       
       b1.addForceFrom(b0);
@@ -442,10 +544,10 @@ public class TestBoid {
 
   @Test
       public void testGetCurXSeparationForce(){
-      Boid b0 = new Boid(0, 0, 0, 1);
-      Boid b1 = new Boid(3, 2, -2, 0);
-      Boid b2 = new Boid(1, 4, -3, -3);
-      Boid b3 = new Boid(-1, 2, -1, 1);
+      Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+      Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+      Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+      Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
       double delta = 0.00001;
       
       b1.addForceFrom(b0);
@@ -459,10 +561,10 @@ public class TestBoid {
 
   @Test
       public void testGetCurYSeparationForce(){
-      Boid b0 = new Boid(0, 0, 0, 1);
-      Boid b1 = new Boid(3, 2, -2, 0);
-      Boid b2 = new Boid(1, 4, -3, -3);
-      Boid b3 = new Boid(-1, 2, -1, 1);
+      Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+      Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+      Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+      Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
       double delta = 0.00001;
 
       b1.addForceFrom(b0);
@@ -476,10 +578,10 @@ public class TestBoid {
 
   @Test
       public void testGetCurXAlignmentForce(){
-      Boid b0 = new Boid(0, 0, 0, 1);
-      Boid b1 = new Boid(3, 2, -2, 0);
-      Boid b2 = new Boid(1, 4, -3, -3);
-      Boid b3 = new Boid(-1, 2, -1, 1);
+      Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+      Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+      Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+      Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
       double delta = 0.1;
 
       b1.addForceFrom(b0);
@@ -493,10 +595,10 @@ public class TestBoid {
 
   @Test
       public void testGetCurYAlignmentForce(){
-      Boid b0 = new Boid(0, 0, 0, 1);
-      Boid b1 = new Boid(3, 2, -2, 0);
-      Boid b2 = new Boid(1, 4, -3, -3);
-      Boid b3 = new Boid(-1, 2, -1, 1);
+      Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
+      Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
+      Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
+      Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
       double delta = 0.0001;
 
       b1.addForceFrom(b0);
