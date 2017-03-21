@@ -74,7 +74,7 @@ public abstract class PhysicsEngine{
 	for(int i = 0; i < bodies.length; i++){
 	    rGB = bodies[i].getRGB();
 	    StdDraw.setPenColor(rGB[0], rGB[1], rGB[2]);
-	    double bodRad = bodies[i].getRadius();
+	    double bodRad = (bodies[i].getRadius()/100);
 	    if(bodRad < 0){
 		bodRad = (this.uniRad/100);
 	    }
