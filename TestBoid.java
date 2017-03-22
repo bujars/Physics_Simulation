@@ -295,26 +295,26 @@ public class TestBoid {
         Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
 	double delta = 0.0001;
 	double timeDelta = 10;
-	/*
+	
 	b0.addForceFrom(b1);
 	b0.addForceFrom(b2);
 	b0.addForceFrom(b3);
 
+	b1.addForceFrom(b0);
+	b1.addForceFrom(b2);
+	b1.addForceFrom(b3);
 
 	b0.move(timeDelta);
+	b1.move(timeDelta);
 
+	//b0
 	assertEquals(-0.3432, b0.getXVel(), delta);
 	assertEquals(1.5789, b0.getYVel(), delta);
 	
 	assertEquals(-3.4328, b0.getXCoord(), delta);
 	assertEquals(15.7898, b0.getYCoord(), delta);
- */   
-	b1.addForceFrom(b0);
-	b1.addForceFrom(b2);
-	b1.addForceFrom(b3);
-
-	b1.move(timeDelta);
-
+    
+	//b1
 	assertEquals(-3.3632, b1.getXVel(), delta);
 	assertEquals(-0.1217, b1.getYVel(), delta);
 	
@@ -344,61 +344,6 @@ public class TestBoid {
 
 	//Since we didnt add anything, sum should be zero                                               
         assertEquals(0, b0.getSumOfNeighborsY(), delta);
-    }
-
-    @Test
-	public void testCalcXNeighborsCenter(){
-	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
-        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
-        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
-        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
-	double delta = 0.0001;
-
-	b0.addForceFrom(b1);
-	b0.addForceFrom(b2);
-	b0.addForceFrom(b3);
-
-	assertEquals(1, b0.calcXNeighborsCenter(), delta);
-    }
-
-    @Test
-	public void testCalcYNeighborsCenter(){
-	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
-        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
-        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
-        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
-	double delta = 0.0001;
-	
-	b0.addForceFrom(b1);
-	b0.addForceFrom(b2);
-	b0.addForceFrom(b3);
-
-	assertEquals(2.6666, b0.calcYNeighborsCenter(), delta);
-    }
-
-    @Test
-	public void testGetChangeInXVelocity(){
-	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
-        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
-        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
-        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
-	double delta = 0.0001;
-
-	assertEquals(0, b0.getChangeInXVelocity(), delta);
-	
-
-    }
-
-    @Test 
-	public void testGetChangeInYVelocity(){
-	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
-        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
-        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
-        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
-	double delta = 0.0001;
-
-	assertEquals(0, b0.getChangeInYVelocity(), delta);
-
     }
 
     @Test

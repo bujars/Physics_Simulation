@@ -6,9 +6,7 @@ public class Boid implements Body{
     private double yVelocity;
     private int countOfNeighbors;
     private double sumOfNeighborsX;
-    private double sumOfNeighborsY; 
-    private double changeInXVelocity;
-    private double changeInYVelocity; 
+    private double sumOfNeighborsY;  
     private double sumOfNeighborsVelX;
     private double sumOfNeighborsVelY;
     private double sumOfXDistToThis;
@@ -16,7 +14,8 @@ public class Boid implements Body{
     private double radius;
     private int[] rgb; 
     
-    public Boid(double xCoord, double yCoord, double xVel, double yVel, double rad, int red, int green, int blue){
+    public Boid(double xCoord, double yCoord, double xVel, double yVel, 
+		double rad, int red, int green, int blue){
         xCoordinate = xCoord;
         yCoordinate = yCoord;
         xVelocity = xVel;
@@ -112,8 +111,8 @@ public class Boid implements Body{
     }
 
     /**
-      * Calculates the cohesion force excerted on this two dimenional boid by another 
-      * two dimensional boid.
+      * Calculates the cohesion force excerted on this two dimenional boid 
+      * by another two dimensional boid.
       *
       *
       */
@@ -128,10 +127,12 @@ public class Boid implements Body{
     }
 
     public void addSeparationForceFrom(Body otherBoid){
-	double calcXDistToThis = (xCoordinate - otherBoid.getXCoord()) / Math.pow(calcDistance(otherBoid), 2);
+	double calcXDistToThis = (xCoordinate - otherBoid.getXCoord()) /
+	    Math.pow(calcDistance(otherBoid), 2);
         sumOfXDistToThis = sumOfXDistToThis + (calcXDistToThis);
 
-        double calcYDistToThis = (yCoordinate - otherBoid.getYCoord()) / Math.pow(calcDistance(otherBoid), 2);
+        double calcYDistToThis = (yCoordinate - otherBoid.getYCoord()) / 
+	    Math.pow(calcDistance(otherBoid), 2);
         sumOfYDistToThis = sumOfYDistToThis + (calcYDistToThis);
     }
 
@@ -144,20 +145,23 @@ public class Boid implements Body{
      * @param timeDelta the amount of time the body moves
      */
     public void move(double timeDelta){
-	changeInXVelocity = (getCurXCohesionForce() + getCurXAlignmentForce() + getCurXSeparationForce()) / 3;
-	changeInYVelocity = (getCurYCohesionForce() + getCurYAlignmentForce() + getCurYSeparationForce()) / 3;
+	double changeInXVelocity = (getCurXCohesionForce() + 
+				    getCurXAlignmentForce() + 
+				    getCurXSeparationForce()) / 3;
+	double changeInYVelocity = (getCurYCohesionForce() + 
+				    getCurYAlignmentForce() + 
+				    getCurYSeparationForce()) / 3;
 	xVelocity = xVelocity + changeInXVelocity; 
 	yVelocity = yVelocity + changeInYVelocity;
 	xCoordinate = xCoordinate + (xVelocity * timeDelta);
 	yCoordinate = yCoordinate + (yVelocity * timeDelta);
-	changeInXVelocity = 0;
-	changeInYVelocity = 0;
 	sumOfXDistToThis = 0;
 	sumOfYDistToThis = 0;
 	sumOfNeighborsVelX = 0;
 	sumOfNeighborsVelY = 0;
 	sumOfNeighborsX = 0;
 	sumOfNeighborsY = 0;
+	countOfNeighbors = 0;
     }
 
     /**
@@ -180,42 +184,6 @@ public class Boid implements Body{
 	return countOfNeighbors;
     }
 
-    /**
-     * Calculates the x coordinate of the center of the neighbors
-     *
-     */
-    public double calcXNeighborsCenter(){
-	return (sumOfNeighborsX / countOfNeighbors) - xCoordinate;
-    }
-
-    /**
-     * Calculates the y coordinate of the center of the neighbors
-     *
-     */ 
-    public double calcYNeighborsCenter(){
-	return (sumOfNeighborsY / countOfNeighbors) - yCoordinate; 
-    }
-
-    /**
-     * Gets the change in  x component of the velocity of the dimensional body.
-     *
-     * @return the change in x component of the velocity of the two dimensional body.   
-     *
-     */
-    public double getChangeInXVelocity(){
-	return changeInXVelocity;
-    }
-
-    /**
-     * Gets the change in  y component of the velocity of the dimensional body.
-     * 
-     * @return the change in y component of the velocity of the two dimensional body.
-     *    
-     */
-    public double getChangeInYVelocity(){
-	return changeInYVelocity;
-    }
-
     public double getSumOfNeighborsVelX(){
 	return sumOfNeighborsVelX;
     }
@@ -225,7 +193,10 @@ public class Boid implements Body{
     }
 
     public double calcDistance(Body otherBoid){
-	double distance =  Math.sqrt((Math.pow((otherBoid.getXCoord() - this.xCoordinate), 2)) + (Math.pow((otherBoid.getYCoord() - this.yCoordinate), 2)));
+	double distance =  Math.sqrt((Math.pow((otherBoid.getXCoord() - 
+						this.xCoordinate), 2)) + 
+				     (Math.pow((otherBoid.getYCoord() - 
+						this.yCoordinate), 2)));
 	return distance;
     }
 
@@ -238,49 +209,52 @@ public class Boid implements Body{
     }
     
     public double getCurXCohesionForce(){
-	if(countOfNeighbors == 0.0){
-            return 0.0;
+	if(countOfNeighbors == 0){
+            return 0;
 	}
 	return (sumOfNeighborsX / countOfNeighbors) - this.xCoordinate;
     }
 
     public double getCurYCohesionForce(){
-	if(countOfNeighbors == 0.0){
-            return 0.0;
+	if(countOfNeighbors == 0){
+            return 0;
 	}
 	return (sumOfNeighborsY / countOfNeighbors) - this.yCoordinate;
     }
 
     public double getCurXSeparationForce(){
-	if(countOfNeighbors == 0.0){
-            return 0.0;
+	if(countOfNeighbors == 0){
+            return 0;
         }
 	return sumOfXDistToThis / countOfNeighbors;
     }
     
     public double getCurYSeparationForce(){
-	if(countOfNeighbors == 0.0){
-            return 0.0;
+	if(countOfNeighbors == 0){
+            return 0;
         }	
 	return sumOfYDistToThis / countOfNeighbors;
     }
     
     public double getCurXAlignmentForce(){
-	if(countOfNeighbors == 0.0){
-            return 0.0;
+	if(countOfNeighbors == 0){
+            return 0;
         }
 	return sumOfNeighborsVelX / countOfNeighbors;
     }
 
     public double getCurYAlignmentForce(){
-	if(countOfNeighbors == 0.0){
-            return 0.0;
+	if(countOfNeighbors == 0){
+            return 0;
         }
 	return sumOfNeighborsVelY / countOfNeighbors;
     }
 
     public String toString(){
-        return "XCoord: " + xCoordinate +" YCoord: " + yCoordinate + " XVeloc: " + xVelocity + " YVeloc: " + yVelocity + " Radius: " + radius +  " RGB: " + rgb[0] + " " + rgb[1] + " " + rgb[2];
+        return "XCoord: " + xCoordinate +" YCoord: " + yCoordinate + 
+	    " XVeloc: " + xVelocity + " YVeloc: " + yVelocity + 
+	    " Radius: " + radius + " RGB: " + rgb[0] + " " + 
+	    rgb[1] + " " + rgb[2];
     }
 
 }
