@@ -304,6 +304,7 @@ public class TestBoid {
 	b1.addForceFrom(b2);
 	b1.addForceFrom(b3);
 
+	//Big Radii
 	b0.move(timeDelta);
 	b1.move(timeDelta);
 
@@ -320,6 +321,41 @@ public class TestBoid {
 	
 	assertEquals(-30.6324, b1.getXCoord(), delta);
 	assertEquals(0.7820, b1.getYCoord(), delta);
+
+
+	b0 = new Boid(0, 0, 0, 1, 2, 255, 255, 255);
+	b1 = new Boid(3, 2, -2, 0, 2, 0, 0, 255);
+        b2 = new Boid(1, 4, -3, -3, 2, 255, 0, 0);
+        b3 = new Boid(-1, 2, -1, 1, 2, 0, 255, 0);
+
+	b0.addForceFrom(b1);
+        b0.addForceFrom(b2);
+        b0.addForceFrom(b3);
+
+        b1.addForceFrom(b0);
+        b1.addForceFrom(b2);
+        b1.addForceFrom(b3);
+	
+	
+	//Small Radii
+	b0.move(timeDelta);
+	b1.move(timeDelta);
+
+	//b0
+	assertEquals(0, b0.getXVel(), delta);
+	assertEquals(1, b0.getYVel(), delta);
+
+	assertEquals(0, b0.getXCoord(), delta);
+	assertEquals(10, b0.getYCoord(), delta);
+
+	//b1
+	assertEquals(-2, b1.getXVel(), delta);
+	assertEquals(0, b1.getYVel(), delta);
+	
+	assertEquals(-17, b1.getXCoord(), delta);
+	assertEquals(2, b1.getYCoord(), delta);
+
+
     }
 
     @Test
