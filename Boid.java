@@ -1,35 +1,56 @@
-public class Boid implements Body{
+public class Boid{
 
-    private double xCoordinate;
+    /*private double xCoordinate;
     private double yCoordinate;
     private double xVelocity;
     private double yVelocity;
+    */
+    private Vector2D position;
+    private Vector2D velocity;
+
     private int countOfNeighbors;
-    private double sumOfNeighborsX;
+ 
+    /*private double sumOfNeighborsX;
     private double sumOfNeighborsY;  
-    private double sumOfNeighborsVelX;
-    private double sumOfNeighborsVelY;
-    private double sumOfXDistToThis;
-    private double sumOfYDistToThis;
+    */
+
+    private Vector2D sumOfNeighborsPosition;
+
+    /*private double sumOfNeighborsVelX;
+    private double sumOfNeighborsVelY;*/
+    
+    private Vector2D sumOfNeighborsVelocities;
+
+    /*private double sumOfXDistToThis;
+    private double sumOfYDistToThis;*/
+    
+    private Vector2D sumOfDistanceToThis;
+    
     private double radius;
     private int[] rgb; 
     
     public Boid(double xCoord, double yCoord, double xVel, double yVel, 
 		double rad, int red, int green, int blue){
-        xCoordinate = xCoord;
+        
+	position = new Vector2D(xCoord, yCoord);
+	velocities = new Vector2D(xVel, yVel);
+
+	/*xCoordinate = xCoord;
         yCoordinate = yCoord;
         xVelocity = xVel;
         yVelocity = yVel;
+	*/
 	radius = rad;
 	rgb = new int[]{red, green, blue};
     }
 
-    /**
+    /*
+     /**
      * Gets the x-coordinate of the two dimensional boid. This method is useful
      * for visualizing the simluation.
      * 
      * @return the x-coordinate of the two dimensional boid.
-     */
+     *
     public double getXCoord(){
         return xCoordinate;
     }
@@ -39,7 +60,7 @@ public class Boid implements Body{
      * for visualizing the simulation.
      *
      * @return the y-coordinate of the two dimensional boid.
-     */
+     *
     public double getYCoord(){
         return yCoordinate;
     }
@@ -48,7 +69,7 @@ public class Boid implements Body{
      * Gets the x component of the velocity of the dimensional boid.
      * 
      * @return the x component of the velocity of the two dimensional boid.
-     */
+     *
     public double getXVel(){
         return xVelocity;
     }
@@ -57,11 +78,29 @@ public class Boid implements Body{
      * Gets the y component of the velocity  of the two dimensional boid. 
      *
      * @return the y component of the velocity of the two dimensional boid.
-     */
+     *
     public double getYVel(){
         return yVelocity;
     }
+    */
 
+
+    public double getXPosition(){
+	return position.getXComp();
+    }
+
+    public double getYPosition(){
+	return position.getYComp();
+    }
+
+    public double getXVelocity(){
+	return velocity.getXComp();
+    }
+    
+    public double getYVelocity(){
+	return velocity.getYComp();
+    }
+    
     /**
      * Gets the radius of the two dimensional boid. This method is useful for
      * visualizing the simulation.
@@ -117,8 +156,11 @@ public class Boid implements Body{
       *
       */
     public void addCohesionForceFrom(Body otherBoid){
-	sumOfNeighborsX = sumOfNeighborsX + otherBoid.getXCoord();
-        sumOfNeighborsY = sumOfNeighborsY + otherBoid.getYCoord();
+	//Not sure how to do this
+	sumOfNeighborsPosition += getAdd();
+
+	/*sumOfNeighborsX = sumOfNeighborsX + otherBoid.getXCoord();
+	  sumOfNeighborsY = sumOfNeighborsY + otherBoid.getYCoord();*/
     }
 
     public void addAlignmentForceFrom(Body otherBoid){
