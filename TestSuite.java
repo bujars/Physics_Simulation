@@ -7,6 +7,7 @@ import org.junit.runners.Suite;
    TestGravBody.class,
    TestColBody.class,
        TestBoid.class,
+       TestVector2D.class
    // TODO: Add other test classes here as needed
 })
 

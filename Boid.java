@@ -42,6 +42,10 @@ public class Boid{
 	*/
 	radius = rad;
 	rgb = new int[]{red, green, blue};
+	sumOfNeighborsPosition = new Vector2D(0.0, 0.0);
+	sumOfNeighborsVelocities = new Vector2D(0.0, 0.0);
+	sumOfDistanceToThis = new Vector2D(0.0, 0.0);
+    
     }
 
     /*
@@ -85,21 +89,30 @@ public class Boid{
     */
 
 
-    public double getXPosition(){
+    /*public double getXPosition(){
 	return position.getXComp();
     }
 
     public double getYPosition(){
 	return position.getYComp();
+    }*/
+
+    public Vector2D getPosition(){
+	return position;
     }
 
-    public double getXVelocity(){
+
+    public Vector2D getVelocity(){
+	return velocity;
+    }
+    
+    /*public double getXVelocity(){
 	return velocity.getXComp();
     }
     
     public double getYVelocity(){
 	return velocity.getYComp();
-    }
+	}*/
     
     /**
      * Gets the radius of the two dimensional boid. This method is useful for
@@ -140,7 +153,7 @@ public class Boid{
      * @param otherBody the {@link TwoDimBody} exterting a force on this two
      *        two dimensional boid
      */
-    public void addForceFrom(Body otherBoid){
+    public void addForceFrom(Boid otherBoid){
 	if(radius >= calcDistance(otherBoid)){
 	    addCohesionForceFrom(otherBoid);
 	    addAlignmentForceFrom(otherBoid);
@@ -155,27 +168,37 @@ public class Boid{
       *
       *
       */
-    public void addCohesionForceFrom(Body otherBoid){
-	//Not sure how to do this
-	sumOfNeighborsPosition += getAdd();
+    public void addCohesionForceFrom(Boid otherBoid){
+
+	sumOfNeighborsPosition = sumOfNeighborsPosition.getSum(otherBoid.getPosition());
 
 	/*sumOfNeighborsX = sumOfNeighborsX + otherBoid.getXCoord();
 	  sumOfNeighborsY = sumOfNeighborsY + otherBoid.getYCoord();*/
     }
 
-    public void addAlignmentForceFrom(Body otherBoid){
-	sumOfNeighborsVelX = sumOfNeighborsVelX + otherBoid.getXVel();
-        sumOfNeighborsVelY = sumOfNeighborsVelY + otherBoid.getYVel();	
+    public void addAlignmentForceFrom(Boid otherBoid){
+
+	sumOfNeighborsVelocities = sumOfNeighborsVelocites.getSum(otherBoid.getVelocity());
+
+	/*sumOfNeighborsVelX = sumOfNeighborsVelX + otherBoid.getXVel();
+	  sumOfNeighborsVelY = sumOfNeighborsVelY + otherBoid.getYVel();	*/
     }
 
-    public void addSeparationForceFrom(Body otherBoid){
-	double calcXDistToThis = (xCoordinate - otherBoid.getXCoord()) /
+    public void addSeparationForceFrom(Boid otherBoid){
+	Vector2D calcDistToThis = position.getDiff(otherBoid.getPosition());
+	Vector2D calcDistToThisDivision = calcDistToThis.getScaling(Math.pow(1/getMagnitude(), 2));
+
+	sumOfDistanceToThis = sumOfDistanceToThis.getSum(calcDistToThisDivision); 
+	
+
+	/*	double calcXDistToThis = (xCoordinate - otherBoid.getXCoord()) /
 	    Math.pow(calcDistance(otherBoid), 2);
         sumOfXDistToThis = sumOfXDistToThis + (calcXDistToThis);
 
         double calcYDistToThis = (yCoordinate - otherBoid.getYCoord()) / 
 	    Math.pow(calcDistance(otherBoid), 2);
         sumOfYDistToThis = sumOfYDistToThis + (calcYDistToThis);
+	*/
     }
 
     /**
@@ -187,70 +210,106 @@ public class Boid{
      * @param timeDelta the amount of time the body moves
      */
     public void move(double timeDelta){
-	double changeInXVelocity = (getCurXCohesionForce() + 
+	/*double changeInXVelocity = (getCurXCohesionForce() + 
 				    getCurXAlignmentForce() + 
 				    getCurXSeparationForce()) / 3;
 	double changeInYVelocity = (getCurYCohesionForce() + 
 				    getCurYAlignmentForce() + 
 				    getCurYSeparationForce()) / 3;
-	xVelocity = xVelocity + changeInXVelocity; 
+	*/
+	Vector2D changeInVelocity = getCurCohesionForce.getSum(getCurAlignmentForce()).getSum(getCurSeparationForce()).getScaling(1/3);
+
+	/*xVelocity = xVelocity + changeInXVelocity; 
 	yVelocity = yVelocity + changeInYVelocity;
-	xCoordinate = xCoordinate + (xVelocity * timeDelta);
-	yCoordinate = yCoordinate + (yVelocity * timeDelta);
-	sumOfXDistToThis = 0;
+	*/
+
+	velocity = velocity.getSum(changeInVelocity);
+	/*xCoordinate = xCoordinate + (xVelocity * timeDelta);
+	yCoordinate = yCoordinate + (yVelocity * timeDelta);*/
+	
+	position = position.getSum(velocity.getScaling(timeDelta));
+
+	/*sumOfXDistToThis = 0;
 	sumOfYDistToThis = 0;
 	sumOfNeighborsVelX = 0;
 	sumOfNeighborsVelY = 0;
 	sumOfNeighborsX = 0;
 	sumOfNeighborsY = 0;
+	*/
+	
+	sumOfDistanceToThis = new Vector2D(0.0, 0.0);
+	sumOfNeighborsPosition = new Vector2D(0.0, 0.0);
+	sumOfNeighborsVelocities = new Vector2D(0.0, 0.0);
+
 	countOfNeighbors = 0;
     }
+
+
+    public double calcDistance(Boid otherBoid){
+	/*return Math.sqrt((Math.pow((otherBoid.getXComp() - 
+				    getXComp()), 2)) + 
+			 (Math.pow((otherBoid.getYComp() - 
+			 getYComp()), 2)));*/
+
+	return Math.sqrt(position.getDiff(otherBoid).getMagnitude());
+    }
+
 
     /**
      * Returns the sumOfNeighbors X
      *
      */
-    public double getSumOfNeighborsX(){
+    /*    public double getSumOfNeighborsX(){
 	return sumOfNeighborsX; 
-    }
+	}*/
     
     /**
      * Returens the sumOfNeighbors Y
      *
      */
-    public double getSumOfNeighborsY(){
+    /*    public double getSumOfNeighborsY(){
 	return sumOfNeighborsY;
+    }*/
+
+
+    public Vector2D getSumOfNeighborsPosition(){
+	return sumOfNeighborsPosition;
     }
+
 
     public double getCountOfNeighbors(){
 	return countOfNeighbors;
     }
 
-    public double getSumOfNeighborsVelX(){
+    /*public double getSumOfNeighborsVelX(){
 	return sumOfNeighborsVelX;
     }
 
     public double getSumOfNeighborsVelY(){
 	return sumOfNeighborsVelY;
+	}*/
+
+    public Vector2D getSumOfNeighborsVelocities(){
+	return sumOfNeighborsVelocities;
     }
 
-    public double calcDistance(Body otherBoid){
-	double distance =  Math.sqrt((Math.pow((otherBoid.getXCoord() - 
-						this.xCoordinate), 2)) + 
-				     (Math.pow((otherBoid.getYCoord() - 
-						this.yCoordinate), 2)));
-	return distance;
-    }
 
-    public double getSumOfXDistToThis(){
+    /*    public double getSumOfXDistToThis(){
 	return sumOfXDistToThis;
     }
     
     public double getSumOfYDistToThis(){
 	return sumOfYDistToThis; 
+	}*/
+
+
+    public Vector2D getSumOfDistanceToThis(){
+	return sumOfDistanceToThis;
     }
     
-    public double getCurXCohesionForce(){
+
+
+    /*   public double getCurXCohesionForce(){
 	if(countOfNeighbors == 0){
             return 0;
 	}
@@ -262,9 +321,16 @@ public class Boid{
             return 0;
 	}
 	return (sumOfNeighborsY / countOfNeighbors) - this.yCoordinate;
+	}*/
+
+    public Vector2D getCurCohesionForce(){
+	if(countOfNeighbors == 0){
+	    return new Vector2D(0.0, 0.0);
+	}
+	return sumOfNeighborsPosition.getScaling(1/countOfNeighbors).getDiff(position);
     }
 
-    public double getCurXSeparationForce(){
+    /*    public double getCurXSeparationForce(){
 	if(countOfNeighbors == 0){
             return 0;
         }
@@ -276,9 +342,16 @@ public class Boid{
             return 0;
         }	
 	return sumOfYDistToThis / countOfNeighbors;
+	}*/
+
+    public Vector2D getCurSeparationForce(){
+	if(countOfNeighbors == 0){
+	    return new Vector2D(0.0, 0.0);
+	}
+	return sumOfDistanceToThis.getScaling(1/countOfNeighbors);
     }
-    
-    public double getCurXAlignmentForce(){
+  
+    /*public double getCurXAlignmentForce(){
 	if(countOfNeighbors == 0){
             return 0;
         }
@@ -290,6 +363,13 @@ public class Boid{
             return 0;
         }
 	return sumOfNeighborsVelY / countOfNeighbors;
+	}*/
+
+    public Vector2D getCurAlignmentForce(){
+	if(countOfNeighbors == 0){
+	    return new Vector2D(0.0, 0.0);
+	}
+	return sumOfNeighborsVelocities.getScaling(1/countOfNeighbors);
     }
 
     public String toString(){
