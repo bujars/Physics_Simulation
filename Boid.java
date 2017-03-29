@@ -33,7 +33,7 @@ public class Boid{
 		double rad, int red, int green, int blue){
         
 	position = new Vector2D(xCoord, yCoord);
-	velocities = new Vector2D(xVel, yVel);
+	velocity = new Vector2D(xVel, yVel);
 
 	/*xCoordinate = xCoord;
         yCoordinate = yCoord;
@@ -178,7 +178,7 @@ public class Boid{
 
     public void addAlignmentForceFrom(Boid otherBoid){
 
-	sumOfNeighborsVelocities = sumOfNeighborsVelocites.getSum(otherBoid.getVelocity());
+	sumOfNeighborsVelocities = sumOfNeighborsVelocities.getSum(otherBoid.getVelocity());
 
 	/*sumOfNeighborsVelX = sumOfNeighborsVelX + otherBoid.getXVel();
 	  sumOfNeighborsVelY = sumOfNeighborsVelY + otherBoid.getYVel();	*/
@@ -186,7 +186,7 @@ public class Boid{
 
     public void addSeparationForceFrom(Boid otherBoid){
 	Vector2D calcDistToThis = position.getDiff(otherBoid.getPosition());
-	Vector2D calcDistToThisDivision = calcDistToThis.getScaling(Math.pow(1/getMagnitude(), 2));
+	Vector2D calcDistToThisDivision = calcDistToThis.getScaling(Math.pow(1/calcDistToThis.getMagnitude(), 2));
 
 	sumOfDistanceToThis = sumOfDistanceToThis.getSum(calcDistToThisDivision); 
 	
@@ -217,7 +217,7 @@ public class Boid{
 				    getCurYAlignmentForce() + 
 				    getCurYSeparationForce()) / 3;
 	*/
-	Vector2D changeInVelocity = getCurCohesionForce.getSum(getCurAlignmentForce()).getSum(getCurSeparationForce()).getScaling(1/3);
+	Vector2D changeInVelocity = (((getCurCohesionForce().getSum(getCurAlignmentForce())).getSum(getCurSeparationForce())).getScaling(1/3));
 
 	/*xVelocity = xVelocity + changeInXVelocity; 
 	yVelocity = yVelocity + changeInYVelocity;
@@ -251,7 +251,7 @@ public class Boid{
 			 (Math.pow((otherBoid.getYComp() - 
 			 getYComp()), 2)));*/
 
-	return Math.sqrt(position.getDiff(otherBoid).getMagnitude());
+	return ((position.getDiff(otherBoid.getPosition())).getMagnitude());
     }
 
 
@@ -372,11 +372,11 @@ public class Boid{
 	return sumOfNeighborsVelocities.getScaling(1/countOfNeighbors);
     }
 
-    public String toString(){
+    /*public String toString(){
         return "XCoord: " + xCoordinate +" YCoord: " + yCoordinate + 
 	    " XVeloc: " + xVelocity + " YVeloc: " + yVelocity + 
 	    " Radius: " + radius + " RGB: " + rgb[0] + " " + 
 	    rgb[1] + " " + rgb[2];
-    }
+    }*/
 
 }
