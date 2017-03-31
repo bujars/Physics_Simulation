@@ -95,7 +95,7 @@ public class Boid{
 
     public void addSeparationForceFrom(Boid otherBoid){
 	Vector2D calcDistToThis = position.getDiff(otherBoid.getPosition());
-	Vector2D calcDistToThisDivision = calcDistToThis.getScaling(Math.pow(1/calcDistToThis.getMagnitude(), 2));
+	Vector2D calcDistToThisDivision = calcDistToThis.getScaling(Math.pow(1.0/calcDistToThis.getMagnitude(), 2));
 
 	sumOfDistanceToThis = sumOfDistanceToThis.getSum(calcDistToThisDivision); 
     }
