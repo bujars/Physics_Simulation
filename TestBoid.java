@@ -424,84 +424,187 @@ public class TestBoid {
 
 
     }
-    /*
-    @Test
-	public void testGetSumOfNeighborsX(){
-	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
-        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
-        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
-        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
-	double delta = 0.0001;
 
-	//Since we didnt add anything, sum should be zero
-	assertEquals(0, b0.getSumOfNeighborsX(), delta);
-    }
-    
-    @Test
-	public void testGetSumOfNeighborsY(){
-	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
-        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
-        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
-        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
-	double delta = 0.0001;
-
-	//Since we didnt add anything, sum should be zero                                               
-        assertEquals(0, b0.getSumOfNeighborsY(), delta);
-    }
-
-    @Test
-	public void testGetSumOfXVelocities(){
-	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
-        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
-        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
-        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
-	double delta = 0.0001;
-    
-	//Nothing added to variable   
-	assertEquals(0, b0.getSumOfNeighborsVelX(), delta);
-    }
-    
-    @Test
-	public void testGetSumOfYVelocities(){
-	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
-        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
-        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
-        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
-	double delta = 0.0001;
-
-	//Nothing added to variable
-	assertEquals(0, b0.getSumOfNeighborsVelY(), delta);
-    }
     
     @Test
 	public void testAddAlignmentForceFrom(){
-	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
-        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
-        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
-        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
-	double delta = 0.0001;
+	Boid b0 = new Boid(0.0, 0.0, 0.0, 1.0, 5.0, 255, 255, 255);
+        Boid b1 = new Boid(3.0, 2.0, -2.0, 0.0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1.0, 4.0, -3.0, -3.0, 5.0, 255, 0, 0);
+        Boid b3 = new Boid(-1.0, 2.0, -1.0, 1.0, 5.0, 0, 255, 0);
+        double delta = 1E-4;
 
-	b0.addAlignmentForceFrom(b1);
-	b0.addAlignmentForceFrom(b2);
-	b0.addAlignmentForceFrom(b3);
-	
-	assertEquals(-6, b0.getSumOfNeighborsVelX(), delta);
-	assertEquals(-2, b0.getSumOfNeighborsVelY(), delta);
+        Vector2D expCo = null;
+        Vector2D expSep = null;
+        Vector2D expAli = null;
+
+        b0.addForceFrom(b1);
+        expAli = new Vector2D(-2.0, 0.0);
+        String msgAli01 = "Actual: " + b0.getCurAlignmentForce() + "\n"
+            + "is not close to\n" + "Expected: " + expAli;
+        assertTrue(msgAli01, b0.getCurAlignmentForce().isCloseTo(expAli, delta));
+
+        b0.addForceFrom(b2);
+        expAli = new Vector2D(-2.5, -1.5);
+        String msgAli02 = "Actual: " + b0.getCurAlignmentForce() + "\n"
+            + "is not close to\n" + "Expected: " + expAli;
+        assertTrue(msgAli02, b0.getCurAlignmentForce().isCloseTo(expAli, delta));
+
+
+        b0.addForceFrom(b3);
+        expAli = new Vector2D(-2.0, -0.66667);
+        String msgAli03 = "Actual: " + b0.getCurAlignmentForce() + "\n"
+            + "is not close to\n" + "Expected: " + expAli;
+        assertTrue(msgAli03, b0.getCurAlignmentForce().isCloseTo(expAli, delta));
+
+        b1.addForceFrom(b0);
+        expAli = new Vector2D(0.0, 1.0);
+        String msgAli10 = "Actual: " + b1.getCurAlignmentForce() + "\n"
+            + "is not close to\n" + "Expected: " + expAli;
+        assertTrue(msgAli10, b1.getCurAlignmentForce().isCloseTo(expAli, delta));
+
+        b1.addForceFrom(b2);
+        expAli = new Vector2D(-1.5, -1.0);
+        String msgAli11 = "Actual: " + b1.getCurAlignmentForce() + "\n"
+            + "is not close to\n" + "Expected: " + expAli;
+        assertTrue(msgAli11, b1.getCurAlignmentForce().isCloseTo(expAli, delta));
+
+	b1.addForceFrom(b3);
+        expAli = new Vector2D(-1.33333, -0.33333);
+        String msgAli12 = "Actual: " + b1.getCurAlignmentForce() + "\n"
+            + "is not close to\n" + "Expected: " + expAli;
+        assertTrue(msgAli12, b1.getCurAlignmentForce().isCloseTo(expAli, delta));
+
+
+	b0 = new Boid(0.0, 0.0, 0.0, 1.0, 2.0, 255, 255, 255);
+        b1 = new Boid(3.0, 2.0, -2.0, 0.0, 2.0, 0, 0, 255);
+        b2 = new Boid(1.0, 4.0, -3.0, -3.0, 2.0, 255, 0, 0);
+        b3 = new Boid(-1.0, 2.0, -1.0, 1.0, 2.0, 0, 255, 0);
+
+        b0.addForceFrom(b1);
+        expAli = new Vector2D(0.0, 0.0);
+        String msgAli001 = "Actual: " + b0.getCurAlignmentForce() + "\n"
+            + "is not close to\n" + "Expected: " + expAli;
+        assertTrue(msgAli001, b0.getCurAlignmentForce().isCloseTo(expAli, delta));
+
+        b0.addForceFrom(b2);
+        expAli = new Vector2D(0.0, 0.0);
+        String msgAli002 = "Actual: " + b0.getCurAlignmentForce() + "\n"
+            + "is not close to\n" + "Expected: " + expAli;
+        assertTrue(msgAli002, b0.getCurAlignmentForce().isCloseTo(expAli, delta));
+
+        b0.addForceFrom(b3);
+        expAli = new Vector2D(0.0, 0.0);
+        String msgAli003 = "Actual: " + b0.getCurAlignmentForce() + "\n"
+            + "is not close to\n" + "Expected: " + expAli;
+        assertTrue(msgAli003, b0.getCurAlignmentForce().isCloseTo(expAli, delta));
+
+        b1.addForceFrom(b0);
+        String msgAli100 = "Actual: " + b1.getCurAlignmentForce() + "\n"
+            + "is not close to\n" + "Expected: " + expAli;
+        assertTrue(msgAli100, b1.getCurAlignmentForce().isCloseTo(expAli, delta));
+
+        expAli = new Vector2D(0.0, 0.0);
+        b1.addForceFrom(b2);
+        String msgAli110 = "Actual: " + b1.getCurAlignmentForce() + "\n"
+            + "is not close to\n" + "Expected: " + expAli;
+        assertTrue(msgAli110, b1.getCurAlignmentForce().isCloseTo(expAli, delta));
+
+        b1.addForceFrom(b3);
+        expAli = new Vector2D(0.0, 0.0);
+        String msgAli120 = "Actual: " + b1.getCurAlignmentForce() + "\n"
+            + "is not close to\n" + "Expected: " + expAli;
+        assertTrue(msgAli120, b1.getCurAlignmentForce().isCloseTo(expAli, delta));
+
     }
-
+    
     @Test 
 	public void testAddSeparationForceFrom(){
-	Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
-        Boid b1 = new Boid(3, 2, -2, 0, 4.1, 0, 0, 255);
-        Boid b2 = new Boid(1, 4, -3, -3, 5, 255, 0, 0);
-        Boid b3 = new Boid(-1, 2, -1, 1, 5, 0, 255, 0);
-	double delta = 0.00001;
-   
-	b0.addSeparationForceFrom(b1);
-	assertEquals(-0.23077, b0.getSumOfXDistToThis(), delta);
-	assertEquals(-0.15385, b0.getSumOfYDistToThis(), delta);
-    }
+	Boid b0 = new Boid(0.0, 0.0, 0.0, 1.0, 5.0, 255, 255, 255);
+        Boid b1 = new Boid(3.0, 2.0, -2.0, 0.0, 4.1, 0, 0, 255);
+        Boid b2 = new Boid(1.0, 4.0, -3.0, -3.0, 5.0, 255, 0, 0);
+        Boid b3 = new Boid(-1.0, 2.0, -1.0, 1.0, 5.0, 0, 255, 0);
+	Double delta = 1E-4;
 
+	Vector2D expCo = null;
+	Vector2D expSep = null;
+	Vector2D expAli = null;
+	
+	b0.addForceFrom(b1);
+	expSep = new Vector2D(-0.23077, -0.15385);
+	String msgSep01 = "Actual: " + b0.getCurSeparationForce() + "\n"
+            + "is not close to\n" + "Expected: " + expSep;
+	assertTrue(msgSep01, b0.getCurSeparationForce().isCloseTo(expSep, delta));
+    
+	b0.addForceFrom(b2);
+	expSep = new Vector2D(-0.14480, -0.19457);
+	String msgSep02 = "Actual: " + b0.getCurSeparationForce() + "\n"
+	+ "is not close to\n" + "Expected: " + expSep;
+	assertTrue(msgSep02, b0.getCurSeparationForce().isCloseTo(expSep, delta));
+	
+	b0.addForceFrom(b3);
+	expSep = new Vector2D(-0.02986, -0.26305);
+	String msgSep03 = "Actual: " + b0.getCurSeparationForce() + "\n"
+            + "is not close to\n" + "Expected: " + expSep;
+	assertTrue(msgSep03, b0.getCurSeparationForce().isCloseTo(expSep, delta));
+	
+	b1.addForceFrom(b0);
+	expSep = new Vector2D(0.23077, 0.15385);
+	String msgSep10 = "Actual: " + b1.getCurSeparationForce() + "\n"
+            + "is not close to\n" + "Expected: " + expSep;
+	assertTrue(msgSep10, b1.getCurSeparationForce().isCloseTo(expSep, delta));
+	
+	b1.addForceFrom(b2);
+	expSep = new Vector2D(0.24038, -0.04808);
+	String msgSep11 = "Actual: " + b1.getCurSeparationForce() + "\n"
+            + "is not close to\n" + "Expected: " + expSep;
+	assertTrue(msgSep11, b1.getCurSeparationForce().isCloseTo(expSep, delta));
+	
+	b1.addForceFrom(b3);
+	expSep = new Vector2D(0.24359, -0.03205);
+	String msgSep12 = "Actual: " + b1.getCurSeparationForce() + "\n"
+	+ "is not close to\n" + "Expected: " + expSep;
+	assertTrue(msgSep12, b1.getCurSeparationForce().isCloseTo(expSep, delta));
+
+	b0 = new Boid(0.0, 0.0, 0.0, 1.0, 2.0, 255, 255, 255);                                               
+        b1 = new Boid(3.0, 2.0, -2.0, 0.0, 2.0, 0, 0, 255);                                                  
+        b2 = new Boid(1.0, 4.0, -3.0, -3.0, 2.0, 255, 0, 0);                                                 
+        b3 = new Boid(-1.0, 2.0, -1.0, 1.0, 2.0, 0, 255, 0);  
+	
+
+	b0.addForceFrom(b1);
+	expSep = new Vector2D(0.0, 0.0);
+	String msgSep001 = "Actual: " + b0.getCurSeparationForce() + "\n"
+	+ "is not close to\n" + "Expected: " + expSep;
+	assertTrue(msgSep001, b0.getCurSeparationForce().isCloseTo(expSep, delta));
+
+	b0.addForceFrom(b2);
+	String msgSep002 = "Actual: " + b0.getCurSeparationForce() + "\n"
+	+ "is not close to\n" + "Expected: " + expSep;
+	assertTrue(msgSep002, b0.getCurSeparationForce().isCloseTo(expSep, delta));
+
+	b0.addForceFrom(b3);
+	String msgSep003 = "Actual: " + b0.getCurSeparationForce() + "\n"
+	+ "is not close to\n" + "Expected: " + expSep;
+	assertTrue(msgSep003, b0.getCurSeparationForce().isCloseTo(expSep, delta));
+
+	b1.addForceFrom(b0);
+	String msgSep100 = "Actual: " + b1.getCurSeparationForce() + "\n"
+	+ "is not close to\n" + "Expected: " + expSep;
+	assertTrue(msgSep100, b1.getCurSeparationForce().isCloseTo(expSep, delta));
+
+	b1.addForceFrom(b2);
+	String msgSep110 = "Actual: " + b1.getCurSeparationForce() + "\n"
+	+ "is not close to\n" + "Expected: " + expSep;
+	assertTrue(msgSep110, b1.getCurSeparationForce().isCloseTo(expSep, delta));
+
+	b1.addForceFrom(b3);
+	expSep = new Vector2D(0.0, 0.0);
+	String msgSep120 = "Actual: " + b1.getCurSeparationForce() + "\n"
+            + "is not close to\n" + "Expected: " + expSep;
+	    
+	}
+	/*
   @Test
       public void testCalcDistance(){
       Boid b0 = new Boid(0, 0, 0, 1, 5, 255, 255, 255);
