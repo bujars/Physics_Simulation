@@ -70,7 +70,7 @@ public class Boid{
      *        two dimensional boid
      */
     public void addForceFrom(Boid otherBoid){
-	if(radius >= calcDistance(otherBoid)){
+	if(radius > calcDistance(otherBoid)){
 	    addCohesionForceFrom(otherBoid);
 	    addAlignmentForceFrom(otherBoid);
 	    addSeparationForceFrom(otherBoid);
@@ -109,7 +109,7 @@ public class Boid{
      * @param timeDelta the amount of time the body moves
      */
     public void move(double timeDelta){
-	Vector2D changeInVelocity = (((getCurCohesionForce().getSum(getCurAlignmentForce())).getSum(getCurSeparationForce())).getScaling(1/3));
+	Vector2D changeInVelocity = (((getCurCohesionForce().getSum(getCurAlignmentForce())).getSum(getCurSeparationForce())).getScaling(1.0/3.0));
 	velocity = velocity.getSum(changeInVelocity);
 	position = position.getSum(velocity.getScaling(timeDelta));
 	sumOfDistanceToThis = new Vector2D(0.0, 0.0);
@@ -143,21 +143,21 @@ public class Boid{
 	if(countOfNeighbors == 0){
 	    return new Vector2D(0.0, 0.0);
 	}
-	return sumOfNeighborsPosition.getScaling(1/countOfNeighbors).getDiff(position);
+	return (sumOfNeighborsPosition.getScaling(1.0/countOfNeighbors)).getDiff(position);
     }
 
     public Vector2D getCurSeparationForce(){
 	if(countOfNeighbors == 0){
 	    return new Vector2D(0.0, 0.0);
 	}
-	return sumOfDistanceToThis.getScaling(1/countOfNeighbors);
+	return sumOfDistanceToThis.getScaling(1.0/countOfNeighbors);
     }
   
     public Vector2D getCurAlignmentForce(){
 	if(countOfNeighbors == 0){
 	    return new Vector2D(0.0, 0.0);
 	}
-	return sumOfNeighborsVelocities.getScaling(1/countOfNeighbors);
+	return sumOfNeighborsVelocities.getScaling(1.0/countOfNeighbors);
     }
 
     /*public String toString(){
