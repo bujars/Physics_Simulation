@@ -1,6 +1,8 @@
-public class BoidUniverseReader extends UniverseReader{
+public class BoidUniverseReader{
     
     private int numberOfBoids;
+    private double universeRadius;
+    private Boid[] boids;
 
     public BoidUniverseReader(String fileName){
         In input = new In(fileName);
@@ -8,20 +10,30 @@ public class BoidUniverseReader extends UniverseReader{
         numberOfBoids = numberBoid;
         double uniRadius = input.readDouble();
         universeRadius = uniRadius;
-        bodies = new Body[numberOfBoids];
+        boids = new Body[numberOfBoids];
         for(int i = 0; i < numberOfBoids; i++)
 	    {
-		bodies[i] = new Boid(input.readDouble(), input.readDouble(), input.readDouble(), input.readDouble(), input.readDouble(), input.readInt(), input.readInt(), input.readInt());
+		boids[i] = new Boid(input.readDouble(), input.readDouble(), input.readDouble(), input.readDouble(), input.readDouble(), input.readInt(), input.readInt(), input.readInt());
 	    }
     }
 
+    public Boid[] getBoids(){
+        return boids;
+    }
+
+    public double getUniverseRadius(){
+        return universeRadius;
+    }
+
+
+
     public static void main(String[] args){
         BoidUniverseReader test0 = new BoidUniverseReader("boidtest0.txt");
-        Body[] test0Boids = test0.getBodies();
+        Body[] test0Boids = getBoids();
         for(int i = 0; i < test0Boids.length; i++){
             System.out.println(test0Boids[i]);
         }
-        double test0Radius = test0.getUniverseRadius();
+        double test0Radius = getUniverseRadius();
         System.out.println(test0Radius);
     }
 

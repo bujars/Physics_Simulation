@@ -109,7 +109,7 @@ public class Boid{
      * @param timeDelta the amount of time the body moves
      */
     public void move(double timeDelta){
-	Vector2D changeInVelocity = (((getCurCohesionForce().getSum(getCurAlignmentForce())).getSum(getCurSeparationForce())).getScaling(1.0/3.0));
+	Vector2D changeInVelocity = ((getCurCohesionForce().getSum(getCurAlignmentForce())).getSum(getCurSeparationForce()));
 	velocity = velocity.getSum(changeInVelocity);
 	position = position.getSum(velocity.getScaling(timeDelta));
 	sumOfDistanceToThis = new Vector2D(0.0, 0.0);
@@ -143,7 +143,7 @@ public class Boid{
 	if(countOfNeighbors == 0){
 	    return new Vector2D(0.0, 0.0);
 	}
-	return (sumOfNeighborsPosition.getScaling(1.0/countOfNeighbors)).getDiff(position);
+	return ((sumOfNeighborsPosition.getScaling(1.0/countOfNeighbors)).getDiff(position)).getDiff(velocity);
     }
 
     public Vector2D getCurSeparationForce(){
@@ -157,7 +157,7 @@ public class Boid{
 	if(countOfNeighbors == 0){
 	    return new Vector2D(0.0, 0.0);
 	}
-	return sumOfNeighborsVelocities.getScaling(1.0/countOfNeighbors);
+	return (sumOfNeighborsVelocities.getScaling(1.0/countOfNeighbors)).getDiff(velocity);
     }
 
     /*public String toString(){

@@ -6,7 +6,7 @@ public class BoidSim {
                                "[r-value] [b-value] [g-value]");
             return;
         }
-        UniverseReader ur = new BoidUniverseReader(args[0]);
+        BoidUniverseReader ur = new BoidUniverseReader(args[0]);
         double timeDelta = .001;
         if(args.length > 1){
             timeDelta = Double.parseDouble(args[1]);
