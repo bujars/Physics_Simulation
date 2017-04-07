@@ -167,4 +167,6 @@ public class Boid{
 	    rgb[1] + " " + rgb[2];
     }*/
 
+	
+	
 }
