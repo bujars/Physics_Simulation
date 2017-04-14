@@ -17,7 +17,7 @@ public class BoidSim {
             b = Integer.parseInt(args[3]);
             g = Integer.parseInt(args[4]);
         }
-	PhysicsEngine pe = new BoidEngine(ur.getBodies(), timeDelta,
+	BoidPhysicsEngine pe = new BoidEngine(ur.getBodies(), timeDelta,
 					 ur.getUniverseRadius(),
 					 r, b, g);
         pe.run();
