@@ -7,7 +7,7 @@ import java.awt.Color;
     protected double uniRad;
     protected Boid[] boids;
     
-    public PhysicsEngine(Boid[] boids, double timeDelta,
+    public BoidPhysicsEngine(Boid[] boids, double timeDelta,
 			 double universeRadius,
 			 int bgRed, int bgBlue, int bgGreen){
 	this.dt = timeDelta;
@@ -54,7 +54,7 @@ import java.awt.Color;
 	    if(boidRad < 0){
 		boidRad = (this.uniRad/100);
 	    }
-	    StdDraw.filledCircle(boids[i].getXComp(), boids[i].getYComp(), boidRad);
+	    StdDraw.filledCircle((boids[i].getPosition()).getXComp(), (boids[i].getPosition()).getYComp(), boidRad);
 	}
 	// TODO: Copy the offscreen canvs to the onscreen canvas
 	StdDraw.show();

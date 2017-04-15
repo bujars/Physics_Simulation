@@ -1,6 +1,6 @@
 public class BoidEngine extends BoidPhysicsEngine{
 
-    public BoidEngine(Boid[] bodies, double timeDelta, double universeRadius,
+    public BoidEngine(Boid[] boids, double timeDelta, double universeRadius,
 		     int bgRed, int bgBlue, int bgGreen){
         super(boids, timeDelta, universeRadius, bgRed, bgBlue, bgGreen);
     }
