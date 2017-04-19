@@ -52,14 +52,14 @@ import java.awt.Color;
 	    StdDraw.setPenColor(rGB[0], rGB[1], rGB[2]);
 	    double boidRad = (boids[i].getRadius()/100);
 	    if(boidRad < 0){
-		boidRad = (this.uniRad/100);
+		boidRad = (this.uniRad/50);
 	    }
 	    StdDraw.filledCircle((boids[i].getPosition()).getXComp(), (boids[i].getPosition()).getYComp(), boidRad);
 	}
 	// TODO: Copy the offscreen canvs to the onscreen canvas
 	StdDraw.show();
 	// TODO: Wait for a short amount of time
-	StdDraw.pause(1000); //might have to cast dt, ask stern
+	StdDraw.pause(100); //might have to cast dt, ask stern
     }
     
     /**
