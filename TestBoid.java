@@ -288,14 +288,14 @@ public class TestBoid {
 	assertTrue(msgSep12, b1.getCurSeparationForce().isCloseTo(expSep, delta));
 	assertTrue(msgAli12, b1.getCurAlignmentForce().isCloseTo(expAli, delta));
 
-
+	*/
 
 	b0 = new Boid(0.0, 0.0, 0.0, 1.0, 2.0, 255, 255, 255);
 	b1 = new Boid(3.0, 2.0, -2.0, 0.0, 2.0, 0, 0, 255);
 	b2 = new Boid(1.0, 4.0, -3.0, -3.0, 2.0, 255, 0, 0);
 	b3 = new Boid(-1.0, 2.0, -1.0, 1.0, 2.0, 0, 255, 0);              
 
-	*/
+	
 	//Testing B0 with small radius
 
 	b0.addForceFrom(b1);
