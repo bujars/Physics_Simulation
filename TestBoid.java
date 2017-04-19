@@ -620,6 +620,21 @@ public class TestBoid {
 	assertTrue(msgVel02, b1.getVelocity().isCloseTo(expNewVel, delta));
 	assertTrue(msgPos02, b1.getPosition().isCloseTo(expNewPos, delta));
 
+
+
+
+
+	b0 = new Boid(0.0, 0.0, 0.0, 1.0, 2.0, 255, 255, 255);
+	b1 = new Boid(3.0, 2.0, -2.0, 0.0, 2.0, 0, 0, 255);
+	b2 = new Boid(1.0, 4.0, -3.0, -3.0, 2.0, 255, 0, 0);
+	b3 = new Boid(-1.0, 2.0, -1.0, 1.0, 2.0, 0, 255, 0);
+	b0.addForceFrom(b1);
+	b0.addForceFrom(b2);
+	b0.addForceFrom(b3);
+	b1.addForceFrom(b0);
+	b1.addForceFrom(b2);
+	b1.addForceFrom(b3);
+
 	//Small Radius
 	b0.move(timeDelta);
 	b1.move(timeDelta);
