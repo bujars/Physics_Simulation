@@ -50,16 +50,17 @@ import java.awt.Color;
 	for(int i = 0; i < boids.length; i++){
 	    rGB = boids[i].getRGB();
 	    StdDraw.setPenColor(rGB[0], rGB[1], rGB[2]);
-	    double boidRad = (boids[i].getRadius()/100);
+	    double boidRad = (boids[i].getRadius()/50);
 	    if(boidRad < 0){
-		boidRad = (this.uniRad/50);
+		//boidRad = (this.uniRad/50);
+		boidRad = 20;
 	    }
 	    StdDraw.filledCircle((boids[i].getPosition()).getXComp(), (boids[i].getPosition()).getYComp(), boidRad);
 	}
 	// TODO: Copy the offscreen canvs to the onscreen canvas
 	StdDraw.show();
 	// TODO: Wait for a short amount of time
-	StdDraw.pause(100); //might have to cast dt, ask stern
+	StdDraw.pause(50); //might have to cast dt, ask stern
     }
     
     /**
