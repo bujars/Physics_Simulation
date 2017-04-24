@@ -111,6 +111,27 @@ public class Vector2D{
     }
 
     /**
+     * Returns a scaled verson of this Vector2D when its 
+     * magnitude exceeds the maximum magnitude of is below
+     * the minimum magnitude, returns a new Vector2D pointing 
+     * in the same direction whos magnitude is the maximum
+     * magnitude. When the magnitude of this Vector2D is below
+     * the minimum magnitude, returns a Vector2D pointing in the same 
+     * direction whose magnitude is the minimim magnitude.
+     * When maginutde of this Vector2D is between the maximum and 
+     * minimum magnitude, returns this Vector2D.
+     * @param maxMag - the maximum magnitude
+     * @param minMag - the minimum magnitude
+     * @precondition maxMag >= minMag && minMag >= 0.0
+     * @returns a Vector2D scaled in the manner described above
+     **/
+    public Vector2D getCappedVersion(double maxMag, double minMag){
+	return new Vector2D(0.0, 0.0);
+    }
+
+
+
+    /**
      * Returns a String representation of this vector
      * @return a String representation of this vector
      */

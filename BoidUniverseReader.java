@@ -13,7 +13,8 @@ public class BoidUniverseReader{
         boids = new Boid[numberOfBoids];
         for(int i = 0; i < numberOfBoids; i++)
 	    {
-		boids[i] = new Boid(input.readDouble(), input.readDouble(), input.readDouble(), input.readDouble(), input.readDouble(), input.readInt(), input.readInt(), input.readInt());
+		//check if adding the radius here is okay??
+		boids[i] = new Boid(input.readDouble(), input.readDouble(), input.readDouble(), input.readDouble(), input.readDouble(), universeRadius, input.readInt(), input.readInt(), input.readInt());
 	    }
     }
 
