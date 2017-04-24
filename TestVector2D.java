@@ -92,4 +92,21 @@ public class TestVector2D{
 	    "within 0.9";
 	assertFalse(msg1, actual1);
     }
+    
+    @Test
+	public void testGetCappedVersion(){
+	Vector2D v0 = new Vector2D(3.0, 4.0);
+	Vector2D v1 = new Vector2D(3.0, 2.0); 
+	Vector2D v2 = new Vector2D(3.0, 4.0);
+	Vector2D v3 = new Vector2D(2.0, 1.0);
+	Vector2D v4 = new Vector2D(1.0, 0.0);
+	Vector2D v5 = new Vector2D(1.0, 0.0);
+	
+	Vector2D exp0 = new Vector2D(1.2, 1.6);
+	Vector2D exp1 =new Vector2D(1.2, 1.6);
+	Vector2D exp2 =new Vector2D(3.0, 4.0);
+	Vector2D exp3 =new Vector2D(2.0, 1.0);
+	Vector2D exp4 =new Vector2D(1.0, 0.0);
+	Vector2D exp5 =new Vector2D(2.0, 0.0);
+    }
 }
