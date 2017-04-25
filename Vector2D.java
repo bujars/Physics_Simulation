@@ -126,17 +126,15 @@ public class Vector2D{
      * @returns a Vector2D scaled in the manner described above
      **/
     public Vector2D getCappedVersion(double maxMag, double minMag){
-	Vector ret = new Vector2D(xComp, yComp);
-	Vector retMag = ret.getMagnitude();
+	Vector2D ret = new Vector2D(this.xComp, this.yComp);
+	double retMag = ret.getMagnitude();
 	if(retMag > maxMag){ 
-	    ret = ret.getNormalization().getScaling(maxMag);
+	    ret = (ret.getNormalization()).getScaling(maxMag);
 	}
 	else if(retMag < minMag){
-	    ret = ret.getNormalization().getScaling(minMag);
+	    ret = (ret.getNormalization()).getScaling(minMag);
 	}
-	else{
-	    return ret; 
-	}
+	return ret;
     }
 
 

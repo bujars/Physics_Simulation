@@ -342,6 +342,14 @@ public class TestBoid {
     
     @Test
 	public void testMove(){
+	//Testing Move with Walls wrapping
+	Boid top = new Boid(0.0, 0.0, 0.0, 1.0, 5.0, 255, 255, 255);
+        Boid left = new Boid(3.0, 2.0, -2.0, 0.0, 4.1, 0, 0, 255);
+        Boid botNdRight = new Boid(1.0, 4.0, -3.0, -3.0, 5.0, 255, 0, 0);
+        
+
+
+
 	Boid b0 = new Boid(0.0, 0.0, 0.0, 1.0, 5.0, 255, 255, 255);
 	Boid b1 = new Boid(3.0, 2.0, -2.0, 0.0, 4.1, 0, 0, 255);
 	Boid b2 = new Boid(1.0, 4.0, -3.0, -3.0, 5.0, 255, 0, 0);
@@ -378,9 +386,6 @@ public class TestBoid {
 	    + "is not close to\n" + "Expected: " + expNewPos; 
 	assertTrue(msgVel02, b1.getVelocity().isCloseTo(expNewVel, delta));
 	assertTrue(msgPos02, b1.getPosition().isCloseTo(expNewPos, delta));
-
-
-
 
 
 	b0 = new Boid(0.0, 0.0, 0.0, 1.0, 2.0, 255, 255, 255);
@@ -516,4 +521,5 @@ public class TestBoid {
             + "is not close to\n" + "Expected: " + expSep;
 	assertTrue(msgSep12, b1.getCurSeparationForce().isCloseTo(expSep, delta));
 	}
+    
 }

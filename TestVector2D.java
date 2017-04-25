@@ -103,10 +103,30 @@ public class TestVector2D{
 	Vector2D v5 = new Vector2D(1.0, 0.0);
 	
 	Vector2D exp0 = new Vector2D(1.2, 1.6);
-	Vector2D exp1 =new Vector2D(1.2, 1.6);
+	Vector2D exp1 =new Vector2D(2.5, 1.7);
 	Vector2D exp2 =new Vector2D(3.0, 4.0);
 	Vector2D exp3 =new Vector2D(2.0, 1.0);
 	Vector2D exp4 =new Vector2D(1.0, 0.0);
 	Vector2D exp5 =new Vector2D(2.0, 0.0);
+	
+	Vector2D actual00 = v0.getCappedVersion(2.0, 1.0);
+	Vector2D actual01 = v1.getCappedVersion(3.0, 1.0);
+	Vector2D actual02 = v2.getCappedVersion(5.0, 2.0);
+	Vector2D actual03 = v3.getCappedVersion(5.0, 2.0);
+	Vector2D actual04 = v4.getCappedVersion(2.0, 1.0);
+	Vector2D actual05 = v5.getCappedVersion(3.0, 2.0);
+
+	String msg0 = "Actual: " + actual00 + "\n" + "is not close to\n" + "Expected: " + exp0;
+	String msg1 = "Actual: " + actual01 + "\n" + "is not close to\n" + "Expected: " + exp1;
+	String msg2 = "Actual: " + actual02 + "\n" + "is not close to\n" + "Expected: " + exp2;
+        String msg3 = "Actual: " + actual03 + "\n" + "is not close to\n" + "Expected: " + exp3;
+	String msg4 = "Actual: " + actual04 + "\n" + "is not close to\n" + "Expected: " + exp4;
+        String msg5 = "Actual: " + actual05 + "\n" + "is not close to\n" + "Expected: " + exp5;
+	assertTrue(msg0, actual00.isCloseTo(exp0, 1E-1));
+	assertTrue(msg1, actual01.isCloseTo(exp1, 1E-1));
+	assertTrue(msg2, actual02.isCloseTo(exp2, 1E-1));
+        assertTrue(msg3, actual03.isCloseTo(exp3, 1E-1));
+	assertTrue(msg4, actual04.isCloseTo(exp4, 1E-1));
+        assertTrue(msg5, actual05.isCloseTo(exp5, 1E-1));
     }
 }

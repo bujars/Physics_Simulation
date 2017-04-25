@@ -23,20 +23,20 @@ public class Boid{
 	sumOfDistanceToThis = new Vector2D(0.0, 0.0);
     
     }
-
+    /*
     public Boid(double xCoord, double yCoord, double xVel, double yVel,
-                double rad, double unirad, int red, int green, int blue){
+                double rad, int red, int green, int blue){
 
         position = new Vector2D(xCoord, yCoord);
         velocity = new Vector2D(xVel, yVel);
         radius = rad;
-	universeRadius = unirad;
+	universeRadius = getUniverseRadius();
         rgb = new int[]{red, green, blue};
         sumOfNeighborsPosition = new Vector2D(0.0, 0.0);
         sumOfNeighborsVelocities = new Vector2D(0.0, 0.0);
         sumOfDistanceToThis = new Vector2D(0.0, 0.0);
 
-    }
+	}*/
 
 
     public Vector2D getPosition(){
@@ -131,13 +131,13 @@ public class Boid{
 	Vector2D positionChange = position.getSum(velocity.getScaling(timeDelta));
 	if(positionChange.getXComp() > universeRadius){
 	    if(positionChange.getYComp() > universeRadius){
-		positionChange = position.getSum(-universeRadius);
+		positionChange = new Vector2D(position.getXComp() + -universeRadius, position.getYComp()-universeRadius);
 	    }
 	    else{
 		positionChange = new Vector2D(position.getXComp() + -universeRadius, position.getYComp());
 	    }
 	}
-	else if(positionChange.getYComp > universeRadius){
+	else if(positionChange.getYComp() > universeRadius){
 	    positionChange = new Vector2D(position.getXComp(), -universeRadius + position.getYComp());
 	}
 	else {
