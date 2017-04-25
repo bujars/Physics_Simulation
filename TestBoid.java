@@ -343,19 +343,32 @@ public class TestBoid {
     @Test
 	public void testMove(){
 	//Testing Move with Walls wrapping
-	Boid top = new Boid(0.0, 0.0, 0.0, 1.0, 5.0, 255, 255, 255);
-        Boid left = new Boid(3.0, 2.0, -2.0, 0.0, 4.1, 0, 0, 255);
-        Boid botNdRight = new Boid(1.0, 4.0, -3.0, -3.0, 5.0, 255, 0, 0);
-        
+	Boid left = new Boid(-4.0, 1.0, -1.0, 1.0, 2.5, 255, 255, 255, 5);
+        Boid top = new Boid(1.0, 2.5, 1.0, 2.0, 2.5, 0, 0, 255, 5);
+        Boid botNdRight = new Boid(3.5, -4.0, 1.0, -0.5, 2.5, 255, 0, 0, 5);
+	double timeDelta = 2; //for top
+	double delta = 1E-1;
 
+	top.move(timeDelta);
+	Vector2D expNewTopVel = new Vector2D(1, 2.0);
+        Vector2D expNewTopPos = new Vector2D(3, -3.5);
+        String msgVelTop = "Actual: " + top.getVelocity() + "\n"
+            + "is not close to\n" + "Expected: " + expNewTopVel;
+        String msgPosTop = "Actual: " + top.getPosition() + "\n"
+            + "is not close to\n" + "Expected: " + expNewTopPos;
+
+        assertTrue(msgVelTop, top.getVelocity().isCloseTo(expNewTopVel, delta));
+	assertTrue(msgPosTop, top.getPosition().isCloseTo(expNewTopPos, delta));
+        
+	
 
 
 	Boid b0 = new Boid(0.0, 0.0, 0.0, 1.0, 5.0, 255, 255, 255);
 	Boid b1 = new Boid(3.0, 2.0, -2.0, 0.0, 4.1, 0, 0, 255);
 	Boid b2 = new Boid(1.0, 4.0, -3.0, -3.0, 5.0, 255, 0, 0);
 	Boid b3 = new Boid(-1.0, 2.0, -1.0, 1.0, 5.0, 0, 255, 0);
-	double delta = 1E-3;
-	double timeDelta = 10;	
+	delta = 1E-3;
+	timeDelta = 10;	
 
 	b0.addForceFrom(b1);
 	b0.addForceFrom(b2);

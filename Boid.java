@@ -23,20 +23,20 @@ public class Boid{
 	sumOfDistanceToThis = new Vector2D(0.0, 0.0);
     
     }
-    /*
+    
     public Boid(double xCoord, double yCoord, double xVel, double yVel,
-                double rad, int red, int green, int blue){
+                double rad, int red, int green, int blue, int uniRad){
 
         position = new Vector2D(xCoord, yCoord);
         velocity = new Vector2D(xVel, yVel);
         radius = rad;
-	universeRadius = getUniverseRadius();
+	universeRadius = uniRad;
         rgb = new int[]{red, green, blue};
         sumOfNeighborsPosition = new Vector2D(0.0, 0.0);
         sumOfNeighborsVelocities = new Vector2D(0.0, 0.0);
         sumOfDistanceToThis = new Vector2D(0.0, 0.0);
 
-	}*/
+	}
 
 
     public Vector2D getPosition(){
@@ -125,24 +125,17 @@ public class Boid{
      *
      * @param timeDelta the amount of time the body moves
      */
-    public void move(double timeDelta){
+    public void move(double timeDelta){//Check is xcomp is positive or negative and how it would be affected by radius.
 	Vector2D changeInVelocity = ((getCurCohesionForce().getSum(getCurAlignmentForce())).getSum(getCurSeparationForce()));
 	velocity = velocity.getSum(changeInVelocity);
-	Vector2D positionChange = position.getSum(velocity.getScaling(timeDelta));
-	if(positionChange.getXComp() > universeRadius){
-	    if(positionChange.getYComp() > universeRadius){
-		positionChange = new Vector2D(position.getXComp() + -universeRadius, position.getYComp()-universeRadius);
-	    }
-	    else{
-		positionChange = new Vector2D(position.getXComp() + -universeRadius, position.getYComp());
-	    }
+	Vector2D positionBeforeWrapping = position.getSum(velocity.getScaling(timeDelta));
+	if(Math.abs(positionBeforeWrapping.getXComp()) > universeRadius){
+	    positionBeforeWrapping = new Vector2D(positionBeforeWrapping.getXComp() + -universeRadius, positionBeforeWrapping.getYComp());
 	}
-	else if(positionChange.getYComp() > universeRadius){
-	    positionChange = new Vector2D(position.getXComp(), -universeRadius + position.getYComp());
+	if(positionBeforeWrapping.getYComp() > universeRadius){
+	    positionBeforeWrapping = new Vector2D(positionBeforeWrapping.getXComp(), -universeRadius + positionBeforeWrapping.getYComp());
 	}
-	else {
-	    position = positionChange; 
-	}
+	position = positionBeforeWrapping; 
 	sumOfDistanceToThis = new Vector2D(0.0, 0.0);
 	sumOfNeighborsPosition = new Vector2D(0.0, 0.0);
 	sumOfNeighborsVelocities = new Vector2D(0.0, 0.0);
