@@ -25,7 +25,7 @@ public class Boid{
     }
     
     public Boid(double xCoord, double yCoord, double xVel, double yVel,
-                double rad, int red, int green, int blue, int uniRad){
+                double rad, int red, int green, int blue, double uniRad){
 
         position = new Vector2D(xCoord, yCoord);
         velocity = new Vector2D(xVel, yVel);

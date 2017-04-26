@@ -343,9 +343,9 @@ public class TestBoid {
     @Test
 	public void testMove(){
 	//Testing Move with Walls wrapping
-	Boid left = new Boid(-4.0, 1.0, -1.0, 1.0, 2.5, 255, 255, 255, 5);
-        Boid top = new Boid(1.0, 2.5, 1.0, 2.0, 2.5, 0, 0, 255, 5);
-        Boid botNdRight = new Boid(3.5, -4.0, 1.0, -0.5, 2.5, 255, 0, 0, 5);
+	Boid left = new Boid(-4.0, 1.0, -1.0, 1.0, 2.5, 255, 255, 255, 5.0);
+        Boid top = new Boid(1.0, 2.5, 1.0, 2.0, 2.5, 0, 0, 255, 5.0);
+        Boid botNdRight = new Boid(3.5, -4.0, 1.0, -0.5, 2.5, 255, 0, 0, 5.0);
 	double timeDelta = 2; //for top
 	double delta = 1E-1;
 

@@ -52,8 +52,8 @@ import java.awt.Color;
 	    StdDraw.setPenColor(rGB[0], rGB[1], rGB[2]);
 	    double boidRad = (boids[i].getRadius()/50);
 	    if(boidRad < 0){
-		//boidRad = (this.uniRad/50);
-		boidRad = 20;
+		boidRad = (this.uniRad/10);
+		//boidRad = 20;
 	    }
 	    StdDraw.filledCircle((boids[i].getPosition()).getXComp(), (boids[i].getPosition()).getYComp(), boidRad);
 	}
