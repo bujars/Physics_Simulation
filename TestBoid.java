@@ -350,8 +350,8 @@ public class TestBoid {
 	double delta = 1E-1;
 
 	top.move(timeDelta);
-	Vector2D expNewTopVel = new Vector2D(1, 2.0);
-        Vector2D expNewTopPos = new Vector2D(3, -3.5);
+	Vector2D expNewTopVel = new Vector2D(1.0, 2.0);
+        Vector2D expNewTopPos = new Vector2D(3.0, -3.5);
         String msgVelTop = "Actual: " + top.getVelocity() + "\n"
             + "is not close to\n" + "Expected: " + expNewTopVel;
         String msgPosTop = "Actual: " + top.getPosition() + "\n"
@@ -360,8 +360,32 @@ public class TestBoid {
         assertTrue(msgVelTop, top.getVelocity().isCloseTo(expNewTopVel, delta));
 	assertTrue(msgPosTop, top.getPosition().isCloseTo(expNewTopPos, delta));
         
-	
+	timeDelta = 3;
+	left.move(timeDelta);
+        Vector2D expNewLeftVel = new Vector2D(-1.0, 1.0);
+        Vector2D expNewLeftPos = new Vector2D(3.0, 4.0);
+        String msgVelLeft = "Actual: " + left.getVelocity() + "\n"
+            + "is not close to\n" + "Expected: " + expNewLeftVel;
+        String msgPosLeft = "Actual: " + left.getPosition() + "\n"
+            + "is not close to\n" + "Expected: " + expNewLeftPos;
 
+        assertTrue(msgVelLeft, left.getVelocity().isCloseTo(expNewLeftVel, delta));
+        assertTrue(msgPosLeft, left.getPosition().isCloseTo(expNewLeftPos, delta));
+
+
+	timeDelta = 6;
+	botNdRight.move(timeDelta);
+	Vector2D expNewBotNdRightVel = new Vector2D(1.0, -0.5);
+	Vector2D expNewBotNdRightPos = new Vector2D(-0.5, 3.0);
+	String msgVelBotNdRight = "Actual: " + botNdRight.getVelocity() + "\n"
+            + "is not close to\n" + "Expected: " + expNewBotNdRightVel;
+        String msgPosBotNdRight = "Actual: " + botNdRight.getPosition() + "\n"
+            + "is not close to\n" + "Expected: " + expNewBotNdRightPos;
+
+        assertTrue(msgVelBotNdRight, botNdRight.getVelocity().isCloseTo(expNewBotNdRightVel, delta));
+        assertTrue(msgPosBotNdRight, botNdRight.getPosition().isCloseTo(expNewBotNdRightPos, delta));
+
+	
 
 	Boid b0 = new Boid(0.0, 0.0, 0.0, 1.0, 5.0, 255, 255, 255);
 	Boid b1 = new Boid(3.0, 2.0, -2.0, 0.0, 4.1, 0, 0, 255);

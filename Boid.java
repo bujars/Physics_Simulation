@@ -129,12 +129,18 @@ public class Boid{
 	Vector2D changeInVelocity = ((getCurCohesionForce().getSum(getCurAlignmentForce())).getSum(getCurSeparationForce()));
 	velocity = velocity.getSum(changeInVelocity);
 	Vector2D positionBeforeWrapping = position.getSum(velocity.getScaling(timeDelta));
-	if(Math.abs(positionBeforeWrapping.getXComp()) > universeRadius){
-	    positionBeforeWrapping = new Vector2D(positionBeforeWrapping.getXComp() + -universeRadius, positionBeforeWrapping.getYComp());
+	if(positionBeforeWrapping.getXComp() > universeRadius){
+	    positionBeforeWrapping = new Vector2D(positionBeforeWrapping.getXComp() + (-universeRadius * 2), positionBeforeWrapping.getYComp());
 	}
+	else if(positionBeforeWrapping.getXComp() < -universeRadius){
+            positionBeforeWrapping = new Vector2D(positionBeforeWrapping.getXComp() + (universeRadius * 2), positionBeforeWrapping.getYComp());
+        }
 	if(positionBeforeWrapping.getYComp() > universeRadius){
-	    positionBeforeWrapping = new Vector2D(positionBeforeWrapping.getXComp(), -universeRadius + positionBeforeWrapping.getYComp());
+	    positionBeforeWrapping = new Vector2D(positionBeforeWrapping.getXComp(), (-universeRadius*2) + (positionBeforeWrapping.getYComp()));
 	}
+	else if(positionBeforeWrapping.getYComp() < -universeRadius){
+            positionBeforeWrapping = new Vector2D(positionBeforeWrapping.getXComp(), (universeRadius*2) + (positionBeforeWrapping.getYComp()));
+        }
 	position = positionBeforeWrapping; 
 	sumOfDistanceToThis = new Vector2D(0.0, 0.0);
 	sumOfNeighborsPosition = new Vector2D(0.0, 0.0);
