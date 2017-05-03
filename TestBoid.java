@@ -558,5 +558,47 @@ public class TestBoid {
             + "is not close to\n" + "Expected: " + expSep;
 	assertTrue(msgSep12, b1.getCurSeparationForce().isCloseTo(expSep, delta));
 	}
+
+
+    @Test
+	public void testGetVerticies(){
+	Boid b0 = new Boid(-4.0, -7.0, 3.0, 4.0, 3.0, 0, 0, 255, 10.0);
+	double delta = 1E-1;
+	
+	Vector2D[] exp = new Vector2D[3];
+	exp[0] = new Vector2D(-2.8, -5.4);
+	exp[1] = new Vector2D(-5.986, -6.761);
+	exp[2] = new Vector2D(-3.214, -8.839);
+	Vector2D[] act = b0.getVerticies();
+	String msg0 = "Actual: " + act[0].getXComp() + "\n"
+            + "is not close to\n" + "Expected: " + exp[0].getXComp();
+	String msg1 = "Actual: " + act[1] + "\n"
+            + "is not close to\n" + "Expected: " + exp[1];
+	String msg2 = "Actual: " + act[2] + "\n"
+            + "is not close to\n" + "Expected: " + exp[2];
+	//assertTrue(msg0, b0.getVerticies().isCloseTo(exp, delta));
+	assertArrayEquals(exp, b0.getVerticies());
+
+	//WE CANNOT USE ASSERTARRAYEQUALS! HAVE TO USE THE MESSAGE WAY
+
+	/*
+	Boid b1 = new Boid(-5.0, 5.0, -6.0, -8.0, 3.0, 0, 255, 0, 10.0);
+	Vector2D[] exp1 = new Vector2D[3];
+        exp1[0] = new Vector2D(-4.0, 4.0);
+        exp1[1] = new Vector2D(-4.0, -6.861);
+        exp1[2] = new Vector2D(-4.0, -8.839);
+        Vector2D[] act = b0.getVerticies();
+        String msg0 = "Actual: " + act[0] + "\n"
+            + "is not close to\n" + "Expected: " + exp[0];
+	String msg1 = "Actual: " + act[1] + "\n"
+            + "is not close to\n" + "Expected: " + exp[1];
+	String msg2 = "Actual: " + act[2] + "\n"
+            + "is not close to\n" + "Expected: " + exp[2];
+	*/
+
+
+    }
+
+
     
 }

@@ -137,6 +137,15 @@ public class Vector2D{
 	return ret;
     }
 
+    public Vector2D calcRotatedVector2D(double degree){
+        double rotX = (xComp * Math.cos(degree)) -
+            (yComp * Math.sin(degree));
+        double rotY = (xComp * Math.sin(degree)) +
+            (yComp * Math.cos(degree));
+        return new Vector2D(rotX, rotY);
+    }
+
+
 
 
     /**

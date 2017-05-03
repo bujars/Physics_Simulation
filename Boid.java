@@ -190,20 +190,15 @@ public class Boid{
 	return (sumOfNeighborsVelocities.getScaling(1.0/countOfNeighbors)).getDiff(velocity);
     }
 
-    public Vector2D calcRotatedVector2D(double degree){
-	double rotX = (this.getVelocity().getXComp() * Math.cos(degree)) - 
-	    (this.getVelocity().getYComp() * Math.sin(degree));
-	double rotY = (this.getVelocity().getXComp() * Math.sin(degree)) + 
-	    (this.getVelocity().getYComp() * Math.cos(degree));
-	return new Vector2D(rotX, rotY);
-    }
-
     public Vector2D[] getVerticies(){
         double verDis = universeRadius/5;
         Vector2D tip = velocity.getCappedVersion(verDis, verDis);
         Vector2D left = tip.calcRotatedVector2D(120.0);
         Vector2D right = tip.calcRotatedVector2D(240.0);
-        Vector2D[] ret = new Vector2D[]{tip, left, right};
+        Vector2D[] ret = new Vector2D[3];
+	ret[0] = tip.getSum(position);
+	ret[1] = left.getSum(position);
+	ret[2] = right.getSum(position);
         return ret;
     }
 
