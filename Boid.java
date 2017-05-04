@@ -191,14 +191,20 @@ public class Boid{
     }
 
     public Vector2D[] getVerticies(){
-        double verDis = universeRadius/5;
+        double verDis = universeRadius/5.0;
         Vector2D tip = velocity.getCappedVersion(verDis, verDis);
-        Vector2D left = tip.calcRotatedVector2D(120.0);
-        Vector2D right = tip.calcRotatedVector2D(240.0);
-        Vector2D[] ret = new Vector2D[3];
+        System.out.println(tip);
+	Vector2D left = tip.calcRotatedVector2D(2.0944);
+	System.out.println(left);
+        Vector2D right = tip.calcRotatedVector2D(4.18879);
+        System.out.println(right);
+	Vector2D[] ret = new Vector2D[3];
 	ret[0] = tip.getSum(position);
+	System.out.println(ret[0]);
 	ret[1] = left.getSum(position);
+	System.out.println(ret[1]);
 	ret[2] = right.getSum(position);
+	System.out.println(ret[2]);
         return ret;
     }
 

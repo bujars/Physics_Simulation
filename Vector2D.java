@@ -137,11 +137,11 @@ public class Vector2D{
 	return ret;
     }
 
-    public Vector2D calcRotatedVector2D(double degree){
-        double rotX = (xComp * Math.cos(degree)) -
-            (yComp * Math.sin(degree));
-        double rotY = (xComp * Math.sin(degree)) +
-            (yComp * Math.cos(degree));
+    public Vector2D calcRotatedVector2D(double radian){ //its in radians not degrees make sure tests have radians not degrees to pass
+        double rotX = (xComp * Math.cos(radian)) -
+            (yComp * Math.sin(radian));
+        double rotY = (xComp * Math.sin(radian)) +
+            (yComp * Math.cos(radian));
         return new Vector2D(rotX, rotY);
     }
 
