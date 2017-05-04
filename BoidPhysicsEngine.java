@@ -52,10 +52,19 @@ import java.awt.Color;
 	    StdDraw.setPenColor(rGB[0], rGB[1], rGB[2]);
 	    double boidRad = (boids[i].getRadius()/50);
 	    if(boidRad < 0){
-		boidRad = (this.uniRad/10);
+		boidRad = (this.uniRad/50);
 		//boidRad = 20;
 	    }
-	    StdDraw.filledCircle((boids[i].getPosition()).getXComp(), (boids[i].getPosition()).getYComp(), boidRad);
+	    StdDraw.setPenRadius(2);
+	    double[] xCoords = new double[3];
+	    xCoords[0] = boids[i].getVerticies()[0].getXComp();
+	    xCoords[1] = boids[i].getVerticies()[1].getXComp();
+	    xCoords[2] = boids[i].getVerticies()[2].getXComp();
+	    double[] yCoords = new double[3];
+	    yCoords[0] = boids[i].getVerticies()[0].getYComp();
+	    yCoords[1] = boids[i].getVerticies()[1].getYComp();
+	    yCoords[2] = boids[i].getVerticies()[2].getYComp();
+	    StdDraw.filledPolygon(xCoords, yCoords);
 	}
 	// TODO: Copy the offscreen canvs to the onscreen canvas
 	StdDraw.show();
