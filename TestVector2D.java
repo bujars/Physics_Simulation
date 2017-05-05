@@ -129,4 +129,22 @@ public class TestVector2D{
 	assertTrue(msg4, actual04.isCloseTo(exp4, 1E-1));
         assertTrue(msg5, actual05.isCloseTo(exp5, 1E-1));
     }
+    
+    @Test
+	public void testCalcRoatedVector2D(){
+	Vector2D tip = new Vector2D(1.2, 1.6);
+	Vector2D expLeft = new Vector2D(-1.9856, 0.2392);
+	Vector2D expRight = new Vector2D(0.7856, -1.8392);
+
+	Vector2D actLeft = tip.calcRotatedVector2D(2.0944);
+	Vector2D actRight = tip.calcRotatedVector2D(4.18879);
+	
+	String msgLeft = "Actual: " + actLeft + "\n" + "is not close to\n" + "Expected: " + expLeft;
+	String msgRight = "Actual: " + actRight + "\n" + "is not close to\n" + "Expected: " + expRight;
+
+	assertTrue(msgLeft, actLeft.isCloseTo(expLeft, 1E-3));
+	assertTrue(msgRight, actRight.isCloseTo(expRight, 1E-3));
+
+    }
+	
 }

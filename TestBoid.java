@@ -563,7 +563,7 @@ public class TestBoid {
     @Test
 	public void testGetVerticies(){
 	Boid b0 = new Boid(-4.0, -7.0, 3.0, 4.0, 3.0, 0, 0, 255, 10.0);
-	double delta = 1E-1;
+	double delta = 1E-3;
 	
 	Vector2D[] exp = new Vector2D[3];
 	exp[0] = new Vector2D(-2.8, -5.4);
