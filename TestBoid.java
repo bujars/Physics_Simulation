@@ -290,6 +290,16 @@ public class TestBoid {
 	assertTrue(msgSep120, b1.getCurSeparationForce().isCloseTo(expSep, delta));
 	assertTrue(msgAli120, b1.getCurAlignmentForce().isCloseTo(expAli, delta));
 
+	
+
+	//Testing Forces with caps
+	b0 = new Boid(0.0, 0.0, 0.0, 1.0, 3.0, 0, 0, 255, 100.0, 2.0, 1.5, 0.1);
+	b1 = new Boid(3.0, 2.0, -2.0, 0.0, 3.0, 0, 255, 255, 100.0, 2.0, 1.5, 0.1); 
+	b2 = new Boid(1.0, 4.0, -3.0, -3.0, 3.0, 255, 255, 255, 100.0, 2.0, 1.5, 0.1);
+	b3 = new Boid(-1.0, 2.0, -1.0, 1.0, 3.0, 0, 0, 0, 100.0, 2.0, 1.5, 0.1);
+
+
+
 	}
 
 
