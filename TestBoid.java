@@ -293,10 +293,60 @@ public class TestBoid {
 	
 
 	//Testing Forces with caps
-	b0 = new Boid(0.0, 0.0, 0.0, 1.0, 3.0, 0, 0, 255, 100.0, 2.0, 1.5, 0.1);
-	b1 = new Boid(3.0, 2.0, -2.0, 0.0, 3.0, 0, 255, 255, 100.0, 2.0, 1.5, 0.1); 
-	b2 = new Boid(1.0, 4.0, -3.0, -3.0, 3.0, 255, 255, 255, 100.0, 2.0, 1.5, 0.1);
-	b3 = new Boid(-1.0, 2.0, -1.0, 1.0, 3.0, 0, 0, 0, 100.0, 2.0, 1.5, 0.1);
+	b0 = new Boid(0.0, 0.0, 0.0, 1.0, 5.0, 0, 0, 255, 100.0, 1.0, 0.1, 2.0, 1.5, 0.1);
+	b1 = new Boid(3.0, 2.0, -2.0, 0.0, 5.0, 0, 255, 255, 100.0, 1.0, 0.1, 2.0, 1.5, 0.1); 
+	b2 = new Boid(1.0, 4.0, -3.0, -3.0, 5.0, 255, 255, 255, 100.0, 1.0, 0.1, 2.0, 1.5, 0.1);
+	b3 = new Boid(-1.0, 2.0, -1.0, 1.0, 5.0, 0, 0, 0, 100.0, 1.0, 0.1, 2.0, 1.5, 0.1);
+	delta = 1E-4;
+
+        expCo = null;
+        expSep = null;
+        expAli = null;
+
+        b0.addForceFrom(b1);
+        expCo = new Vector2D(1.42305, 0.47435);
+        expSep = new Vector2D(-0.08319, -0.05548);
+        expAli = new Vector2D(-1.78885, -0.89443);
+        String msg = "Actual: " + b0.getCurCohesionForce() + "\n"
+            + "is not close to\n" + "Expected: " + expCo;
+        assertTrue(msg, b0.getCurCohesionForce().isCloseTo(expCo, delta));
+	msg = "Actual: " + b0.getCurSeparationForce() + "\n"
+            + "is not close to\n" + "Expected: " + expSep;
+        assertTrue(msg, b0.getCurSeparationForce().isCloseTo(expSep, delta));
+	msg = "Actual: " + b0.getCurAlignmentForce() + "\n"
+            + "is not close to\n" + "Expected: " + expAli;
+        assertTrue(msg, b0.getCurAlignmentForce().isCloseTo(expAli, delta));
+
+	b0.addForceFrom(b2);
+        expCo = new Vector2D(1.06066, 1.06066);
+        expSep = new Vector2D(-0.0597, -0.0802225);
+        expAli = new Vector2D(-1.4142, -1.4142);
+        msg = "Actual: " + b0.getCurCohesionForce() + "\n"
+            + "is not close to\n" + "Expected: " + expCo;
+        assertTrue(msg, b0.getCurCohesionForce().isCloseTo(expCo, delta));
+        msg = "Actual: " + b0.getCurSeparationForce() + "\n"
+            + "is not close to\n" + "Expected: " + expSep;
+        assertTrue(msg, b0.getCurSeparationForce().isCloseTo(expSep, delta));
+        msg = "Actual: " + b0.getCurAlignmentForce() + "\n"
+            + "is not close to\n" + "Expected: " + expAli;
+        assertTrue(msg, b0.getCurAlignmentForce().isCloseTo(expAli, delta));
+
+	b0.addForceFrom(b3);
+	expCo = new Vector2D(0.771743, 1.28623);
+	expSep = new Vector2D(-0.01128, -0.099362);
+	expAli = new Vector2D(-1.5364, -1.2804);
+	msg = "Actual: " + b0.getCurCohesionForce() + "\n"
+            + "is not close to\n" + "Expected: " + expCo;
+	assertTrue(msg, b0.getCurCohesionForce().isCloseTo(expCo, delta));
+        msg = "Actual: " + b0.getCurSeparationForce() + "\n"
+            + "is not close to\n" + "Expected: " + expSep;
+	assertTrue(msg, b0.getCurSeparationForce().isCloseTo(expSep, delta));
+        msg = "Actual: " + b0.getCurAlignmentForce() + "\n"
+            + "is not close to\n" + "Expected: " + expAli;
+        assertTrue(msg, b0.getCurAlignmentForce().isCloseTo(expAli, delta));
+
+
+
 
 
 
