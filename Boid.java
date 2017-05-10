@@ -9,6 +9,12 @@ public class Boid{
     private double radius;
     private double universeRadius;
     private int[] rgb; 
+    private double maxVel;
+    private double minVel;
+    private double capAligForce;
+    private double capCohForce;
+    private double capSepForce;
+
     
     public Boid(double xCoord, double yCoord, double xVel, double yVel, 
 		double rad, int red, int green, int blue){
@@ -21,7 +27,12 @@ public class Boid{
 	sumOfNeighborsPosition = new Vector2D(0.0, 0.0);
 	sumOfNeighborsVelocities = new Vector2D(0.0, 0.0);
 	sumOfDistanceToThis = new Vector2D(0.0, 0.0);
-    
+	maxVel = 100;
+	minVel = 0;
+	capAligForce = 100;
+	capCohForce = 100;
+	capSepForce = 100;
+
     }
     
     public Boid(double xCoord, double yCoord, double xVel, double yVel,
@@ -35,8 +46,36 @@ public class Boid{
         sumOfNeighborsPosition = new Vector2D(0.0, 0.0);
         sumOfNeighborsVelocities = new Vector2D(0.0, 0.0);
         sumOfDistanceToThis = new Vector2D(0.0, 0.0);
+	maxVel = 100;
+	minVel = 0;
+	capAligForce = 100;
+	capCohForce = 100;
+	capSepForce = 100;
 
 	}
+
+    public Boid(double xCoord, double yCoord, double xVel, double yVel,
+                double rad, int red, int green, int blue, double uniRad,
+		double maximimVelocity, double minimumVelocity, 
+		double maxAlighmentForce, double maxCohesionForce, 
+		double maxSeparationForce){
+
+        position = new Vector2D(xCoord, yCoord);
+        velocity = new Vector2D(xVel, yVel);
+        radius = rad;
+        universeRadius = uniRad;
+        rgb = new int[]{red, green, blue};
+        sumOfNeighborsPosition = new Vector2D(0.0, 0.0);
+        sumOfNeighborsVelocities = new Vector2D(0.0, 0.0);
+        sumOfDistanceToThis = new Vector2D(0.0, 0.0);
+	maxVel = maximumVeloctiy;
+	minVel = minimumVelocity;
+	capAligForce = maxAlignmentForce;
+	capCohForce = maxCohesionForce;
+	capSepForce = maxSeparationForce;
+
+    }
+
 
 
     public Vector2D getPosition(){
