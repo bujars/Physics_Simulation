@@ -56,9 +56,9 @@ public class Boid{
 
     public Boid(double xCoord, double yCoord, double xVel, double yVel,
                 double rad, int red, int green, int blue, double uniRad,
-		double maximimVelocity, double minimumVelocity, 
-		double maxAlighmentForce, double maxCohesionForce, 
-		double maxSeparationForce){
+		double maximumVelocity, double minimumVelocity, 
+		double maxAligForce, double maxCohForce, 
+		double maxSepForce){
 
         position = new Vector2D(xCoord, yCoord);
         velocity = new Vector2D(xVel, yVel);
@@ -68,15 +68,13 @@ public class Boid{
         sumOfNeighborsPosition = new Vector2D(0.0, 0.0);
         sumOfNeighborsVelocities = new Vector2D(0.0, 0.0);
         sumOfDistanceToThis = new Vector2D(0.0, 0.0);
-	maxVel = maximumVeloctiy;
+	maxVel = maximumVelocity;
 	minVel = minimumVelocity;
-	capAligForce = maxAlignmentForce;
-	capCohForce = maxCohesionForce;
-	capSepForce = maxSeparationForce;
+	capAligForce = maxAligForce;
+	capCohForce = maxCohForce;
+	capSepForce = maxSepForce;
 
     }
-
-
 
     public Vector2D getPosition(){
 	return position;
@@ -131,7 +129,6 @@ public class Boid{
 	    addAlignmentForceFrom(otherBoid);
 	    addSeparationForceFrom(otherBoid);
 	    countOfNeighbors++;
-	    System.out.println(countOfNeighbors);
 	}
     }
 
@@ -165,7 +162,7 @@ public class Boid{
      * @param timeDelta the amount of time the body moves
      */
     public void move(double timeDelta){//Check is xcomp is positive or negative and how it would be affected by radius.
-	Vector2D changeInVelocity = ((getCurCohesionForce().getSum(getCurAlignmentForce())).getSum(getCurSeparationForce()));
+	Vector2D changeInVelocity = ((getCurCohesionForce().getSum(getCurAlignmentForce())).getSum(getCurSeparationForce())).getCappedVersion(maxVel, minVel);
 	velocity = velocity.getSum(changeInVelocity);
 	Vector2D positionBeforeWrapping = position.getSum(velocity.getScaling(timeDelta));
 	if(positionBeforeWrapping.getXComp() > universeRadius){
@@ -212,38 +209,38 @@ public class Boid{
 	if(countOfNeighbors == 0){
 	    return new Vector2D(0.0, 0.0);
 	}
-	return ((sumOfNeighborsPosition.getScaling(1.0/countOfNeighbors)).getDiff(position)).getDiff(velocity);
+	return (((sumOfNeighborsPosition.getScaling(1.0/countOfNeighbors)).getDiff(position)).getDiff(velocity)).getCappedVersion(capCohForce, 0.0);
     }
 
     public Vector2D getCurSeparationForce(){
 	if(countOfNeighbors == 0){
 	    return new Vector2D(0.0, 0.0);
 	}
-	return sumOfDistanceToThis.getScaling(1.0/countOfNeighbors);
+	return (sumOfDistanceToThis.getScaling(1.0/countOfNeighbors)).getCappedVersion(capSepForce, 0.0);
     }
   
     public Vector2D getCurAlignmentForce(){
 	if(countOfNeighbors == 0){
 	    return new Vector2D(0.0, 0.0);
 	}
-	return (sumOfNeighborsVelocities.getScaling(1.0/countOfNeighbors)).getDiff(velocity);
+	return ((sumOfNeighborsVelocities.getScaling(1.0/countOfNeighbors)).getDiff(velocity)).getCappedVersion(capAligForce, 0.0);
     }
 
     public Vector2D[] getVerticies(){
         double verDis = universeRadius/5.0;
         Vector2D tip = velocity.getCappedVersion(verDis, verDis);
-        System.out.println(tip);
+        //System.out.println(tip);
 	Vector2D left = tip.calcRotatedVector2D(2.0944);
-	System.out.println(left);
+	//System.out.println(left);
         Vector2D right = tip.calcRotatedVector2D(4.18879);
-        System.out.println(right);
+        //System.out.println(right);
 	Vector2D[] ret = new Vector2D[3];
 	ret[0] = tip.getSum(position);
-	System.out.println(ret[0]);
+	//System.out.println(ret[0]);
 	ret[1] = left.getSum(position);
-	System.out.println(ret[1]);
+	//System.out.println(ret[1]);
 	ret[2] = right.getSum(position);
-	System.out.println(ret[2]);
+	//System.out.println(ret[2]);
         return ret;
     }
 
