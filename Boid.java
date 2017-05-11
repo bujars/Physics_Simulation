@@ -246,12 +246,17 @@ public class Boid{
 
 
 
-    /*public String toString(){
-        return "XCoord: " + xCoordinate +" YCoord: " + yCoordinate + 
-	    " XVeloc: " + xVelocity + " YVeloc: " + yVelocity + 
-	    " Radius: " + radius + " RGB: " + rgb[0] + " " + 
-	    rgb[1] + " " + rgb[2];
-    }*/
+    public String toString(){
+        return "XCoord: " + position.getXComp() + "\nYCoord: " + 
+	    position.getYComp() + "\nXVeloc: " + velocity.getXComp() 
+	    + "\nYVeloc: " + velocity.getYComp() + 
+	    "\nNeighbor Radius: " + radius + "\nRGB: " + rgb[0] + " " + 
+	    rgb[1] + " " + rgb[2] + "\nUniverse Radius: " + universeRadius 
+	    + "\nMaximum Velocity: " + maxVel + "\nMinimum Velocity: " 
+	    + minVel + "\nMax Alignment Force: " + capAligForce + 
+	    "\nMax Cohesion Force: " + capCohForce + 
+	    "\nMax Separation Force: " + capSepForce;
+    }
 
 	
 	
