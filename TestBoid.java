@@ -520,6 +520,35 @@ public class TestBoid {
 	String msgPos04 = "Actual: " + b0.getPosition() + "\n" 
 	    + "is not close to\n" + "Expected: " + expNewPos;
 	assertTrue(msgPos04, b1.getPosition().isCloseTo(expNewPos, delta));  
+
+
+	//Testing Boid with Capping Velocity
+	b0 = new Boid(0.0, 0.0, 0.0, 1.0, 5.0, 0, 0, 255, 100.0, 1.0, 0.1, 2.0, 1.5, 0.1);
+        b1 = new Boid(3.0, 2.0, -2.0, 0.0, 5.0, 0, 255, 255, 100.0, 1.0, 0.1, 2.0, 1.5, 0.1);
+        b2 = new Boid(1.0, 4.0, -3.0, -3.0, 5.0, 255, 255, 255, 100.0, 1.0, 0.1, 2.0, 1.5, 0.1);
+        b3 = new Boid(-1.0, 2.0, -1.0, 1.0, 5.0, 0, 0, 0, 100.0, 1.0, 0.1, 2.0, 1.5, 0.1);
+        delta = 1E-4;
+
+	b0.addForceFrom(b1);
+        b0.addForceFrom(b2);
+        b0.addForceFrom(b3);
+        b1.addForceFrom(b0);
+        b1.addForceFrom(b2);
+        b1.addForceFrom(b3);
+                                                                      
+        b0.move(timeDelta);
+        b1.move(timeDelta);
+
+
+	expNewVel = new Vector2D(-0.775979, 0.9065089);
+        String msgVel44 = "Actual: " + b0.getVelocity() + "\n"
+            + "is not close to\n" + "Expected: " + expNewVel;
+        assertTrue(msgVel44, b0.getVelocity().isCloseTo(expNewVel, delta));
+        expNewPos = new Vector2D(-7.75979, 9.065089);
+        String msgPos44 = "Actual: " + b0.getPosition() + "\n"
+            + "is not close to\n" + "Expected: " + expNewPos;
+        assertTrue(msgPos44, b0.getPosition().isCloseTo(expNewPos, delta));
+
     }
 
     
