@@ -162,8 +162,8 @@ public class Boid{
      * @param timeDelta the amount of time the body moves
      */
     public void move(double timeDelta){//Check is xcomp is positive or negative and how it would be affected by radius.
-	Vector2D changeInVelocity = ((getCurCohesionForce().getSum(getCurAlignmentForce())).getSum(getCurSeparationForce())).getCappedVersion(maxVel, minVel);
-	velocity = velocity.getSum(changeInVelocity);
+	Vector2D changeInVelocity = ((getCurCohesionForce().getSum(getCurAlignmentForce())).getSum(getCurSeparationForce()));
+	velocity = (velocity.getSum(changeInVelocity)).getCappedVersion(maxVel, minVel);
 	Vector2D positionBeforeWrapping = position.getSum(velocity.getScaling(timeDelta));
 	if(positionBeforeWrapping.getXComp() > universeRadius){
 	    positionBeforeWrapping = new Vector2D(positionBeforeWrapping.getXComp() + (-universeRadius * 2), positionBeforeWrapping.getYComp());

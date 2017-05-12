@@ -540,11 +540,11 @@ public class TestBoid {
         b1.move(timeDelta);
 
 
-	expNewVel = new Vector2D(-0.775979, 0.9065089);
+	expNewVel = new Vector2D(-0.6503, 0.7596);
         String msgVel44 = "Actual: " + b0.getVelocity() + "\n"
             + "is not close to\n" + "Expected: " + expNewVel;
         assertTrue(msgVel44, b0.getVelocity().isCloseTo(expNewVel, delta));
-        expNewPos = new Vector2D(-7.75979, 9.065089);
+        expNewPos = new Vector2D(-6.5030, 7.5969);
         String msgPos44 = "Actual: " + b0.getPosition() + "\n"
             + "is not close to\n" + "Expected: " + expNewPos;
         assertTrue(msgPos44, b0.getPosition().isCloseTo(expNewPos, delta));
