@@ -69,7 +69,7 @@ import java.awt.Color;
 	// TODO: Copy the offscreen canvs to the onscreen canvas
 	StdDraw.show();
 	// TODO: Wait for a short amount of time
-	StdDraw.pause(50); //might have to cast dt, ask stern
+	StdDraw.pause(10); //might have to cast dt, ask stern
     }
     
     /**

@@ -227,7 +227,7 @@ public class Boid{
     }
 
     public Vector2D[] getVerticies(){
-        double verDis = universeRadius/5.0;
+        double verDis = universeRadius/50.0;
         Vector2D tip = velocity.getCappedVersion(verDis, verDis);
         //System.out.println(tip);
 	Vector2D left = tip.calcRotatedVector2D(2.0944);
