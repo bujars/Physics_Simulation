@@ -655,9 +655,9 @@ public class TestBoid {
 	double delta = 1E-3;
 	
 	Vector2D[] exp = new Vector2D[3];
-	exp[0] = new Vector2D(-2.8, -5.4);
-	exp[1] = new Vector2D(-5.986, -6.761);
-	exp[2] = new Vector2D(-3.214, -8.839);
+	exp[0] = new Vector2D(-3.88, -6.84);
+	exp[1] = new Vector2D(-4.198, -6.976);
+	exp[2] = new Vector2D(-3.921, -7.183);
 	Vector2D[] act = b0.getVerticies();
 	String msg0 = "Actual: " + act[0] + "\n"
             + "is not close to\n" + "Expected: " + exp[0];
