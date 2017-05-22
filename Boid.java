@@ -244,7 +244,9 @@ public class Boid{
         return ret;
     }
 
-
+    public Vector2D getSumOfAlignmentForce(){
+	return sumOfNeighborsVelocities;
+    }
 
     public String toString(){
         return "XCoord: " + position.getXComp() + "\nYCoord: " + 
