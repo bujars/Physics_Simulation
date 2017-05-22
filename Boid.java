@@ -244,7 +244,7 @@ public class Boid{
         return ret;
     }
 
-    public Vector2D getSumOfAlignmentForce(){
+    public Vector2D getSumAlignmentForce(){
 	return sumOfNeighborsVelocities;
     }
 

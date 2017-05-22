@@ -692,5 +692,37 @@ public class TestBoid {
     }
 
 
+    @Test
+	public void testGetSumAlignmentForce(){
+	Boid b0 = new Boid(0.0, 0.0, 0.0, 0.0, 10.0, 0, 0, 0);
+	Boid b1 = new Boid(5.0, 5.0, 0.0, 1.0, 10.0, 255, 0, 0);
+	Boid b2 = new Boid(-3.0, 3.0, 1.0, 0.0, 10.0, 0, 255, 0);
+	Boid b3 = new Boid(4.0, -3.0, -1.0, 1.0, 10.0, 0, 0, 255);
+	double delta = 1E-1;
+	Vector2D expAli = null;
+
+	b0.addForceFrom(b1);
+	expAli = new Vector2D(0.0, 1.0);
+        String msgAli01 = "Actual: " + b0.getSumAlignmentForce() + "\n"
+            + "is not close to\n" + "Expected: " + expAli;
+        assertTrue(msgAli01, b0.getSumAlignmentForce().isCloseTo(expAli, delta));
+
+
+	b0.addForceFrom(b2);
+	expAli = new Vector2D(1.0, 1.0);
+	String msgAli02 = "Actual: " + b0.getSumAlignmentForce() + "\n"
+            + "is not close to\n" + "Expected: " + expAli;
+        assertTrue(msgAli02, b0.getSumAlignmentForce().isCloseTo(expAli, delta));
+
+
+	b0.addForceFrom(b3);
+	expAli = new Vector2D(0.0, 2.0);
+        String msgAli03 = "Actual: " + b0.getSumAlignmentForce() + "\n"
+            + "is not close to\n" + "Expected: " + expAli;
+	assertTrue(msgAli03, b0.getSumAlignmentForce().isCloseTo(expAli, delta));
+
+	
+    }
+
     
 }
