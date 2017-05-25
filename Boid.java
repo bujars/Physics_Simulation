@@ -244,8 +244,8 @@ public class Boid{
         return ret;
     }
 
-    public Vector2D getSumAlignmentForce(){
-	return sumOfNeighborsVelocities;
+    public Vector2D getAlignmentForce(){
+	return ((sumOfNeighborsVelocities.getScaling(1.0/countOfNeighbors)).getDiff(velocity));
     }
 
     public String toString(){
